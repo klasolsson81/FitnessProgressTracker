@@ -14,6 +14,30 @@ Ett OOP-baserat terminalprogram i C# som hjälper PT:s och klienter att hantera 
 - Visa förståelse för OOP, generiska klasser, JSON och Spectre.Console
 - Arbeta effektivt i team via GitHub (brancher, pull requests, kodgranskning)
 
+## Kom igång
+
+För att komma igång med projektet på din lokala maskin, följ dessa steg:
+
+1.  **Acceptera inbjudan som Collaborator på repot.**
+    Detta är nödvändigt för att få åtkomst till repositoryt.
+
+2.  **Klona repositoryt.**
+    Öppna din terminal eller kommandotolk och kör följande kommando:
+    ```bash
+    git clone https://github.com/your-org/your-repo.git
+    ```
+    (Ersätt `https://github.com/your-org/your-repo.git` med den faktiska URL:en för detta repository.)
+
+3.  **Öppna projektet i din kod-editor.**
+    Navigera till den klonade mappens rot och öppna projektet i din kod-editor (t.ex. VS Code).
+
+4.  **Verifiera att allt bygger.**
+    Öppna terminalen *inom* projektets rotkatalog och kör:
+    ```bash
+    dotnet build
+    ```
+    Detta kommer att kompilera projektet och säkerställa att alla beroenden är lösta och att det inte finns några kompileringsfel.
+
 ## 🧍‍♀️ Användartyper
 ### PT
 - Skapa träningsschema med AI-hjälp
