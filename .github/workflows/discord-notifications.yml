@@ -18,19 +18,31 @@ jobs:
     
     steps:
       - name: Skicka Discord-notis om ny PR
-        uses: sarisia/actions-discord@v0.4.0
+        uses: actions/github-script@v7
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          content: "🙋‍♀️ Ny Pull Request! Dags att granska!"
-          embeds: |
-            [
-              {
-                "title": "${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})",
-                "description": "Från: **${{ github.actor }}**\nGren: `${{ github.event.pull_request.head.ref }}`",
-                "url": "${{ github.event.pull_request.html_url }}",
-                "color": 16766720
-              }
-            ]
+          script: |
+            const webhookURL = process.env.DISCORD_WEBHOOK;
+            const payload = {
+              content: "🙋‍♀️ Ny Pull Request! Dags att granska!",
+              embeds: [
+                {
+                  title: `${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})`,
+                  description: `Från: **${{ github.actor }}**\nGren: \`${{ github.event.pull_request.head.ref }}\``,
+                  url: "${{ github.event.pull_request.html_url }}",
+                  color: 16766720
+                }
+              ]
+            };
+            
+            await fetch(webhookURL, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(payload)
+            });
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
 
   notify_build_status:
     name: Skicka Byggstatus
@@ -38,34 +50,46 @@ jobs:
     if: github.event_name == 'workflow_run'
     
     steps:
-      - name: Skicka notis om lyckat bygge
-        if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        uses: sarisia/actions-discord@v0.4.0
+      - name: Skicka notis om byggstatus
+        uses: actions/github-script@v7
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          content: "✅ Bygge lyckades!"
-          embeds: |
-            [
-              {
-                "title": "Workflow `.NET Build and Test` lyckades",
-                "description": "Kördes på grenen `${{ github.event.workflow_run.head_branch }}` av **${{ github.actor }}**.",
-                "url": "${{ github.event.workflow_run.html_url }}",
-                "color": 3066993
-              }
-            ]
-
-      - name: Skicka notis om misslyckat bygge
-        if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-        uses: sarisia/actions-discord@v0.4.0
-        with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          content: "🚨 **BYGGE MISSLYCKADES** 🚨"
-          embeds: |
-            [
-              {
-                "title": "Workflow `.NET Build and Test` misslyckades",
-                "description": "Kördes på grenen `${{ github.event.workflow_run.head_branch }}` av **${{ github.actor }}**. \n**Vänligen kolla loggarna!**",
-                "url": "${{ github.event.workflow_run.html_url }}",
-                "color": 15158332
-              }
-            ]
+          script: |
+            const webhookURL = process.env.DISCORD_WEBHOOK;
+            const conclusion = "${{ github.event.workflow_run.conclusion }}";
+            
+            let content, color, title;
+            
+            if (conclusion === 'success') {
+              content = "✅ Bygge lyckades!";
+              color = 3066993;
+              title = "Workflow `.NET Build and Test` lyckades";
+            } else if (conclusion === 'failure') {
+              content = "🚨 **BYGGE MISSLYCKADES** 🚨";
+              color = 15158332;
+              title = "Workflow `.NET Build and Test` misslyckades";
+            } else {
+              // Om det är cancelled, skipped, etc.
+              return;
+            }
+            
+            const payload = {
+              content: content,
+              embeds: [
+                {
+                  title: title,
+                  description: `Kördes på grenen \`${{ github.event.workflow_run.head_branch }}\` av **${{ github.actor }}**.${conclusion === 'failure' ? ' \n**Vänligen kolla loggarna!**' : ''}`,
+                  url: "${{ github.event.workflow_run.html_url }}",
+                  color: color
+                }
+              ]
+            };
+            
+            await fetch(webhookURL, {
+              method: 'POST',
+              headers: {
+                'Content-Type': 'application/json',
+              },
+              body: JSON.stringify(payload)
+            });
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
