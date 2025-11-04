@@ -2,70 +2,91 @@
 name: Discord Notiser
 
 on:
+  # Trigger 1: När en Pull Request öppnas, återöppnas eller markeras som "redo för review"
   pull_request:
     types: [opened, reopened, ready_for_review]
 
+  # Trigger 2: När ett annat workflow är färdigt
+  # Denna "lyssnar" på ert huvud-workflow (för bygge/test)
   workflow_run:
-    workflows: [".NET Build and Test"]
+    # ❗️ VIKTIGT: Byt ut "Bygg och Testa" mot det exakta 'name:' från er andra .yml-fil (t.ex. build.yml)
+    workflows: [".NET Build and Test"] 
     types:
-      - completed
+      - completed # Körs när det andra workflown är helt klart
 
 jobs:
+  # Jobb 1: Hanterar notiser för Pull Requests
   notify_pr:
     name: Skicka PR Notis
     runs-on: ubuntu-latest
+    # Kör bara detta jobb om triggern var en 'pull_request'
     if: github.event_name == 'pull_request'
     
     steps:
       - name: Skicka Discord-notis om ny PR
-        uses: sarisia/actions-discord@v0.4.0
+        # Använder en populär och enkel action för detta
+        uses: Ilshidur/action-discord@0.3.0
+        env:
+          # Hämtar er webhook från GitHub Secrets
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          message: "🙋‍♀️ Ny Pull Request! Dags att granska!"
-          embeds: |
-            [
-              {
-                "title": "${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})",
-                "description": "Från: **${{ github.actor }}**\nGren: `${{ github.event.pull_request.head.ref }}`",
-                "url": "${{ github.event.pull_request.html_url }}",
-                "color": 16766720
-              }
-            ]
+          args: |
+            {
+              "content": "🙋‍♀️ Ny Pull Request! Dags att granska!",
+              "embeds": [
+                {
+                  "title": "${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})",
+                  "description": "Från: **${{ github.actor }}**\nGren: `${{ github.event.pull_request.head.ref }}`",
+                  "url": "${{ github.event.pull_request.html_url }}",
+                  "color": 16766720
+                }
+              ]
+            }
 
+  # Jobb 2: Hanterar notiser för bygge/test-status
   notify_build_status:
     name: Skicka Byggstatus
     runs-on: ubuntu-latest
+    # Kör bara detta jobb om triggern var 'workflow_run'
     if: github.event_name == 'workflow_run'
     
     steps:
+      # Steg 2a: Körs ENDAST om bygget lyckades (success)
       - name: Skicka notis om lyckat bygge
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        uses: sarisia/actions-discord@v0.4.0
+        uses: Ilshidur/action-discord@0.3.0
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          message: "✅ Bygge lyckades!"
-          embeds: |
-            [
-              {
-                "title": "Workflow `${{ github.event.workflow_run.name }}` lyckades",
-                "description": "Kördes på grenen `${{ github.event.workflow_run.head_branch }}` av **${{ github.actor }}**.",
-                "url": "${{ github.event.workflow_run.html_url }}",
-                "color": 3066993
-              }
-            ]
+          args: |
+            {
+              "content": "✅ Bygge lyckades!",
+              "embeds": [
+                {
+                  "title": "Workflow `${{ github.event.workflow_run.name }}` lyckades",
+                  "description": "Kördes på grenen `${{ github.event.workflow_run.head_branch }}` av **${{ github.actor }}**.",
+                  "url": "${{ github.event.workflow_run.html_url }}",
+                  "color": 3066993
+                }
+              ]
+            }
 
+      # Steg 2b: Körs ENDAST om bygget misslyckades (failure)
       - name: Skicka notis om misslyckat bygge
         if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-        uses: sarisia/actions-discord@v0.4.0
+        uses: Ilshidur/action-discord@0.3.0
+        env:
+          DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          message: "🚨 **BYGGE MISSLYCKADES** 🚨"
-          embeds: |
-            [
-              {
-                "title": "Workflow `${{ github.event.workflow_run.name }}` misslyckades",
-                "description": "Kördes på grenen `${{ github.event.workflow_run.head_branch }}` av **${{ github.actor }}**. \n**Vänligen kolla loggarna!**",
-                "url": "${{ github.event.workflow_run.html_url }}",
-                "color": 15158332
-              }
-            ]
+          args: |
+            {
+              "content": "🚨 **BYGGE MISSLYCKADES** 🚨",
+              "embeds": [
+                {
+                  "title": "Workflow `${{ github.event.workflow_run.name }}` misslyckades",
+                  "description": "Kördes på grenen `${{ github.event.workflow_run.head_branch }}` av **${{ github.actor }}**. \n**Vänligen kolla loggarna!**",
+                  "url": "${{ github.event.workflow_run.html_url }}",
+                  "color": 15158332
+                }
+              ]
+            }
