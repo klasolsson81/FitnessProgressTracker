@@ -7,7 +7,7 @@
             Console.WriteLine("Hello, World!");
             Console.WriteLine("Vår GitHub Action fungerar!");
 
-            Console.WriteLine("\nTryck valfri tangent för att avsluta...");
+            Console.WriteLine("\nTryck valfri tangent för att avsluta....");
             Console.ReadKey();
         }
     }
