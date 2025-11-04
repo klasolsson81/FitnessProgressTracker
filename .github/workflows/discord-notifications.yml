@@ -22,15 +22,8 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          # RÄTT SYNTAX: Använd separata fält istället för ett JSON-objekt
-          content: "🙋‍♀️ Ny Pull Request! Dags att granska!"
-          embed: |
-            {
-              "title": "${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})",
-              "description": "Från: **${{ github.actor }}**\nGren: `${{ github.event.pull_request.head.ref }}`",
-              "url": "${{ github.event.pull_request.html_url }}",
-              "color": 16766720
-            }
+          # KORREKT SYNTAX för Ilshidur/action-discord
+          args: '{"content":"🙋‍♀️ Ny Pull Request! Dags att granska!","embeds":[{"title":"${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})","description":"Från: **${{ github.actor }}**\nGren: `${{ github.event.pull_request.head.ref }}`","url":"${{ github.event.pull_request.html_url }}","color":16766720}]}'
 
   notify_build_status:
     name: Skicka Byggstatus
@@ -44,14 +37,7 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          content: "✅ Bygge lyckades!"
-          embed: |
-            {
-              "title": "Workflow `${{ github.event.workflow_run.name }}` lyckades",
-              "description": "Kördes på grenen `${{ github.event.workflow_run.head_branch }}` av **${{ github.actor }}**.",
-              "url": "${{ github.event.workflow_run.html_url }}",
-              "color": 3066993
-            }
+          args: '{"content":"✅ Bygge lyckades!","embeds":[{"title":"Workflow `${{ github.event.workflow_run.name }}` lyckades","description":"Kördes på grenen `${{ github.event.workflow_run.head_branch }}` av **${{ github.actor }}**.","url":"${{ github.event.workflow_run.html_url }}","color":3066993}]}'
 
       - name: Skicka notis om misslyckat bygge
         if: ${{ github.event.workflow_run.conclusion == 'failure' }}
@@ -59,11 +45,4 @@ jobs:
         env:
           DISCORD_WEBHOOK: ${{ secrets.DISCORD_WEBHOOK }}
         with:
-          content: "🚨 **BYGGE MISSLYCKADES** 🚨"
-          embed: |
-            {
-              "title": "Workflow `${{ github.event.workflow_run.name }}` misslyckades",
-              "description": "Kördes på grenen `${{ github.event.workflow_run.head_branch }}` av **${{ github.actor }}**. \n**Vänligen kolla loggarna!**",
-              "url": "${{ github.event.workflow_run.html_url }}",
-              "color": 15158332
-            }
+          args: '{"content":"🚨 **BYGGE MISSLYCKADES** 🚨","embeds":[{"title":"Workflow `${{ github.event.workflow_run.name }}` misslyckades","description":"Kördes på grenen `${{ github.event.workflow_run.head_branch }}` av **${{ github.actor }}**. \n**Vänligen kolla loggarna!**","url":"${{ github.event.workflow_run.html_url }}","color":15158332}]}'
