@@ -1,0 +1,35 @@
+# .github/workflows/dotnet-build.yml
+
+# ❗️ DETTA ÄR NAMNET SOM DEN ANDRA FILEN LYSSNAR PÅ
+name: .NET Build and Test
+
+on:
+  # Körs när någon pushar kod
+  push:
+    branches: [ "main" ]
+  # Körs också när någon skapar en Pull Request mot main
+  pull_request:
+    branches: [ "main" ]
+
+jobs:
+  build:
+    runs-on: ubuntu-latest # Körs på en standard Linux-maskin
+
+    steps:
+    # Steg 1: Hämta er kod från repot
+    - name: Hämta koden (Checkout)
+      uses: actions/checkout@v4
+
+    # Steg 2: Installera .NET 8 (byt version om ni använder en annan)
+    - name: Sätt upp .NET
+      uses: actions/setup-dotnet@v4
+      with:
+        dotnet-version: '8.0.x' 
+
+    # Steg 3: Återställ alla paket (dependencies)
+    - name: Återställ beroenden (Restore)
+      run: dotnet restore
+
+    # Steg 4: Bygg projektet
+    - name: Bygg projektet (Build)
+      run: dotnet build --no-restore
