@@ -10,7 +10,7 @@ on:
   # Denna "lyssnar" på ert huvud-workflow (för bygge/test)
   workflow_run:
     # ❗️ VIKTIGT: Byt ut "Bygg och Testa" mot det exakta 'name:' från er andra .yml-fil (t.ex. build.yml)
-    workflows: ["Bygg och Testa"] 
+    workflows: [".NET Build and Test"] 
     types:
       - completed # Körs när det andra workflown är helt klart
 
