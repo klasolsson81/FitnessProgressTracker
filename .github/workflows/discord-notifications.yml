@@ -6,7 +6,7 @@ on:
     types: [opened, reopened, ready_for_review]
 
   workflow_run:
-    # ❗️ Kom ihåg att denna måste matcha namnet från dotnet-build.yml
+    # Kom ihåg att denna måste matcha namnet från dotnet-build.yml
     workflows: [".NET Build and Test"] 
     types:
       - completed
@@ -19,16 +19,13 @@ jobs:
     
     steps:
       - name: Skicka Discord-notis om ny PR
-        # --- VIKTIG ÄNDRING HÄR ---
-        # Vi byter till en ny, tydligare action
-        uses: lovai/discord-webhook-action@v1
+        # --- NY ACTION HÄR ---
+        uses: SAR-Dservice/discord-webhook-action@v2
         with:
-          # Den tar webhooken som en direkt parameter
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          # 'content' är en egen parameter
           content: "🙋‍♀️ Ny Pull Request! Dags att granska!"
-          # 'embeds' är en egen parameter där vi lägger vår JSON
-          embeds: |
+          # --- NOTERA: 'embed' (singular) ---
+          embed: |
             [
               {
                 "title": "${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})",
@@ -46,12 +43,13 @@ jobs:
     steps:
       - name: Skicka notis om lyckat bygge
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        # --- VIKTIG ÄNDRING HÄR ---
-        uses: lovai/discord-webhook-action@v1
+        # --- NY ACTION HÄR ---
+        uses: SAR-Dservice/discord-webhook-action@v2
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
           content: "✅ Bygge lyckades!"
-          embeds: |
+          # --- NOTERA: 'embed' (singular) ---
+          embed: |
             [
               {
                 "title": "Workflow `${{ github.event.workflow_run.name }}` lyckades",
@@ -63,12 +61,13 @@ jobs:
 
       - name: Skicka notis om misslyckat bygge
         if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-        # --- VIKTIG ÄNDRING HÄR ---
-        uses: lovai/discord-webhook-action@v1
+        # --- NY ACTION HÄR ---
+        uses: SAR-Dservice/discord-webhook-action@v2
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
           content: "🚨 **BYGGE MISSLYCKADES** 🚨"
-          embeds: |
+          # --- NOTERA: 'embed' (singular) ---
+          embed: |
             [
               {
                 "title": "Workflow `${{ github.event.workflow_run.name }}` misslyckades",
