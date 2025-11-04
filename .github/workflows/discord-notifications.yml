@@ -19,13 +19,15 @@ jobs:
     
     steps:
       - name: Skicka Discord-notis om ny PR
-        # --- NY ACTION HÄR ---
-        uses: SAR-Dservice/discord-webhook-action@v2
+        # --- NY, BEPRÖVAD ACTION HÄR ---
+        uses: tsickley/discord-webhook@v1
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          # Denna action använder direkt 'url' för webhooken
+          url: ${{ secrets.DISCORD_WEBHOOK }}
+          # 'content' är för texten ovanför embedden
           content: "🙋‍♀️ Ny Pull Request! Dags att granska!"
-          # --- NOTERA: 'embed' (singular) ---
-          embed: |
+          # 'embeds' (plural) används här och ska vara JSON-sträng
+          embeds: |
             [
               {
                 "title": "${{ github.event.pull_request.title }} (#${{ github.event.pull_request.number }})",
@@ -43,13 +45,12 @@ jobs:
     steps:
       - name: Skicka notis om lyckat bygge
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        # --- NY ACTION HÄR ---
-        uses: SAR-Dservice/discord-webhook-action@v2
+        # --- NY, BEPRÖVAD ACTION HÄR ---
+        uses: tsickley/discord-webhook@v1
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          url: ${{ secrets.DISCORD_WEBHOOK }}
           content: "✅ Bygge lyckades!"
-          # --- NOTERA: 'embed' (singular) ---
-          embed: |
+          embeds: |
             [
               {
                 "title": "Workflow `${{ github.event.workflow_run.name }}` lyckades",
@@ -61,13 +62,12 @@ jobs:
 
       - name: Skicka notis om misslyckat bygge
         if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-        # --- NY ACTION HÄR ---
-        uses: SAR-Dservice/discord-webhook-action@v2
+        # --- NY, BEPRÖVAD ACTION HÄR ---
+        uses: tsickley/discord-webhook@v1
         with:
-          webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
+          url: ${{ secrets.DISCORD_WEBHOOK }}
           content: "🚨 **BYGGE MISSLYCKADES** 🚨"
-          # --- NOTERA: 'embed' (singular) ---
-          embed: |
+          embeds: |
             [
               {
                 "title": "Workflow `${{ github.event.workflow_run.name }}` misslyckades",
