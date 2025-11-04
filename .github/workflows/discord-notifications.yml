@@ -6,8 +6,7 @@ on:
     types: [opened, reopened, ready_for_review]
 
   workflow_run:
-    # Kom ihåg att denna måste matcha namnet från dotnet-build.yml
-    workflows: [".NET Build and Test"] 
+    workflows: [".NET Build and Test"]
     types:
       - completed
 
@@ -19,11 +18,9 @@ jobs:
     
     steps:
       - name: Skicka Discord-notis om ny PR
-        # --- HÄR ÄR EN VERIFIERAD, FUNGERANDE ACTION ---
-        uses: Sniddl/discord-webhook-notify@v1.2.0
+        uses: sarisia/actions-discord@v0.4.0
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          # --- NOTERA: 'content' heter 'message' i denna action ---
           message: "🙋‍♀️ Ny Pull Request! Dags att granska!"
           embeds: |
             [
@@ -43,11 +40,9 @@ jobs:
     steps:
       - name: Skicka notis om lyckat bygge
         if: ${{ github.event.workflow_run.conclusion == 'success' }}
-        # --- HÄR ÄR EN VERIFIERAD, FUNGERANDE ACTION ---
-        uses: Sniddl/discord-webhook-notify@v1.2.0
+        uses: sarisia/actions-discord@v0.4.0
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          # --- NOTERA: 'content' heter 'message' i denna action ---
           message: "✅ Bygge lyckades!"
           embeds: |
             [
@@ -61,11 +56,9 @@ jobs:
 
       - name: Skicka notis om misslyckat bygge
         if: ${{ github.event.workflow_run.conclusion == 'failure' }}
-        # --- HÄR ÄR EN VERIFIERAD, FUNGERANDE ACTION ---
-        uses: Sniddl/discord-webhook-notify@v1.2.0
+        uses: sarisia/actions-discord@v0.4.0
         with:
           webhook_url: ${{ secrets.DISCORD_WEBHOOK }}
-          # --- NOTERA: 'content' heter 'message' i denna action ---
           message: "🚨 **BYGGE MISSLYCKADES** 🚨"
           embeds: |
             [
