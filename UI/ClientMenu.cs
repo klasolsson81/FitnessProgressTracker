@@ -6,7 +6,7 @@ using System.Threading.Tasks;
 
 namespace FitnessProgressTracker.UI
 {
-    internal class ClientMenu
+    public class ClientMenu
     {
     }
 }
