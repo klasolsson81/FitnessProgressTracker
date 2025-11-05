@@ -1,6 +1,6 @@
 ﻿namespace FitnessProgressTracker.Services
 {
-    public class JsonDataStore :IDataStores
+    public class JsonDataStore //:IDataStores
     {
 
         
