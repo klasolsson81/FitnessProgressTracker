@@ -1,6 +1,6 @@
 ﻿namespace FitnessProgressTracker.Services.Interfaces
 {
-    public interface IDataStores
+    public class IDataStores
     {
 
 
