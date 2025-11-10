@@ -1,4 +1,5 @@
-﻿using FitnessProgressTracker.UI;
+﻿using FitnessProgressTracker.Models;
+using FitnessProgressTracker.UI;
 
 namespace FitnessProgressTracker
 {
@@ -6,13 +7,20 @@ namespace FitnessProgressTracker
     {
         static void Main(string[] args)
         {
-			Console.WriteLine("Hello, World!");
-			Console.WriteLine("Vår GitHub Action fungerar!");
+			//Console.WriteLine("Hello, World!");
+			//Console.WriteLine("Vår GitHub Action fungerar!");
 
-			Console.WriteLine("\nTryck valfri tangent för att avsluta...");
-			Console.ReadKey();
+			//Console.WriteLine("\nTryck valfri tangent för att avsluta...");
+			//Console.ReadKey();
+
             Menu menu = new Menu();
             menu.ShowMainMenu();
+
+            PtMenu ptMenu = new PtMenu();
+            ptMenu.Show(new PT());
+
+
+
 
 
 
