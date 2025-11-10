@@ -8,8 +8,11 @@ namespace FitnessProgressTracker.Models
 {
 
 	// skapat client klass som ärver från user klassen 
-	internal class Client: User
+	public class Client: User
 	{
+		public int AssignedPtId { get; set; }
+		public WorkoutPlan CurrentWorkoutPlan { get; set; }
+		public DietPlan CurrentDietPlan { get; set; }
 
-	}
+    }
 }
