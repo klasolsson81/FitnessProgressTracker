@@ -11,6 +11,8 @@ namespace FitnessProgressTracker
 
 			Console.WriteLine("\nTryck valfri tangent för att avsluta...");
 			Console.ReadKey();
+            Menu menu = new Menu();
+            menu.ShowMainMenu();
 
 
 
@@ -19,6 +21,7 @@ namespace FitnessProgressTracker
 
 
 
-		}
+
+        }
     }
 }
