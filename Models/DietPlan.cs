@@ -7,8 +7,11 @@ using System.Threading.Tasks;
 namespace FitnessProgressTracker.Models
 {
 	// denna klass representerar en dietplan för användaren 
-	internal class DietPlan
+	public class DietPlan
 	{
+		public int Id { get; set; }
+		public string Name { get; set; }
+		public string Description { get; set; }
 
-	}
+    }
 }

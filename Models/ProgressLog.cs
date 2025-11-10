@@ -7,8 +7,13 @@ using System.Threading.Tasks;
 namespace FitnessProgressTracker.Models
 {
 	// denna klass kommer att representera en loggpost för användarens träningsframsteg i applikationen
-	internal class ProgressLog
+	public class ProgressLog
 	{
+		public int Id { get; set; }
+		public DateTime Date { get; set; }
+		public double Weight { get; set; }
+		public string Notes { get; set; }
 
-	}
+
+    }
 }
