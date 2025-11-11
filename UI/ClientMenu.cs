@@ -17,7 +17,7 @@ namespace YourAppName.Client
 
                 var choiceString = AnsiConsole.Prompt(
                     new SelectionPrompt<string>()
-                        .Title("[Green]KlientMeny:[/]")
+                        .Title("[Green]KlientMeny[/]")
                         .AddChoices(new[]
                         {
                             "📄 Visa träningsschema",
