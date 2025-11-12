@@ -16,9 +16,12 @@ namespace FitnessProgressTracker
             Menu menu = new Menu();
             menu.ShowMainMenu();
 
-            PtMenu ptMenu = new PtMenu();
-            ptMenu.Show(new PT());
+           
+             PtMenu ptMenu = new PtMenu(); 
+             ptMenu.Show(new PT());
 
+            ClientMenu clientMenu = new ClientMenu();
+            clientMenu.Show(new Client());
 
 
 
