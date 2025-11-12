@@ -6,7 +6,7 @@ namespace FitnessProgressTracker.UI
 {
     public class PtMenu
     {
-        // Visar PT-menyn
+        // denna meny  Visar pt-menyn
         public void Show(PT pt)
         {
             try
