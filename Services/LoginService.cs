@@ -7,9 +7,10 @@ namespace FitnessProgressTracker.Services
 {
     public class LoginService
     {
-        private readonly IDataStore _userStore;
+        private readonly IDataStore<User> _userStore;
 
-        public LoginService(IDataStore userStore)
+        // Måste vara IDataStore<User>
+        public LoginService(IDataStore<User> userStore)
         {
             _userStore = userStore;
         }
@@ -23,7 +24,7 @@ namespace FitnessProgressTracker.Services
                 ValidateInput(firstName, "Förnamn");
                 ValidateInput(lastName, "Efternamn");
 
-                var allUsers = _userStore.Load();//Hämta alla användare som redan finns
+                List<User> allUsers = _userStore.Load();
 
                 bool usernameExists = allUsers.Any(u =>
                     u.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase));
@@ -69,19 +70,17 @@ namespace FitnessProgressTracker.Services
 
         private void ValidatePassword(string password)
         {
-            ValidateInput(password, "Lösenord");
-
             if (password.Length < 8)
-                throw new ArgumentException("Password must be at least 8 characters long.");
+                throw new ArgumentException("Lösenordet måste vara minst 8 tecken långt.");
 
             if (!password.Any(char.IsUpper))
-                throw new ArgumentException("Password must contain at least one uppercase letter.");
+                throw new ArgumentException("Lösenordet måste innehålla minst en stor bokstav.");
 
             if (!password.Any(char.IsLower))
-                throw new ArgumentException("Password must contain at least one lowercase letter.");
+                throw new ArgumentException("Lösenordet måste innehålla minst en liten bokstav.");
 
             if (!password.Any(char.IsDigit))
-                throw new ArgumentException("Password must contain at least one digit.");
+                throw new ArgumentException("Lösenordet måste innehålla minst en siffra.");
         }
     }
 }
