@@ -13,9 +13,26 @@ namespace FitnessProgressTracker
     {
         static void Main(string[] args)
         {
-            // Bygg en korrekt sökväg till projekt-roten
-            string baseDirectory = AppContext.BaseDirectory;
-            string projectRoot = Path.GetFullPath(Path.Combine(baseDirectory, "../../../"));
+            //Console.WriteLine("Hello, World!");
+            //Console.WriteLine("Vår GitHub Action fungerar!");
+
+            //Console.WriteLine("\nTryck valfri tangent för att avsluta...");
+            //Console.ReadKey();
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
+
+            Menu menu = new Menu();
+            menu.ShowMainMenu();
+
+           
+             PtMenu ptMenu = new PtMenu(); 
+             ptMenu.Show(new PT());
+
+            ClientMenu clientMenu = new ClientMenu();
+            clientMenu.Show(new Client());
+
+
+
+
 
             // 1. Skapa sökvägar till BÅDA filerna
             string clientFilePath = Path.Combine(projectRoot, "data/clients.json");
