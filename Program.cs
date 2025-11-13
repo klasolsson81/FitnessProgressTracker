@@ -7,11 +7,12 @@ namespace FitnessProgressTracker
     {
         static void Main(string[] args)
         {
-			//Console.WriteLine("Hello, World!");
-			//Console.WriteLine("Vår GitHub Action fungerar!");
+            //Console.WriteLine("Hello, World!");
+            //Console.WriteLine("Vår GitHub Action fungerar!");
 
-			//Console.WriteLine("\nTryck valfri tangent för att avsluta...");
-			//Console.ReadKey();
+            //Console.WriteLine("\nTryck valfri tangent för att avsluta...");
+            //Console.ReadKey();
+            Console.OutputEncoding = System.Text.Encoding.UTF8;
 
             Menu menu = new Menu();
             menu.ShowMainMenu();
