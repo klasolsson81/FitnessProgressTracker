@@ -4,65 +4,148 @@ using System.Linq;
 using System.Text;
 using System.Threading.Tasks;
 using Spectre.Console;
+using FitnessProgressTracker.Services;
+using FitnessProgressTracker.Models;
 
 namespace FitnessProgressTracker.UI
 {
     public class Menu
     {
+        private readonly LoginService _loginService;
+
+        public Menu(LoginService loginService)
+        {
+            _loginService = loginService;
+        }
+
         public void ShowMainMenu()
         {
+            try
             {
-                try
+                AnsiConsole.Background = Color.Grey15;
+                AnsiConsole.Clear();
+
+                SpectreUIHelper.AnimatedBanner("FITNESS PROGRESS TRACKER", Color.Yellow);
+                AnsiConsole.MarkupLine("[italic green]No Pain, No Gain![/]");
+
+                var choice = AnsiConsole.Prompt(
+                    new SelectionPrompt<string>()
+                        .Title("[bold cyan]Välj ett alternativ:[/]")
+                        .AddChoices("Registrera konto", "Logga in", "Avsluta"));
+
+                switch (choice)
                 {
-                    // Sätter mörk bakgrund för gymkänsla
-                    AnsiConsole.Background = Color.Grey15;
-                    AnsiConsole.Clear();
+                    case "Registrera konto":
+                        try
+                        {
+                            AnsiConsole.MarkupLine("\n[bold blue]Ange uppgifter för ditt nya konto:[/]");
 
-                    //  Visar animerad banner
-                    SpectreUIHelper.AnimatedBanner("FITNESS PROGRESS TRACKER", Color.Yellow);
+                            // 1. Ställ frågor
+                            var username = AnsiConsole.Ask<string>("[cyan1]Ange Användarnamn[/] [italic grey](inga mellanslag):[/]");
+                            var firstName = AnsiConsole.Ask<string>("[cyan1]Ange Förnamn[/] [italic grey](inga mellanslag):[/]");
+                            var lastName = AnsiConsole.Ask<string>("[cyan1]Ange Efternamn[/] [italic grey](inga mellanslag):[/]");
 
-                    //  Liten motiverande text under bannern
-                    AnsiConsole.MarkupLine("[italic green]No Pain, No Gain![/]");
+                            // 2. Ställ lösenordsfrågan med INBYGGD validering
+                            var password = AnsiConsole.Prompt(
+                                new TextPrompt<string>("[cyan1]Ange Lösenord[/] [italic grey](min 8 tecken, en siffra, en stor/liten bokstav):[/]")
+                                    .Secret() // <-- Döljer lösenordet
+                                    .Validate(pass => 
+                                    {
+                                        if (pass.Length < 8)
+                                            return ValidationResult.Error("[red]Lösenordet måste vara minst 8 tecken.[/]");
+                                        if (!pass.Any(char.IsUpper))
+                                            return ValidationResult.Error("[red]Måste innehålla minst en stor bokstav.[/]");
+                                        if (!pass.Any(char.IsLower))
+                                            return ValidationResult.Error("[red]Måste innehålla minst en liten bokstav.[/]");
+                                        if (!pass.Any(char.IsDigit))
+                                            return ValidationResult.Error("[red]Måste innehålla minst en siffra.[/]");
 
-                    //  Skapar menyval för användaren
-                    var choice = AnsiConsole.Prompt(
-                        new SelectionPrompt<string>()
-                            .Title("[bold cyan]Välj ett alternativ:[/]")
-                            .AddChoices("Registrera konto", "Logga in", "Logga ut"));
+                                        return ValidationResult.Success();
+                                    })
+                            );
 
-                    //  Hanterar användarens val
-                    switch (choice)
-                    {
-                        case "Registrera konto":
-                            SpectreUIHelper.Loading("Skapar nytt konto...");
-                            // LoginService.Register();
-                            AnsiConsole.MarkupLine("[green]Konto skapat! Dags att träna![/]");
+                            // 3. Visa laddning
+                            SpectreUIHelper.Loading("Registrerar konto...");
+
+                            // 4. Anropa LoginService (som kör sin EGEN validering som en sista säkerhetskoll)
+                            _loginService.RegisterClient(username, password, firstName, lastName);
+
+                            // 5. Visa framgång
+                            SpectreUIHelper.Success($"Konto skapat för {firstName}! Välkommen!");
                             SpectreUIHelper.Motivation();
-                            break;
+                        }
+                        catch (ArgumentException ex)
+                        {
+                            SpectreUIHelper.Error(ex.Message);
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+                            SpectreUIHelper.Error(ex.Message);
+                        }
+                        catch (Exception ex)
+                        {
+                            SpectreUIHelper.Error($"Ett oväntat fel uppstod: {ex.Message}");
+                        }
+                        break;
 
-                        case "Logga in":
+
+                    case "Logga in":
+                        try
+                        {
+                            AnsiConsole.MarkupLine("\n[bold blue]Ange dina inloggningsuppgifter:[/]");
+
+                            // 1. Ställ frågor
+                            var username = AnsiConsole.Ask<string>("[cyan1]Ange Användarnamn[/]:");
+                            var password = AnsiConsole.Prompt(
+                                new TextPrompt<string>("[cyan1]Ange Lösenord[/]:").Secret()
+                            );
+
                             SpectreUIHelper.Loading("Loggar in...");
-                            // LoginService.Login();
-                            AnsiConsole.MarkupLine("[green]Inloggning lyckades![/]");
-                            SpectreUIHelper.Motivation();
-                            break;
 
-                        case "Logga ut":
-                            SpectreUIHelper.Success("Tack för idag! Håll dig stark! 💪");
-                            Environment.Exit(0);
-                            break;
-                    }
+                            // 2. Anropa Login-metoden (som returnerar en User)
+                            User loggedInUser = _loginService.Login(username, password);
+
+                            SpectreUIHelper.Success($"Välkommen tillbaka, {loggedInUser.FirstName}!");
+                            Thread.Sleep(1000); // Kort paus
+
+                            // 3. KONTROLLERA ROLLEN och visa rätt meny
+                            if (loggedInUser.Role == "Client")
+                            {
+                                // Skapa och visa Klient-menyn
+                                ClientMenu clientMenu = new ClientMenu();
+                                clientMenu.Show(loggedInUser as Client); // "as Client" konverterar
+                            }
+                            else if (loggedInUser.Role == "PT")
+                            {
+                                // Skapa och visa PT-menyn
+                                PtMenu ptMenu = new PtMenu();
+                                ptMenu.Show(loggedInUser as PT); // "as PT" konverterar
+                            }
+                            else
+                            {
+                                SpectreUIHelper.Error("Användarrollen är okänd. Loggar ut.");
+                            }
+                        }
+                        catch (InvalidOperationException ex)
+                        {
+                            SpectreUIHelper.Error(ex.Message); // T.ex. "Fel användarnamn eller lösenord."
+                        }
+                        catch (Exception ex)
+                        {
+                            SpectreUIHelper.Error($"Ett oväntat fel uppstod: {ex.Message}");
+                        }
+                        break;
+
+                    case "Avsluta":
+                        SpectreUIHelper.Success("Tack för idag! Håll dig stark! 💪");
+                        Environment.Exit(0);
+                        break;
                 }
-                catch (Exception ex)
-                {
-                    //  Fångar fel och visar det med SpectreUIHelper
-                    SpectreUIHelper.Error($"Ett fel uppstod i huvudmenyn: {ex.Message}");
-                }
+            }
+            catch (Exception ex)
+            {
+                SpectreUIHelper.Error($"Ett kritiskt fel uppstod i huvudmenyn: {ex.Message}");
             }
         }
     }
 }
-              
-
-
-

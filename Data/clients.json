@@ -1,0 +1,13 @@
+[
+  {
+    "AssignedPtId": 0,
+    "CurrentWorkoutPlan": null,
+    "CurrentDietPlan": null,
+    "Id": 2,
+    "Username": "Klas",
+    "PasswordHash": "Klas123456",
+    "FirstName": "Klas",
+    "LastName": "Olsson",
+    "Role": "Client"
+  }
+]

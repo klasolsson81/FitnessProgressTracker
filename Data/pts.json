@@ -1,0 +1,11 @@
+[
+  {
+    "ClientIds": [],
+    "Id": 1,
+    "Username": "PT",
+    "PasswordHash": "PTpass123",
+    "FirstName": "Coach",
+    "LastName": "Nemo",
+    "Role": "PT"
+  }
+]
