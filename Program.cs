@@ -6,6 +6,7 @@ using Spectre.Console;
 using System;
 using System.IO;
 using System.Collections.Generic;
+using System.Text;
 
 namespace FitnessProgressTracker
 {
@@ -13,51 +14,32 @@ namespace FitnessProgressTracker
     {
         static void Main(string[] args)
         {
-            //Console.WriteLine("Hello, World!");
-            //Console.WriteLine("Vår GitHub Action fungerar!");
+            Console.OutputEncoding = System.Text.Encoding.UTF8; //För att kunna visa symboler i menyerna. 
 
-            //Console.WriteLine("\nTryck valfri tangent för att avsluta...");
-            //Console.ReadKey();
-            Console.OutputEncoding = System.Text.Encoding.UTF8;
+            //DEPENDENCY INJECTION-KEDJAN
 
-            Menu menu = new Menu();
-            menu.ShowMainMenu();
-
-           
-             PtMenu ptMenu = new PtMenu(); 
-             ptMenu.Show(new PT());
-
-            ClientMenu clientMenu = new ClientMenu();
-            clientMenu.Show(new Client());
-
-
-
-
-
-            // 1. Skapa sökvägar till BÅDA filerna
+            // 1. Bygg sökvägarna
+            string baseDirectory = AppContext.BaseDirectory;
+            string projectRoot = Path.GetFullPath(Path.Combine(baseDirectory, "../../../"));
             string clientFilePath = Path.Combine(projectRoot, "data/clients.json");
             string ptFilePath = Path.Combine(projectRoot, "data/pts.json");
 
-            // 2. Skapa TVÅ DataStores, en för varje typ
+            // 2. Skapa dina DataStores
             IDataStore<Client> clientStore = new JsonDataStore<Client>(clientFilePath);
             IDataStore<PT> ptStore = new JsonDataStore<PT>(ptFilePath);
 
-            // 3. Skapa vår LoginService och "injicera" BÅDA stores
+            // 3. Skapa LoginService
             LoginService loginService = new LoginService(clientStore, ptStore);
 
-            // 4. Skapa vår Huvudmeny
-            Menu mainMenu = new Menu(loginService);
-
- 
-            //KOD FÖR ATT RENSA ENDAST KLIENTER (Avkommentera för att köra)
-            //List<Client> emptyClientList = new List<Client>();
-            //clientStore.Save(emptyClientList); 
+            // 4. Skapa din Huvudmeny (med din LoginService)
+            Menu menu = new Menu(loginService);
 
 
-            // 5. Kör huvudmenyn i en oändlig loop
+
+            // 5. Kör menyn i en oändlig loop
             while (true)
             {
-                mainMenu.ShowMainMenu();
+                menu.ShowMainMenu();
                 AnsiConsole.MarkupLine("\nTryck [grey]ENTER[/] för att återgå till menyn...");
                 Console.ReadLine();
             }

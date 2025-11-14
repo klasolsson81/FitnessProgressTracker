@@ -9,5 +9,16 @@
     "FirstName": "Klas",
     "LastName": "Olsson",
     "Role": "Client"
+  },
+  {
+    "AssignedPtId": 0,
+    "CurrentWorkoutPlan": null,
+    "CurrentDietPlan": null,
+    "Id": 3,
+    "Username": "KlasO",
+    "PasswordHash": "Klas123456",
+    "FirstName": "Klas",
+    "LastName": "Olsson",
+    "Role": "Client"
   }
 ]
