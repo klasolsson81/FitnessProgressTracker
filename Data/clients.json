@@ -20,5 +20,27 @@
     "FirstName": "Klas",
     "LastName": "Olsson",
     "Role": "Client"
+  },
+  {
+    "AssignedPtId": 0,
+    "CurrentWorkoutPlan": null,
+    "CurrentDietPlan": null,
+    "Id": 4,
+    "Username": "sacad109",
+    "PasswordHash": "Sacadzidan1",
+    "FirstName": "abdi",
+    "LastName": "elmi",
+    "Role": "Client"
+  },
+  {
+    "AssignedPtId": 0,
+    "CurrentWorkoutPlan": null,
+    "CurrentDietPlan": null,
+    "Id": 5,
+    "Username": "sacad",
+    "PasswordHash": "Sacad123",
+    "FirstName": "elmi",
+    "LastName": "abi",
+    "Role": "Client"
   }
 ]
