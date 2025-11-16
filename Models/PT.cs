@@ -12,5 +12,7 @@ namespace FitnessProgressTracker.Models
 		public List<int> ClientIds { get; set; } = new List<int>();
 		public List<int> AppointmentIds { get; set; } = new List<int>();
 
+        public List<int> ClientId { get; set; } = new List<int>();
+
     }
 }
