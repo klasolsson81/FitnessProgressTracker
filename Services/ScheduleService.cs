@@ -10,7 +10,7 @@ namespace FitnessProgressTracker.Services
 {
 	// ScheduleService ansvarar för att skapa och koppla tränings- och kostscheman till klienter
 	
-	internal class ScheduleService
+	public class ScheduleService
 	{
 		// Datalager för klienter
 		private readonly IDataStore<Client> _clientStore;
