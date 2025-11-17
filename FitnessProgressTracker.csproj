@@ -8,7 +8,7 @@
   </PropertyGroup>
 
   <ItemGroup>
-    <Compile Include="env" />
+    <Compile Include=".env" />
   </ItemGroup>
 
   <ItemGroup>
