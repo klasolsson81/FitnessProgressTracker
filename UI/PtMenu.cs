@@ -55,7 +55,6 @@ namespace FitnessProgressTracker.UI
                             isRunning = false;
                             continue; // hoppar över "tryck för att fortsätta"
                     }
-
                     // Vänta på att användaren trycker en tangent innan menyn visas igen
                     AnsiConsole.MarkupLine("\n[grey]Tryck på valfri tangent för att återgå till menyn...[/]");
                     Console.ReadKey(true);
