@@ -21,5 +21,21 @@ namespace FitnessProgressTracker.Services
             var allClients = _clientStore.Load();
             return allClients.Where(c => c.AssignedPtId == ptId).ToList();
         }
+
+        public void UpdateClientGoals(int clientId, string goalDesc, double targetWeight, int workoutsPerWeek)
+        {
+            List<Client> allClients = _clientStore.Load();
+            Client clientToUpdate = allClients.FirstOrDefault(c => c.Id == clientId);
+
+            if (clientToUpdate != null)
+            {
+                clientToUpdate.GoalDescription = goalDesc;
+                clientToUpdate.TargetWeight = targetWeight;
+                clientToUpdate.WorkoutsPerWeek = workoutsPerWeek;
+
+                _clientStore.Save(allClients); // Spara ändringarna
+            }
+            
+        }
     }
 }

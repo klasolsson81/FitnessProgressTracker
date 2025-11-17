@@ -19,5 +19,10 @@ namespace FitnessProgressTracker.Models
         public List<int> WorkoutPlanIds { get; set; } = new List<int>();
         public List<int> DietPlanIds { get; set; } = new List<int>();
         public List<int> ProgressLogIds { get; set; } = new List<int>();
+
+        // Mål satta av PT
+        public string GoalDescription { get; set; } = "Inget mål satt";
+        public double TargetWeight { get; set; } // t.ex. 75.5 kg
+        public int WorkoutsPerWeek { get; set; } // t.ex. 3
     }
 }

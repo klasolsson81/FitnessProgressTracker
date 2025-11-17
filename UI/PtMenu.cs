@@ -114,6 +114,7 @@ namespace FitnessProgressTracker.UI
             {
                 SpectreUIHelper.Error($"Ett fel uppstod i PT-menyn: {ex.Message}");
             }
+
         }
     }
 }
