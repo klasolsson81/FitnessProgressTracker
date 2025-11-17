@@ -10,7 +10,9 @@ namespace FitnessProgressTracker.Models
     // skapat client klass som ärver från user klassen 
     public class Client : User
     {
-        // Koppling till PT
+        
+		public WorkoutPlan CurrentWorkoutPlan { get; set; }
+		public DietPlan CurrentDietPlan { get; set; }// Koppling till PT
         public int AssignedPtId { get; set; }
 
         // Kopplingar till scheman och loggar (bara ID:n)
