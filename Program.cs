@@ -15,6 +15,7 @@ namespace FitnessProgressTracker
     {
         static void Main(string[] args)
         {
+           
             Console.OutputEncoding = System.Text.Encoding.UTF8; //För att kunna visa symboler i menyerna. 
             DotNetEnv.Env.Load(); //Läser .Env filen
 
