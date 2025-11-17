@@ -27,75 +27,26 @@ namespace FitnessProgressTracker.UI
                         new SelectionPrompt<string>()
                             .Title("[bold cyan]Välj ett alternativ:[/]")
                             .AddChoices(
-                                "📈 Visa alla klienters utveckling",
-                                "🎯 Sätt upp mål för klient",
-                                "🤖 Skapa träningsschema (AI-hjälp)",
-                                "🥗 Skapa kostschema (AI-hjälp)",
-                                "🔄 Uppdatera träningsschema",
-                                "🗑️ Ta bort träningsschema",
-                                "↩️ Ångra senaste ändring",
-                                "💬 Skicka meddelande till klient",
-                                "📊 Visa grafer och statistik",
+                                "👤 Visa min klientlista",
+                                "📊 Se framsteg för klienter",
                                 "🚪 Logga ut"));
 
                     AnsiConsole.Clear();
 
                     switch (choice)
                     {
-                        case "📈 Visa alla klienters utveckling":
+                        case "👤 Visa min klientlista":
+                            SpectreUIHelper.Loading("Hämtar klientlista...");
+                            SpectreUIHelper.Error("Denna funktion är inte implementerad än.");
+                             SpectreUIHelper.Motivation();
+                            break;
+
+                        case "📊 Se framsteg för klienter":
                             SpectreUIHelper.Loading("Hämtar klientdata...");
                             var table = new Table().AddColumns("Klient", "Mål", "Status");
                             table.AddRow("Alex", "Bygga styrka", "[green]Aktiv[/]");
                             table.AddRow("Maja", "Kondition", "[yellow]Under planering[/]");
                             AnsiConsole.Write(table);
-                            SpectreUIHelper.Motivation();
-                            break;
-
-                        case "🎯 Sätt upp mål för klient":
-                            SpectreUIHelper.Loading("Sätter upp mål...");
-                            AnsiConsole.MarkupLine("[green]Nytt mål sparat![/]");
-                            SpectreUIHelper.Motivation();
-                            break;
-
-                        case "🤖 Skapa träningsschema (AI-hjälp)":
-                            SpectreUIHelper.Loading("AI skapar träningsschema...");
-                            AnsiConsole.MarkupLine("[green]Schema genererat![/]");
-                            SpectreUIHelper.Motivation();
-                            break;
-
-                        case "🥗 Skapa kostschema (AI-hjälp)":
-                            SpectreUIHelper.Loading("AI skapar kostplan...");
-                            AnsiConsole.MarkupLine("[green]Kostplan klar![/]");
-                            SpectreUIHelper.Motivation();
-                            break;
-
-                        case "🔄 Uppdatera träningsschema":
-                            SpectreUIHelper.Loading("Uppdaterar schema...");
-                            AnsiConsole.MarkupLine("[green]Schemat uppdaterat![/]");
-                            SpectreUIHelper.Motivation();
-                            break;
-
-                        case "🗑️ Ta bort träningsschema":
-                            SpectreUIHelper.Loading("Tar bort schema...");
-                            AnsiConsole.MarkupLine("[yellow]Schema borttaget.[/]");
-                            SpectreUIHelper.Motivation();
-                            break;
-
-                        case "↩️ Ångra senaste ändring":
-                            SpectreUIHelper.Loading("Ångrar senaste ändring...");
-                            AnsiConsole.MarkupLine("[yellow]Senaste ändring återställd.[/]");
-                            SpectreUIHelper.Motivation();
-                            break;
-
-                        case "💬 Skicka meddelande till klient":
-                            SpectreUIHelper.Loading("Skickar meddelande...");
-                            AnsiConsole.MarkupLine("[green]Meddelande skickat![/]");
-                            SpectreUIHelper.Motivation();
-                            break;
-
-                        case "📊 Visa grafer och statistik":
-                            SpectreUIHelper.Loading("Hämtar statistik...");
-                            AnsiConsole.MarkupLine("[blue]Visar framsteg för alla klienter...[/]");
                             SpectreUIHelper.Motivation();
                             break;
 
