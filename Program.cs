@@ -7,6 +7,7 @@ using System;
 using System.IO;
 using System.Collections.Generic;
 using System.Text;
+using DotNetEnv;
 
 namespace FitnessProgressTracker
 {
@@ -16,6 +17,7 @@ namespace FitnessProgressTracker
         {
            
             Console.OutputEncoding = System.Text.Encoding.UTF8; //För att kunna visa symboler i menyerna. 
+            DotNetEnv.Env.Load(); //Läser .Env filen
 
             //DEPENDENCY INJECTION-KEDJAN
 
