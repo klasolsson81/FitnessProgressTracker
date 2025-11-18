@@ -63,7 +63,11 @@ namespace FitnessProgressTracker.Services
             {
                 // 3. Anropa AI:n
                 ChatCompletion response = await chatClient.CompleteChatAsync(chatMessages, responseOptions);
-                string aiResponseJson = response.Content.ToString();
+                // Hämta texten korrekt från listan
+                string aiResponseJson = response.Content[0].Text;
+
+                // Städa bort eventuell markdown (om AI:n svarar med ```json ...)
+                aiResponseJson = aiResponseJson.Replace("```json", "").Replace("```", "").Trim();
 
                 // 4. Omvandla AI:ns JSON-svar till vårt NYA C#-objekt
                 WorkoutPlan plan = JsonSerializer.Deserialize<WorkoutPlan>(aiResponseJson);
@@ -126,7 +130,11 @@ namespace FitnessProgressTracker.Services
             {
                 // 4. Anropa AI:n
                 ChatCompletion response = await chatClient.CompleteChatAsync(chatMessages, responseOptions);
-                string aiResponseJson = response.Content.ToString();
+                // Hämta texten korrekt från listan
+                string aiResponseJson = response.Content[0].Text;
+
+                // Städa bort eventuell markdown (om AI:n svarar med ```json ...)
+                aiResponseJson = aiResponseJson.Replace("```json", "").Replace("```", "").Trim();
 
                 // 5. Omvandla AI:ns JSON-svar till vårt NYA C#-objekt
                 DietPlan plan = JsonSerializer.Deserialize<DietPlan>(aiResponseJson);

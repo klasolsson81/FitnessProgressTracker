@@ -139,6 +139,8 @@ namespace FitnessProgressTracker.UI
                         var workoutsPerWeek = AnsiConsole.Ask<int>($"Ange antal träningspass per vecka:");
 
                         _clientService.UpdateClientGoals(client.Id, goalDesc, targetWeight, workoutsPerWeek);
+                        client = _clientService.GetClientById(client.Id); //Uppdatera klientens mål
+
                         SpectreUIHelper.Success($"Mål uppdaterade för {client.FirstName}!");
 
                         AnsiConsole.MarkupLine("\n[grey]Tryck tangent för att fortsätta...[/]");
@@ -152,8 +154,10 @@ namespace FitnessProgressTracker.UI
                         break;
 
 					case "🥗 Skapa kostschema (AI-hjälp)":
-						// 1. Hämta klientens redan sparade målbeskrivning
-						var goal = client.GoalDescription;
+                        Client freshClient = _clientService.GetClientById(client.Id); //REFRESHA KLIENTOBJEKTET FÖR ATT FÅ SENASTE MÅLET!
+
+                        // 1. Hämta klientens redan sparade målbeskrivning
+                        var goal = client.GoalDescription;
 
 						// 2. Fråga PT om dagligt kalorimål
 						var calories = AnsiConsole.Ask<int>("Ange dagligt kalorimål (kcal):");

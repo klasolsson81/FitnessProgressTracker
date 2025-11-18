@@ -36,5 +36,13 @@ namespace FitnessProgressTracker.Services
                 _clientStore.Save(allClients); // Spara ändringarna
             }
         }
+
+        public Client GetClientById(int clientId)
+        {
+            var allClients = _clientStore.Load();
+            // Returnera den första klienten som matchar ID, annars null
+            return allClients.FirstOrDefault(c => c.Id == clientId);
+        }
+
     }
 }
