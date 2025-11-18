@@ -1,4 +1,5 @@
-﻿using Spectre.Console;
+﻿using FitnessProgressTracker.Models;
+using Spectre.Console;
 using System;
 using System.Collections.Generic;
 using System.Linq;
@@ -55,8 +56,8 @@ namespace FitnessProgressTracker.UI
 			var random = new Random();
 			var quote = quotes[random.Next(quotes.Length)];
 			AnsiConsole.MarkupLine($"[italic yellow]{quote}[/]");
-		}
 
+        }
 	}
 }
 

@@ -35,7 +35,6 @@ namespace FitnessProgressTracker.Services
 
                 _clientStore.Save(allClients); // Spara ändringarna
             }
-            
         }
     }
 }

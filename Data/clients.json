@@ -1,8 +1,14 @@
 [
   {
-    "AssignedPtId": 0,
     "CurrentWorkoutPlan": null,
     "CurrentDietPlan": null,
+    "AssignedPtId": 0,
+    "WorkoutPlanIds": [],
+    "DietPlanIds": [],
+    "ProgressLogIds": [],
+    "GoalDescription": "Inget m\u00E5l satt",
+    "TargetWeight": 0,
+    "WorkoutsPerWeek": 0,
     "Id": 2,
     "Username": "Klas",
     "PasswordHash": "Klas123456",
@@ -11,14 +17,37 @@
     "Role": "Client"
   },
   {
-    "AssignedPtId": 0,
     "CurrentWorkoutPlan": null,
     "CurrentDietPlan": null,
+    "AssignedPtId": 0,
+    "WorkoutPlanIds": [],
+    "DietPlanIds": [],
+    "ProgressLogIds": [],
+    "GoalDescription": "Inget m\u00E5l satt",
+    "TargetWeight": 0,
+    "WorkoutsPerWeek": 0,
     "Id": 3,
     "Username": "KlasO",
     "PasswordHash": "Klas123456",
     "FirstName": "Klas",
     "LastName": "Olsson",
+    "Role": "Client"
+  },
+  {
+    "CurrentWorkoutPlan": null,
+    "CurrentDietPlan": null,
+    "AssignedPtId": 0,
+    "WorkoutPlanIds": [],
+    "DietPlanIds": [],
+    "ProgressLogIds": [],
+    "GoalDescription": "Inget m\u00E5l satt",
+    "TargetWeight": 0,
+    "WorkoutsPerWeek": 0,
+    "Id": 4,
+    "Username": "mohammed",
+    "PasswordHash": "Hejhej123",
+    "FirstName": "mohamed",
+    "LastName": "yusur",
     "Role": "Client"
   }
 ]
