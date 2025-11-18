@@ -29,13 +29,14 @@ namespace FitnessProgressTracker
                 string ptPath = Path.Combine(projectRoot, "data/pts.json");
                 string workoutPath = Path.Combine(projectRoot, "data/workouts.json"); // <--- NY
                 string dietPath = Path.Combine(projectRoot, "data/diets.json");       // <--- NY
-                                                                                      // (Lägg till logs.json om du har implementerat ProgressService)
+                string logsPath = Path.Combine(projectRoot, "data/logs.json"); 
 
                 // 3. Skapa ALLA DataStores (Dessa måste finnas först!)
                 IDataStore<Client> clientStore = new JsonDataStore<Client>(clientPath);
                 IDataStore<PT> ptStore = new JsonDataStore<PT>(ptPath);
                 IDataStore<WorkoutPlan> workoutStore = new JsonDataStore<WorkoutPlan>(workoutPath); // <--- NY
                 IDataStore<DietPlan> dietStore = new JsonDataStore<DietPlan>(dietPath);       // <--- NY
+                IDataStore<ProgressLog> logsStore = new JsonDataStore<ProgressLog>(logsPath);
 
                 // 4. Skapa Services (Beroende Injection)
 
@@ -51,8 +52,11 @@ namespace FitnessProgressTracker
                 // LoginService (behövs av Menu)
                 LoginService loginService = new LoginService(clientStore, ptStore);
 
+                // ProgressService (behövs av PtMenu för att visa klientens framsteg)
+                ProgressService progressService = new ProgressService(logsStore);
+
                 // 5. Skapa Huvudmenyn (Nu finns alla variabler!)
-                Menu mainMenu = new Menu(loginService, clientService, scheduleService);
+                Menu mainMenu = new Menu(loginService, clientService, scheduleService, progressService);
 
                 // 6. Kör loopen
                 while (true)

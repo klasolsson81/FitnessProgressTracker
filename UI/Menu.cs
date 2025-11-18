@@ -118,7 +118,7 @@ namespace FitnessProgressTracker.UI
                             else if (loggedInUser.Role == "PT")
                             {
                                 // Skapa och visa PT-menyn
-                                PtMenu ptMenu = new PtMenu(_clientService, _scheduleService);
+                                PtMenu ptMenu = new PtMenu(_clientService, _scheduleService, _progressService);
                                 ptMenu.Show(loggedInUser as PT); // "as PT" konverterar
                             }
                             else
@@ -151,13 +151,18 @@ namespace FitnessProgressTracker.UI
         // Lägg till nya fält
         private readonly ClientService _clientService;
         private readonly ScheduleService _scheduleService;
+        private readonly ProgressService _progressService;
+
 
         // Uppdatera konstruktorn
-        public Menu(LoginService loginService, ClientService clientService, ScheduleService scheduleService)
+        public Menu(LoginService loginService, ClientService clientService,
+             ScheduleService scheduleService, ProgressService progressService)
         {
             _loginService = loginService;
             _clientService = clientService;
             _scheduleService = scheduleService;
+            _progressService = progressService;
         }
+
     }
 }
