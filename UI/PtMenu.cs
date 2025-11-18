@@ -8,6 +8,8 @@ namespace FitnessProgressTracker.UI
 {
     public class PtMenu
     {
+        
+
         // Visar PT-menyn
         public void Show(PT pt)
         {
@@ -30,7 +32,7 @@ namespace FitnessProgressTracker.UI
                             .Title("[bold cyan]Välj ett alternativ:[/]")
                             .AddChoices(
                                 "👤 Visa min klientlista",
-                                "📊 Se framsteg för klienter",
+                                "📊 Se framsteg och statistik",
                                 "🚪 Logga ut"));
 
                     AnsiConsole.Clear();
@@ -42,12 +44,42 @@ namespace FitnessProgressTracker.UI
                             ShowClientListMenu(pt); // <-- ÄNDRA TILL DETTA
                             break;
 
-                        case "📊 Se framsteg för klienter":
+                        case "📊 Se framsteg och statistik":
                             SpectreUIHelper.Loading("Hämtar klientdata...");
-                            var table = new Table().AddColumns("Klient", "Mål", "Status");
-                            table.AddRow("Alex", "Bygga styrka", "[green]Aktiv[/]");
-                            table.AddRow("Maja", "Kondition", "[yellow]Under planering[/]");
-                            AnsiConsole.Write(table);
+
+                            // Hämta alla klienter som PT ansvarar för
+                            var clients = _clientService.GetClientsForPT(pt.Id);
+
+                            foreach (var client in clients)
+                            {
+                                // Hämta framsteg för klienten
+                                List<ProgressLog> logs = _progressService.GetLogsForClient(client.Id);
+
+                                if (logs.Count == 0)
+                                {
+                                    AnsiConsole.MarkupLine($"[yellow]{client.FirstName} {client.LastName} har inga framsteg loggade ännu.[/]");
+                                    continue;
+                                }
+
+                                // Skapa tabell
+                                var table = new Table().AddColumns("Datum", "Vikt (kg)", "Noteringar");
+
+                                // Fyll tabellen med loggar
+                                foreach (var log in logs)
+                                {
+                                    table.AddRow(
+                                        log.Date.ToShortDateString(),
+                                        log.Weight.ToString(),
+                                        log.Notes
+                                    );
+                                }
+
+                                // Skriv ut klientnamn + tabell
+                                AnsiConsole.MarkupLine($"[bold underline]{client.FirstName} {client.LastName}[/]");
+                                AnsiConsole.Write(table);
+                                AnsiConsole.WriteLine(); // tom rad mellan klienter
+                            }
+
                             SpectreUIHelper.Motivation();
                             break;
 
@@ -69,13 +101,16 @@ namespace FitnessProgressTracker.UI
 
         private readonly ClientService _clientService;
         private readonly ScheduleService _scheduleService;
+        private readonly ProgressService _progressService;
 
-        public PtMenu(ClientService clientService, ScheduleService scheduleService)
+
+        public PtMenu(ClientService clientService, ScheduleService scheduleService, ProgressService progressService)
         {
             _clientService = clientService;
             _scheduleService = scheduleService;
-
+            _progressService = progressService;
         }
+
         private void ShowClientActionMenu(Client client)
         {
             bool inSubMenu = true;
