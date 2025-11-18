@@ -1,6 +1,8 @@
 ﻿using FitnessProgressTracker.Models;
+using FitnessProgressTracker.Services;
 using Spectre.Console;
 using System;
+using System.Collections.Generic;
 
 namespace FitnessProgressTracker.UI
 {
@@ -38,7 +40,7 @@ namespace FitnessProgressTracker.UI
                         case "👤 Visa min klientlista":
                             SpectreUIHelper.Loading("Hämtar klientlista...");
                             SpectreUIHelper.Error("Denna funktion är inte implementerad än.");
-                             SpectreUIHelper.Motivation();
+                            SpectreUIHelper.Motivation();
                             break;
 
                         case "📊 Se framsteg för klienter":
@@ -64,7 +66,31 @@ namespace FitnessProgressTracker.UI
             {
                 SpectreUIHelper.Error($"Ett fel uppstod i PT-menyn: {ex.Message}");
             }
+        }
+
+        private readonly ClientService _clientService;
+        private readonly ScheduleService _scheduleService;
+
+        public PtMenu(ClientService clientService, ScheduleService scheduleService)
+        {
+            _clientService = clientService;
+            _scheduleService = scheduleService;
 
         }
-    }
+        private void ShowClientActionMenu(Client client)
+        {
+            // Implementera meny för att hantera enskilda klienter
+
+            SpectreUIHelper.AnimatedBanner($"MÅL FÖR: {client.FirstName.ToUpper()}", Color.Green);
+            var goalDesc = AnsiConsole.Ask<string>("Beskriv klientens övergripande mål (t.ex. 'Gå ner i vikt'):");
+            var targetWeight = AnsiConsole.Ask<double>($"Ange ny målvikt för {client.FirstName} (kg):");
+            var workoutsPerWeek = AnsiConsole.Ask<int>($"Ange antal träningspass per vecka:");
+
+
+            _clientService.UpdateClientGoals(client.Id, goalDesc, targetWeight, workoutsPerWeek);
+            SpectreUIHelper.Success($"Mål uppdaterade för {client.FirstName}!");
+
+
+        }
+    }   
 }

@@ -49,7 +49,7 @@ namespace FitnessProgressTracker.UI
                             var password = AnsiConsole.Prompt(
                                 new TextPrompt<string>("[cyan1]Ange Lösenord[/] [italic grey](min 8 tecken, en siffra, en stor/liten bokstav):[/]")
                                     .Secret() // <-- Döljer lösenordet
-                                    .Validate(pass => 
+                                    .Validate(pass =>
                                     {
                                         if (pass.Length < 8)
                                             return ValidationResult.Error("[red]Lösenordet måste vara minst 8 tecken.[/]");
@@ -118,7 +118,7 @@ namespace FitnessProgressTracker.UI
                             else if (loggedInUser.Role == "PT")
                             {
                                 // Skapa och visa PT-menyn
-                                PtMenu ptMenu = new PtMenu();
+                                PtMenu ptMenu = new PtMenu(_clientService, _scheduleService);
                                 ptMenu.Show(loggedInUser as PT); // "as PT" konverterar
                             }
                             else
@@ -146,6 +146,18 @@ namespace FitnessProgressTracker.UI
             {
                 SpectreUIHelper.Error($"Ett kritiskt fel uppstod i huvudmenyn: {ex.Message}");
             }
+        }
+
+        // Lägg till nya fält
+        private readonly ClientService _clientService;
+        private readonly ScheduleService _scheduleService;
+
+        // Uppdatera konstruktorn
+        public Menu(LoginService loginService, ClientService clientService, ScheduleService scheduleService)
+        {
+            _loginService = loginService;
+            _clientService = clientService;
+            _scheduleService = scheduleService;
         }
     }
 }

@@ -15,36 +15,52 @@ namespace FitnessProgressTracker
     {
         static void Main(string[] args)
         {
-           
-            Console.OutputEncoding = System.Text.Encoding.UTF8; //För att kunna visa symboler i menyerna. 
-            DotNetEnv.Env.Load(); //Läser .Env filen
 
-            //DEPENDENCY INJECTION-KEDJAN
-
-            // 1. Bygg sökvägarna
-            string baseDirectory = AppContext.BaseDirectory;
-            string projectRoot = Path.GetFullPath(Path.Combine(baseDirectory, "../../../"));
-            string clientFilePath = Path.Combine(projectRoot, "data/clients.json");
-            string ptFilePath = Path.Combine(projectRoot, "data/pts.json");
-
-            // 2. Skapa dina DataStores
-            IDataStore<Client> clientStore = new JsonDataStore<Client>(clientFilePath);
-            IDataStore<PT> ptStore = new JsonDataStore<PT>(ptFilePath);
-
-            // 3. Skapa LoginService
-            LoginService loginService = new LoginService(clientStore, ptStore);
-
-            // 4. Skapa din Huvudmeny (med din LoginService)
-            Menu menu = new Menu(loginService);
-
-
-
-            // 5. Kör menyn i en oändlig loop
-            while (true)
             {
-                menu.ShowMainMenu();
-                AnsiConsole.MarkupLine("\nTryck [grey]ENTER[/] för att återgå till menyn...");
-                Console.ReadLine();
+                // 1. Fixa encoding och ladda .env (Viktigt för AI)
+                Console.OutputEncoding = System.Text.Encoding.UTF8;
+                DotNetEnv.Env.Load();
+
+                // 2. Sökvägar
+                string baseDirectory = AppContext.BaseDirectory;
+                string projectRoot = Path.GetFullPath(Path.Combine(baseDirectory, "../../../"));
+
+                string clientPath = Path.Combine(projectRoot, "data/clients.json");
+                string ptPath = Path.Combine(projectRoot, "data/pts.json");
+                string workoutPath = Path.Combine(projectRoot, "data/workouts.json"); // <--- NY
+                string dietPath = Path.Combine(projectRoot, "data/diets.json");       // <--- NY
+                                                                                      // (Lägg till logs.json om du har implementerat ProgressService)
+
+                // 3. Skapa ALLA DataStores (Dessa måste finnas först!)
+                IDataStore<Client> clientStore = new JsonDataStore<Client>(clientPath);
+                IDataStore<PT> ptStore = new JsonDataStore<PT>(ptPath);
+                IDataStore<WorkoutPlan> workoutStore = new JsonDataStore<WorkoutPlan>(workoutPath); // <--- NY
+                IDataStore<DietPlan> dietStore = new JsonDataStore<DietPlan>(dietPath);       // <--- NY
+
+                // 4. Skapa Services (Beroende Injection)
+
+                // AiService (behövs av ScheduleService)
+                AiService aiService = new AiService();
+
+                // ClientService (behövs av Menu och PtMenu)
+                ClientService clientService = new ClientService(clientStore);
+
+                // ScheduleService (behövs av PtMenu - denna behöver MASSOR av dependencies)
+                ScheduleService scheduleService = new ScheduleService(clientStore, workoutStore, dietStore, aiService);
+
+                // LoginService (behövs av Menu)
+                LoginService loginService = new LoginService(clientStore, ptStore);
+
+                // 5. Skapa Huvudmenyn (Nu finns alla variabler!)
+                Menu mainMenu = new Menu(loginService, clientService, scheduleService);
+
+                // 6. Kör loopen
+                while (true)
+                {
+                    mainMenu.ShowMainMenu();
+                    AnsiConsole.MarkupLine("\nTryck [grey]ENTER[/] för att återgå till menyn...");
+                    Console.ReadLine();
+                }
             }
         }
     }
