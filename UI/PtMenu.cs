@@ -116,13 +116,33 @@ namespace FitnessProgressTracker.UI
                         Thread.Sleep(2000);
                         break;
 
-                    case "🥗 Skapa kostschema (AI-hjälp)":
-                        // TODO: Detta kommer i Task #99
-                        SpectreUIHelper.Error("Denna funktion kommer i nästa uppdatering (Task #99).");
-                        Thread.Sleep(2000);
-                        break;
+					case "🥗 Skapa kostschema (AI-hjälp)":
+						// 1. Hämta klientens redan sparade målbeskrivning
+						var goal = client.GoalDescription;
 
-                    case "📊 Se framsteg och statistik":
+						// 2. Fråga PT om dagligt kalorimål
+						var calories = AnsiConsole.Ask<int>("Ange dagligt kalorimål (kcal):");
+
+						// 3. Visa laddnings-animation medan AI jobbar
+						SpectreUIHelper.Loading("AI skapar kostschema, vänligen vänta...");
+
+						// 4. Anropa ScheduleService - AI - spara - koppla till klienten
+						var newDietPlan = _scheduleService
+							.CreateAndLinkDietPlan(client.Id, goal, calories)
+							.Result;
+
+						// 5. Bekräfta att allt gick bra
+						SpectreUIHelper.Success(
+							$"Nytt kostschema '{newDietPlan.Name}' skapat!"
+						);
+
+						// 6. Vänta innan vi återgår till menyn
+						AnsiConsole.MarkupLine("\n[grey]Tryck tangent för att fortsätta...[/]");
+						Console.ReadKey(true);
+						break;
+
+
+					case "📊 Se framsteg och statistik":
                         // TODO: Detta kommer i Task #100
                         SpectreUIHelper.Error("Denna funktion kommer i nästa uppdatering (Task #100).");
                         Thread.Sleep(2000);
