@@ -66,6 +66,8 @@ namespace FitnessProgressTracker.Services
                 newClient.LastName = lastName;
                 newClient.Role = "Client";
 
+                newClient.AssignedPtId = 1; // Kopplar alla nya till PT 1
+
                 // Sätt ID baserat på ALLA användare
                 newClient.Id = allUsers.Count > 0 ? allUsers.Max(u => u.Id) + 1 : 1;
 
