@@ -17,20 +17,21 @@ namespace FitnessProgressTracker.Services
             _clientService = clientService;
         }
 
-        // Hämta alla loggar för en specifik klient (nyckelmetod)
+        // Hämta alla loggar för en specifik klient (null-säker)
         public List<ProgressLog> GetLogsForClient(int clientId)
         {
-            var allLogs = _logStore.Load();
+            var allLogs = _logStore.Load() ?? new List<ProgressLog>();
+
             return allLogs
-                .Where(log => log.ClientId == clientId)
+                .Where(log => log != null && log.ClientId == clientId)
                 .OrderByDescending(log => log.Date)
                 .ToList();
         }
 
-        // Ny metod: hämta färsk klient + visa loggar i tabell
+        // Visa loggar i tabell
         public void ShowClientProgress(int clientId)
         {
-            // 1. Hämta uppdaterad klient
+            // 1. Hämta klient
             var client = _clientService.GetClientById(clientId);
             if (client == null)
             {
@@ -41,9 +42,9 @@ namespace FitnessProgressTracker.Services
             // 2. Hämta loggar
             var logs = GetLogsForClient(clientId);
 
-            // 3. Skapa tabell
+            // 3. Visa tabell
             AnsiConsole.Clear();
-            AnsiConsole.MarkupLine($"[bold underline green]Progress för {client.FirstName} {client.LastName}[/]");
+            AnsiConsole.MarkupLine($"[bold underline green]Progress för {client.FirstName ?? "N/A"} {client.LastName ?? ""}[/]");
 
             if (logs.Count == 0)
             {
@@ -61,11 +62,10 @@ namespace FitnessProgressTracker.Services
                 table.AddRow(
                     log.Date.ToShortDateString(),
                     log.Weight.ToString("0.0"),
-                    log.Notes
+                    log.Notes ?? ""
                 );
             }
 
-            // 4. Visa tabellen
             AnsiConsole.Write(table);
         }
     }

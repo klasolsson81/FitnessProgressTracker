@@ -3,9 +3,7 @@ using FitnessProgressTracker.Models;
 using FitnessProgressTracker.UI;
 using OpenAI;
 using OpenAI.Chat;
-using System;
 using System.Text.Json;
-using System.Threading.Tasks;
 
 namespace FitnessProgressTracker.Services
 {

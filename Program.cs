@@ -1,13 +1,8 @@
 ﻿using FitnessProgressTracker.Models;
-using FitnessProgressTracker.UI;
 using FitnessProgressTracker.Services;
 using FitnessProgressTracker.Services.Interfaces;
+using FitnessProgressTracker.UI;
 using Spectre.Console;
-using System;
-using System.IO;
-using System.Collections.Generic;
-using System.Text;
-using DotNetEnv;
 
 namespace FitnessProgressTracker
 {
@@ -29,7 +24,7 @@ namespace FitnessProgressTracker
                 string ptPath = Path.Combine(projectRoot, "data/pts.json");
                 string workoutPath = Path.Combine(projectRoot, "data/workouts.json"); // <--- NY
                 string dietPath = Path.Combine(projectRoot, "data/diets.json");       // <--- NY
-                string logsPath = Path.Combine(projectRoot, "data/logs.json"); 
+                string logsPath = Path.Combine(projectRoot, "data/logs.json");
 
                 // 3. Skapa ALLA DataStores (Dessa måste finnas först!)
                 IDataStore<Client> clientStore = new JsonDataStore<Client>(clientPath);
