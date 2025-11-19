@@ -17,6 +17,11 @@ namespace FitnessProgressTracker.Services
             _scheduleService = scheduleService;
         }
 
+        public ClientService(IDataStore<Client> clientStore)
+        {
+            _clientStore = clientStore;
+        }
+
         // Hämta alla klienter som tillhör en specifik PT
         public List<Client> GetClientsForPT(int ptId)
         {
