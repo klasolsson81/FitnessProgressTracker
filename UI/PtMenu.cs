@@ -33,6 +33,7 @@ namespace FitnessProgressTracker.UI
                             .AddChoices(
                                 "👤 Visa min klientlista",
                                 "📊 Se framsteg och statistik",
+                                "🗑️ Ta bort klient(er)",
                                 "🚪 Logga ut"));
 
                     AnsiConsole.Clear();
@@ -81,6 +82,10 @@ namespace FitnessProgressTracker.UI
                             }
 
                             SpectreUIHelper.Motivation();
+                            break;
+
+                        case "🗑️ Ta bort klient(er)":
+                            ShowDeleteClientPrompt(pt);
                             break;
 
                         case "🚪 Logga ut":
@@ -273,12 +278,7 @@ namespace FitnessProgressTracker.UI
 			AnsiConsole.Write(table);
 		}
 
-
-
-
-
-		
-		
+        		
 
 		private void ShowClientListMenu(PT pt)
         {
@@ -304,6 +304,52 @@ namespace FitnessProgressTracker.UI
             // 3. NU har vi en vald klient! Skicka den vidare.
             ShowClientActionMenu(selectedClient);
         }
+
+        private void ShowDeleteClientPrompt(PT pt)
+        {
+            try
+            {
+                // 1. Hämta klienter att välja från
+                var clients = _clientService.GetClientsForPT(pt.Id);
+
+                if (clients.Count == 0)
+                {
+                    SpectreUIHelper.Error("Det finns inga klienter att ta bort.");
+                    return;
+                }
+
+                // 2. Använd MultiSelectionPrompt för att välja 0 till många klienter
+                var selectedClients = AnsiConsole.Prompt(
+                    new MultiSelectionPrompt<Client>()
+                        .Title("[bold red]Välj KLIENTER som ska tas bort:[/]")
+                        .InstructionsText("[grey](Tryck [blue]<space>[/] för att välja, [green]<enter>[/] för att bekräfta)[/]")
+                        .PageSize(10)
+                        .AddChoices(clients)
+                        .UseConverter(c => $"❌ {c.FirstName} {c.LastName}") // Visar namn snyggt
+                );
+
+                if (selectedClients.Count == 0)
+                    return; // Ingen vald, gå tillbaka
+
+                // 3. Bekräftelsefråga (Viktigt säkerhetssteg)
+                bool confirm = AnsiConsole.Confirm($"Vill du verkligen ta bort {selectedClients.Count} klient(er)? Denna åtgärd går inte att ångra.");
+
+                if (confirm)
+                {
+                    // 4. Kalla servicen med alla valda ID:n
+                    List<int> clientIdsToDelete = selectedClients.Select(c => c.Id).ToList();
+                    _clientService.DeleteClients(clientIdsToDelete);
+
+                    SpectreUIHelper.Success($"Borttagning lyckades! {selectedClients.Count} klient(er) raderades.");
+                }
+            }
+            catch (Exception ex)
+            {
+                SpectreUIHelper.Error(ex.Message);
+            }
+        }
+
+
 
     }   
 }

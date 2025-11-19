@@ -26,32 +26,34 @@ namespace FitnessProgressTracker.Services
 
 		// AI-tjänst som genererar planer
 		private readonly AiService _aiService;
+        private readonly IDataStore<ProgressLog> _logStore;
 
-		// NYTT: temporära fält för review/ACCEPT-flödet
-		// NYTT: Dessa håller senaste AI-genererade planer i minnet tills PT accepterar.
-		private WorkoutPlan _pendingWorkoutPlan; // NYTT: temporär träningsplan
+
+        // NYTT: temporära fält för review/ACCEPT-flödet
+        // NYTT: Dessa håller senaste AI-genererade planer i minnet tills PT accepterar.
+        private WorkoutPlan _pendingWorkoutPlan; // NYTT: temporär träningsplan
 		private DietPlan _pendingDietPlan;       // NYTT: temporär kostplan
 
 
-		// Konstruktor: tar emot alla nödvändiga services och datalager
-		public ScheduleService(
-		IDataStore<Client> clientStore,
-		IDataStore<WorkoutPlan> workoutStore,
-		IDataStore<DietPlan> dietStore,
-		AiService aiService)
+        // Konstruktor: tar emot alla nödvändiga services och datalager
+        public ScheduleService(
+            IDataStore<Client> clientStore,
+            IDataStore<WorkoutPlan> workoutStore,
+            IDataStore<DietPlan> dietStore,
+            IDataStore<ProgressLog> logStore,
+            AiService aiService)
 
-			
+        {
+            _clientStore = clientStore;
+            _workoutStore = workoutStore;
+            _dietStore = dietStore;
+            _logStore = logStore;
+            _aiService = aiService;
+        }
 
-		{
-			_clientStore = clientStore;   // Sätter klient-databasen
-			_workoutStore = workoutStore; // Sätter träningsschema-databasen
-			_dietStore = dietStore;       // Sätter kostschema-databasen
-			_aiService = aiService;       // Sätter AI-tjänsten
-		}
-
-		// Skapar ett träningsschema via AI men sparar EJ till filen.
-		// Istället sparas resultatet i _pendingWorkoutPlan för granskning.
-		public async Task<WorkoutPlan> CreateAndLinkWorkoutPlan(int clientId, string goal, int daysPerWeek)
+        // Skapar ett träningsschema via AI men sparar EJ till filen.
+        // Istället sparas resultatet i _pendingWorkoutPlan för granskning.
+        public async Task<WorkoutPlan> CreateAndLinkWorkoutPlan(int clientId, string goal, int daysPerWeek)
 		{
 			// 1) Anropa AI: be om ett förslag
 			WorkoutPlan plan = await _aiService.GenerateWorkoutPlan(goal, daysPerWeek);
@@ -174,7 +176,28 @@ namespace FitnessProgressTracker.Services
 			_pendingDietPlan = null; // NYTT: töm temporärt fält
 			return saved;
 		}
-	}
+
+        public void CleanUpClientData(List<int> clientIdsToDelete)
+        {
+            // === 1. Rensa träningsscheman ===
+            List<WorkoutPlan> workouts = _workoutStore.Load();
+            // Tar bort alla scheman där schemats ClientId finns i clientIdsToDelete-listan
+            workouts.RemoveAll(wp => clientIdsToDelete.Contains(wp.ClientId));
+            _workoutStore.Save(workouts);
+
+            // === 2. Rensa kostscheman ===
+            List<DietPlan> diets = _dietStore.Load();
+            diets.RemoveAll(dp => clientIdsToDelete.Contains(dp.ClientId));
+            _dietStore.Save(diets);
+
+            // === 3. Rensa framstegsloggar ===
+            List<ProgressLog> logs = _logStore.Load();
+            logs.RemoveAll(log => clientIdsToDelete.Contains(log.ClientId));
+            _logStore.Save(logs);
+        }
+
+
+    }
 
 }
 	
