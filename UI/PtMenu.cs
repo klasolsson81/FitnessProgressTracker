@@ -8,8 +8,6 @@ namespace FitnessProgressTracker.UI
 {
     public class PtMenu
     {
-        
-
         // Visar PT-menyn
         public void Show(PT pt)
         {
@@ -40,19 +38,16 @@ namespace FitnessProgressTracker.UI
                     switch (choice)
                     {
                         case "👤 Visa min klientlista":
-                            // Ta bort Loading här, vi gör det i metoden
-                            ShowClientListMenu(pt); // <-- ÄNDRA TILL DETTA
+                            ShowClientListMenu(pt);
                             break;
 
                         case "📊 Se framsteg och statistik":
                             SpectreUIHelper.Loading("Hämtar klientdata...");
 
-                            // Hämta alla klienter som PT ansvarar för
                             var clients = _clientService.GetClientsForPT(pt.Id);
 
                             foreach (var client in clients)
                             {
-                                // Hämta framsteg för klienten
                                 List<ProgressLog> logs = _progressService.GetLogsForClient(client.Id);
 
                                 if (logs.Count == 0)
@@ -61,10 +56,8 @@ namespace FitnessProgressTracker.UI
                                     continue;
                                 }
 
-                                // Skapa tabell
                                 var table = new Table().AddColumns("Datum", "Vikt (kg)", "Noteringar");
 
-                                // Fyll tabellen med loggar
                                 foreach (var log in logs)
                                 {
                                     table.AddRow(
@@ -74,10 +67,9 @@ namespace FitnessProgressTracker.UI
                                     );
                                 }
 
-                                // Skriv ut klientnamn + tabell
                                 AnsiConsole.MarkupLine($"[bold underline]{client.FirstName} {client.LastName}[/]");
                                 AnsiConsole.Write(table);
-                                AnsiConsole.WriteLine(); // tom rad mellan klienter
+                                AnsiConsole.WriteLine();
                             }
 
                             SpectreUIHelper.Motivation();
@@ -86,9 +78,9 @@ namespace FitnessProgressTracker.UI
                         case "🚪 Logga ut":
                             SpectreUIHelper.Success("Du är nu utloggad. Grymt jobbat coach! 💪");
                             isRunning = false;
-                            continue; // hoppar över "tryck för att fortsätta"
+                            continue;
                     }
-                    // Vänta på att användaren trycker en tangent innan menyn visas igen
+
                     AnsiConsole.MarkupLine("\n[grey]Tryck på valfri tangent för att återgå till menyn...[/]");
                     Console.ReadKey(true);
                 }
@@ -102,7 +94,6 @@ namespace FitnessProgressTracker.UI
         private readonly ClientService _clientService;
         private readonly ScheduleService _scheduleService;
         private readonly ProgressService _progressService;
-
 
         public PtMenu(ClientService clientService, ScheduleService scheduleService, ProgressService progressService)
         {
@@ -133,107 +124,29 @@ namespace FitnessProgressTracker.UI
                 switch (choice)
                 {
                     case "🎯 Sätt upp mål":
-                        // Logiken vi redan har gjort
-                        var goalDesc = AnsiConsole.Ask<string>("Beskriv klientens övergripande mål (t.ex. 'Gå ner i vikt'):");
-                        var targetWeight = AnsiConsole.Ask<double>($"Ange ny målvikt för {client.FirstName} (kg):");
-                        var workoutsPerWeek = AnsiConsole.Ask<int>($"Ange antal träningspass per vecka:");
+                        var goalDesc = AnsiConsole.Ask<string>("Beskriv klientens mål:");
+                        var targetWeight = AnsiConsole.Ask<double>($"Ange målvikt för {client.FirstName} (kg):");
+                        var workoutsPerWeek = AnsiConsole.Ask<int>("Antal pass/vecka:");
 
                         _clientService.UpdateClientGoals(client.Id, goalDesc, targetWeight, workoutsPerWeek);
-                        client = _clientService.GetClientById(client.Id); //Uppdatera klientens mål
+                        client = _clientService.GetClientById(client.Id);
 
                         SpectreUIHelper.Success($"Mål uppdaterade för {client.FirstName}!");
-
-                        AnsiConsole.MarkupLine("\n[grey]Tryck tangent för att fortsätta...[/]");
                         Console.ReadKey(true);
                         break;
 
                     case "🤖 Skapa träningsschema (AI-hjälp)":
-                        // TODO: Detta kommer i Task #97 (när ScheduleService är klar)
-                        SpectreUIHelper.Error("Denna funktion kommer i nästa uppdatering (Task #97).");
+                        SpectreUIHelper.Error("Kommer i Task #97.");
                         Thread.Sleep(2000);
                         break;
 
-					case "🥗 Skapa kostschema (AI-hjälp)":
-						// ===== NYTT: START — review-flöde för kostschema =====
-						try
-						{
-							// 1) Hämta frisk (uppdaterad) klient från clientService
-							Client freshClient = _clientService.GetClientById(client.Id);
-
-							// 2) Hämta klientens målbeskrivning
-							string goal = freshClient.GoalDescription;
-
-							// 3) Fråga PT om dagligt kalorimål
-							int calories = AnsiConsole.Ask<int>("Ange dagligt kalorimål (kcal):");
-
-							// 4) Be ScheduleService skapa ett förslag (sparas som pending i service)
-							var plan = _scheduleService.CreateAndLinkDietPlan(freshClient.Id, goal, calories).Result;
-							if (plan == null)
-							{
-								SpectreUIHelper.Error("AI kunde inte skapa ett kostschema. Försök igen senare.");
-								break;
-							}
-
-							// 5) Review-loop: visa plan och låt PT acceptera / generera nytt / avbryta
-							bool reviewing = true;
-							while (reviewing)
-							{
-								// Visa schemat i en tabell
-								ShowDietPlanReviewTable(plan);
-
-								// Erbjud val
-								var action = AnsiConsole.Prompt(
-									new SelectionPrompt<string>()
-										.Title("Välj åtgärd:")
-										.AddChoices("✔ Acceptera och spara", "🔄 Generera nytt", "↩️ Avbryt"));
-
-								switch (action)
-								{
-									case "✔ Acceptera och spara":
-										// NYTT: commit sparar pending-plan till fil och länkar till klient
-										var saved = _scheduleService.CommitPendingDietPlan(freshClient.Id);
-
-										if (saved != null)
-											SpectreUIHelper.Success($"Kostschema '{saved.Name}' sparat!");
-										else
-											SpectreUIHelper.Error("Kunde inte spara kostschemat.");
-										reviewing = false;
-										break;
-
-									case "🔄 Generera nytt":
-										// NYTT: anropa AI igen för ett nytt förslag (ersätt plan)
-										plan = _scheduleService.CreateAndLinkDietPlan(freshClient.Id, goal, calories).Result;
-										if (plan == null)
-										{
-											SpectreUIHelper.Error("AI kunde inte generera ett nytt schema.");
-											reviewing = false;
-										}
-										// loop fortsätter och visar nya plan
-										break;
-
-									case "↩️ Avbryt":
-										// Kassera pending-plan (töm sker i service inte här), visa meddelande
-										SpectreUIHelper.Error("Inget kostschema sparades.");
-										reviewing = false;
-										break;
-								}
-							} // end review loop
-						}
-						catch (Exception ex)
-						{
-							SpectreUIHelper.Error($"Fel: {ex.Message}");
-						}
-						
-						// Pausa innan återgång till meny
-						AnsiConsole.MarkupLine("\n[grey]Tryck tangent för att fortsätta...[/]");
-						Console.ReadKey(true);
-						break;
-
-
-					case "📊 Se framsteg och statistik":
-                        // TODO: Detta kommer i Task #100
-                        SpectreUIHelper.Error("Denna funktion kommer i nästa uppdatering (Task #100).");
+                    case "🥗 Skapa kostschema (AI-hjälp)":
+                        SpectreUIHelper.Error("Kommer i Task #97.");
                         Thread.Sleep(2000);
+                        break;
+
+                    case "📊 Se framsteg och statistik":
+                        ShowClientDashboard(client);
                         break;
 
                     case "↩️ Gå tillbaka":
@@ -243,67 +156,145 @@ namespace FitnessProgressTracker.UI
             }
         }
 
+        private void ShowDietPlanReviewTable(DietPlan plan)
+        {
+            AnsiConsole.Clear();
 
-		// NYTT: Metod som visar dietplan i en Spectre.Console-tabell så PT kan granska.
-		private void ShowDietPlanReviewTable(DietPlan plan)
-		{
-			// Rensa skärmen och visa planens namn
-			AnsiConsole.Clear();
+            var table = new Table().Title($"[bold green]{plan.Name}[/]");
 
-			var table = new Table().Title($"[bold green]{plan.Name}[/]");
+            table.AddColumn("Dag");
+            table.AddColumn("Måltider");
 
-			// Kolumner: Dag + Måltider
-			table.AddColumn("Dag");
-			table.AddColumn("Måltider");
+            foreach (var daily in plan.DailyMeals)
+            {
+                var mealsText = $"Frukost: {daily.Breakfast}\n" +
+                                $"Lunch: {daily.Lunch}\n" +
+                                $"Middag: {daily.Dinner}\n" +
+                                $"Snacks: {daily.Snacks}\n" +
+                                $"Totalt: {daily.TotalCalories} kcal";
 
-			// Loop genom varje DailyMealPlan
-			foreach (var daily in plan.DailyMeals)
-			{
-				// Samla alla måltider i en sträng
-				var mealsText = $"Frukost: {daily.Breakfast}\n" +
-								$"Lunch: {daily.Lunch}\n" +
-								$"Middag: {daily.Dinner}\n" +
-								$"Snacks: {daily.Snacks}\n" +
-								$"Totalt: {daily.TotalCalories} kcal";
+                table.AddRow(daily.Day, mealsText);
+            }
 
-				// Lägg till en rad i tabellen
-				table.AddRow(daily.Day, mealsText);
-			}
+            AnsiConsole.Write(table);
+        }
 
-			AnsiConsole.Write(table);
-		}
-
-
-
-
-
-		
-		
-
-		private void ShowClientListMenu(PT pt)
+        private void ShowClientListMenu(PT pt)
         {
             SpectreUIHelper.Loading("Hämtar dina klienter...");
 
-            // 1. Hämta listan från databasen
             var clients = _clientService.GetClientsForPT(pt.Id);
 
             if (clients.Count == 0)
             {
-                AnsiConsole.MarkupLine("[yellow]Du har inga klienter kopplade till dig än.[/]");
+                AnsiConsole.MarkupLine("[yellow]Du har inga klienter kopplade till dig ännu.[/]");
                 return;
             }
 
-            // 2. Visa listan och låt PT välja
             var selectedClient = AnsiConsole.Prompt(
                 new SelectionPrompt<Client>()
                     .Title("Välj en [cyan]klient[/] att hantera:")
                     .AddChoices(clients)
-                    .UseConverter(c => $"{c.FirstName} {c.LastName}") // Visar namnet snyggt
+                    .UseConverter(c => $"{c.FirstName} {c.LastName}")
             );
 
-            // 3. NU har vi en vald klient! Skicka den vidare.
             ShowClientActionMenu(selectedClient);
         }
 
-    }   
+
+        // ------------------------------------------------------------
+        // 🔥 NY METOD — ShowClientDashboard(Client client)
+        // ------------------------------------------------------------
+        private void ShowClientDashboard(Client client)
+        {
+            AnsiConsole.Clear();
+            SpectreUIHelper.AnimatedBanner($"DASHBOARD: {client.FirstName}", Color.Green);
+
+            //
+            // 1. PT-mål
+            //
+            AnsiConsole.MarkupLine("[bold underline green]🎯 PT:s satta mål[/]");
+
+            var goalTable = new Table();
+            goalTable.AddColumn("Målbeskrivning");
+            goalTable.AddColumn("Målvikt (kg)");
+            goalTable.AddColumn("Pass/vecka");
+
+            goalTable.AddRow(
+                client.GoalDescription ?? "Ej angivet",
+                client.TargetWeight.ToString(),
+                client.WorkoutsPerWeek.ToString()
+            );
+
+            AnsiConsole.Write(goalTable);
+            AnsiConsole.WriteLine();
+
+            //
+            // 2. Senaste 5 progress-loggar
+            //
+            AnsiConsole.MarkupLine("[bold underline green]📊 Senaste 5 framsteg[/]");
+
+            var logs = _progressService
+                .GetLogsForClient(client.Id)
+                .Take(5)
+                .ToList();
+
+            if (logs.Count == 0)
+            {
+                AnsiConsole.MarkupLine("[yellow]Inga loggar registrerade ännu.[/]");
+            }
+            else
+            {
+                var logTable = new Table();
+                logTable.AddColumn("Datum");
+                logTable.AddColumn("Vikt (kg)");
+                logTable.AddColumn("Anteckning");
+
+                foreach (var log in logs)
+                {
+                    logTable.AddRow(
+                        log.Date.ToShortDateString(),
+                        log.Weight.ToString(),
+                        log.Notes
+                    );
+                }
+
+                AnsiConsole.Write(logTable);
+            }
+
+            AnsiConsole.WriteLine();
+
+            //
+            // 3. Scheman (Workout + Diet)
+            //
+            AnsiConsole.MarkupLine("[bold underline green]📅 Klientens scheman[/]");
+
+            var scheduleTable = new Table();
+            scheduleTable.AddColumn("WorkoutPlan ID");
+            scheduleTable.AddColumn("DietPlan ID");
+
+            int max = Math.Max(
+                client.WorkoutPlanIds?.Count ?? 0,
+                client.DietPlanIds?.Count ?? 0
+            );
+
+            for (int i = 0; i < max; i++)
+            {
+                string workoutId = i < client.WorkoutPlanIds.Count
+                    ? client.WorkoutPlanIds[i].ToString()
+                    : "-";
+
+                string dietId = i < client.DietPlanIds.Count
+                    ? client.DietPlanIds[i].ToString()
+                    : "-";
+
+                scheduleTable.AddRow(workoutId, dietId);
+            }
+
+            AnsiConsole.Write(scheduleTable);
+
+            AnsiConsole.MarkupLine("\n[grey]Tryck tangent för att fortsätta...[/]");
+            Console.ReadKey(true);
+        }
+    }
 }

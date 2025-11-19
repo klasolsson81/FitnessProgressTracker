@@ -1,27 +1,72 @@
 ﻿using FitnessProgressTracker.Models;
 using FitnessProgressTracker.Services.Interfaces;
+using Spectre.Console;
+using System.Collections.Generic;
+using System.Linq;
 
 namespace FitnessProgressTracker.Services
 {
     public class ProgressService
     {
-            private readonly IDataStore<ProgressLog> _logStore;
-            public ProgressService(IDataStore<ProgressLog> logStore)
+        private readonly IDataStore<ProgressLog> _logStore;
+        private readonly ClientService _clientService;
+
+        public ProgressService(IDataStore<ProgressLog> logStore, ClientService clientService)
+        {
+            _logStore = logStore;
+            _clientService = clientService;
+        }
+
+        // Hämta alla loggar för en specifik klient (nyckelmetod)
+        public List<ProgressLog> GetLogsForClient(int clientId)
+        {
+            var allLogs = _logStore.Load();
+            return allLogs
+                .Where(log => log.ClientId == clientId)
+                .OrderByDescending(log => log.Date)
+                .ToList();
+        }
+
+        // Ny metod: hämta färsk klient + visa loggar i tabell
+        public void ShowClientProgress(int clientId)
+        {
+            // 1. Hämta uppdaterad klient
+            var client = _clientService.GetClientById(clientId);
+            if (client == null)
             {
-                _logStore = logStore;
+                AnsiConsole.MarkupLine("[red]Klient kunde inte hittas.[/]");
+                return;
             }
 
-            // Hämta alla loggar för en specifik klient
-            public List<ProgressLog> GetLogsForClient(int clientId)
+            // 2. Hämta loggar
+            var logs = GetLogsForClient(clientId);
+
+            // 3. Skapa tabell
+            AnsiConsole.Clear();
+            AnsiConsole.MarkupLine($"[bold underline green]Progress för {client.FirstName} {client.LastName}[/]");
+
+            if (logs.Count == 0)
             {
-                var allLogs = _logStore.Load();
-                return allLogs.Where(log => log.ClientId == clientId)
-                              .OrderByDescending(log => log.Date) // Nyaste först
-                              .ToList();
+                AnsiConsole.MarkupLine("[yellow]Inga progress-loggar registrerade ännu.[/]");
+                return;
             }
-        
 
+            var table = new Table();
+            table.AddColumn("Datum");
+            table.AddColumn("Vikt (kg)");
+            table.AddColumn("Anteckning");
 
+            foreach (var log in logs)
+            {
+                table.AddRow(
+                    log.Date.ToShortDateString(),
+                    log.Weight.ToString("0.0"),
+                    log.Notes
+                );
+            }
+
+            // 4. Visa tabellen
+            AnsiConsole.Write(table);
+        }
     }
 }
- 

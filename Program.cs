@@ -53,7 +53,8 @@ namespace FitnessProgressTracker
                 LoginService loginService = new LoginService(clientStore, ptStore);
 
                 // ProgressService (behövs av PtMenu för att visa klientens framsteg)
-                ProgressService progressService = new ProgressService(logsStore);
+                ProgressService progressService = new ProgressService(logsStore, clientService);
+
 
                 // 5. Skapa Huvudmenyn (Nu finns alla variabler!)
                 Menu mainMenu = new Menu(loginService, clientService, scheduleService, progressService);
