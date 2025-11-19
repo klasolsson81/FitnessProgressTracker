@@ -51,6 +51,14 @@ namespace FitnessProgressTracker.Services
             _aiService = aiService;
         }
 
+        public ScheduleService(IDataStore<Client> clientStore, IDataStore<WorkoutPlan> workoutStore, IDataStore<DietPlan> dietStore, AiService aiService)
+        {
+            _clientStore = clientStore;
+            _workoutStore = workoutStore;
+            _dietStore = dietStore;
+            _aiService = aiService;
+        }
+
         // Skapar ett träningsschema via AI men sparar EJ till filen.
         // Istället sparas resultatet i _pendingWorkoutPlan för granskning.
         public async Task<WorkoutPlan> CreateAndLinkWorkoutPlan(int clientId, string goal, int daysPerWeek)

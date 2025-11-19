@@ -1,8 +1,6 @@
 ﻿
 using FitnessProgressTracker.Models;
 using FitnessProgressTracker.Services.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace FitnessProgressTracker.Services
 {
@@ -15,6 +13,11 @@ namespace FitnessProgressTracker.Services
         {
             _clientStore = clientStore;
             _scheduleService = scheduleService;
+        }
+
+        public ClientService(IDataStore<Client> clientStore)
+        {
+            _clientStore = clientStore;
         }
 
         // Hämta alla klienter som tillhör en specifik PT
@@ -49,7 +52,7 @@ namespace FitnessProgressTracker.Services
         public void DeleteClients(List<int> clientIds)
         {
 
-            _scheduleService.CleanUpClientData(clientIds); 
+            _scheduleService.CleanUpClientData(clientIds);
 
             // === 2. Huvudlogik (Ta bort klienter) ===
             try
