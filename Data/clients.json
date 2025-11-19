@@ -4,11 +4,14 @@
     "CurrentDietPlan": null,
     "AssignedPtId": 1,
     "WorkoutPlanIds": [],
-    "DietPlanIds": [],
+    "DietPlanIds": [
+      4,
+      5
+    ],
     "ProgressLogIds": [],
-    "GoalDescription": "Bli snygg",
-    "TargetWeight": 100,
-    "WorkoutsPerWeek": 3,
+    "GoalDescription": " g\u00E5 upp vikt",
+    "TargetWeight": 50,
+    "WorkoutsPerWeek": 5,
     "Id": 2,
     "Username": "Klas",
     "PasswordHash": "Klas123456",

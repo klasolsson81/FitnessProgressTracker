@@ -154,28 +154,77 @@ namespace FitnessProgressTracker.UI
                         break;
 
 					case "🥗 Skapa kostschema (AI-hjälp)":
-                        Client freshClient = _clientService.GetClientById(client.Id); //REFRESHA KLIENTOBJEKTET FÖR ATT FÅ SENASTE MÅLET!
+						// ===== NYTT: START — review-flöde för kostschema =====
+						try
+						{
+							// 1) Hämta frisk (uppdaterad) klient från clientService
+							Client freshClient = _clientService.GetClientById(client.Id);
 
-                        // 1. Hämta klientens redan sparade målbeskrivning
-                        var goal = client.GoalDescription;
+							// 2) Hämta klientens målbeskrivning
+							string goal = freshClient.GoalDescription;
 
-						// 2. Fråga PT om dagligt kalorimål
-						var calories = AnsiConsole.Ask<int>("Ange dagligt kalorimål (kcal):");
+							// 3) Fråga PT om dagligt kalorimål
+							int calories = AnsiConsole.Ask<int>("Ange dagligt kalorimål (kcal):");
 
-						// 3. Visa laddnings-animation medan AI jobbar
-						SpectreUIHelper.Loading("AI skapar kostschema, vänligen vänta...");
+							// 4) Be ScheduleService skapa ett förslag (sparas som pending i service)
+							var plan = _scheduleService.CreateAndLinkDietPlan(freshClient.Id, goal, calories).Result;
+							if (plan == null)
+							{
+								SpectreUIHelper.Error("AI kunde inte skapa ett kostschema. Försök igen senare.");
+								break;
+							}
 
-						// 4. Anropa ScheduleService - AI - spara - koppla till klienten
-						var newDietPlan = _scheduleService
-							.CreateAndLinkDietPlan(client.Id, goal, calories)
-							.Result;
+							// 5) Review-loop: visa plan och låt PT acceptera / generera nytt / avbryta
+							bool reviewing = true;
+							while (reviewing)
+							{
+								// Visa schemat i en tabell
+								ShowDietPlanReviewTable(plan);
 
-						// 5. Bekräfta att allt gick bra
-						SpectreUIHelper.Success(
-							$"Nytt kostschema '{newDietPlan.Name}' skapat!"
-						);
+								// Erbjud val
+								var action = AnsiConsole.Prompt(
+									new SelectionPrompt<string>()
+										.Title("Välj åtgärd:")
+										.AddChoices("✔ Acceptera och spara", "🔄 Generera nytt", "↩️ Avbryt"));
 
-						// 6. Vänta innan vi återgår till menyn
+								switch (action)
+								{
+									case "✔ Acceptera och spara":
+										// NYTT: commit sparar pending-plan till fil och länkar till klient
+										var saved = _scheduleService.CommitPendingDietPlan(freshClient.Id);
+
+										if (saved != null)
+											SpectreUIHelper.Success($"Kostschema '{saved.Name}' sparat!");
+										else
+											SpectreUIHelper.Error("Kunde inte spara kostschemat.");
+										reviewing = false;
+										break;
+
+									case "🔄 Generera nytt":
+										// NYTT: anropa AI igen för ett nytt förslag (ersätt plan)
+										plan = _scheduleService.CreateAndLinkDietPlan(freshClient.Id, goal, calories).Result;
+										if (plan == null)
+										{
+											SpectreUIHelper.Error("AI kunde inte generera ett nytt schema.");
+											reviewing = false;
+										}
+										// loop fortsätter och visar nya plan
+										break;
+
+									case "↩️ Avbryt":
+										// Kassera pending-plan (töm sker i service inte här), visa meddelande
+										SpectreUIHelper.Error("Inget kostschema sparades.");
+										reviewing = false;
+										break;
+								}
+							} // end review loop
+						}
+						catch (Exception ex)
+						{
+							SpectreUIHelper.Error($"Fel: {ex.Message}");
+						}
+						
+						// Pausa innan återgång till meny
 						AnsiConsole.MarkupLine("\n[grey]Tryck tangent för att fortsätta...[/]");
 						Console.ReadKey(true);
 						break;
@@ -194,7 +243,44 @@ namespace FitnessProgressTracker.UI
             }
         }
 
-        private void ShowClientListMenu(PT pt)
+
+		// NYTT: Metod som visar dietplan i en Spectre.Console-tabell så PT kan granska.
+		private void ShowDietPlanReviewTable(DietPlan plan)
+		{
+			// Rensa skärmen och visa planens namn
+			AnsiConsole.Clear();
+
+			var table = new Table().Title($"[bold green]{plan.Name}[/]");
+
+			// Kolumner: Dag + Måltider
+			table.AddColumn("Dag");
+			table.AddColumn("Måltider");
+
+			// Loop genom varje DailyMealPlan
+			foreach (var daily in plan.DailyMeals)
+			{
+				// Samla alla måltider i en sträng
+				var mealsText = $"Frukost: {daily.Breakfast}\n" +
+								$"Lunch: {daily.Lunch}\n" +
+								$"Middag: {daily.Dinner}\n" +
+								$"Snacks: {daily.Snacks}\n" +
+								$"Totalt: {daily.TotalCalories} kcal";
+
+				// Lägg till en rad i tabellen
+				table.AddRow(daily.Day, mealsText);
+			}
+
+			AnsiConsole.Write(table);
+		}
+
+
+
+
+
+		
+		
+
+		private void ShowClientListMenu(PT pt)
         {
             SpectreUIHelper.Loading("Hämtar dina klienter...");
 
