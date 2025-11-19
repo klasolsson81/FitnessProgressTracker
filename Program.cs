@@ -38,12 +38,15 @@ namespace FitnessProgressTracker
                 // AiService (behövs av ScheduleService)
                 AiService aiService = new AiService();
 
-                // ClientService (behövs av Menu och PtMenu)
-                ClientService clientService = new ClientService(clientStore);
+                // ProgressService (behövs av PtMenu för att visa klientens framsteg)
+                ProgressService progressService = new ProgressService(logsStore); 
 
-                // ScheduleService (behövs av PtMenu - denna behöver MASSOR av dependencies)
-                ScheduleService scheduleService = new ScheduleService(clientStore, workoutStore, dietStore, aiService);
+                // ScheduleService (Behövs av ClientService)
+                ScheduleService scheduleService = new ScheduleService(clientStore, workoutStore, dietStore, logsStore, aiService);
 
+                // ClientService (matas med scheduleService)
+                ClientService clientService = new ClientService(clientStore, scheduleService);
+                
                 // LoginService (behövs av Menu)
                 LoginService loginService = new LoginService(clientStore, ptStore);
 

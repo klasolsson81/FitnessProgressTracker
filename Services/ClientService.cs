@@ -9,10 +9,12 @@ namespace FitnessProgressTracker.Services
     public class ClientService
     {
         private readonly IDataStore<Client> _clientStore;
+        private readonly ScheduleService _scheduleService;
 
-        public ClientService(IDataStore<Client> clientStore)
+        public ClientService(IDataStore<Client> clientStore, ScheduleService scheduleService)
         {
             _clientStore = clientStore;
+            _scheduleService = scheduleService;
         }
 
         // Hämta alla klienter som tillhör en specifik PT
@@ -42,6 +44,36 @@ namespace FitnessProgressTracker.Services
             var allClients = _clientStore.Load();
             // Returnera den första klienten som matchar ID, annars null
             return allClients.FirstOrDefault(c => c.Id == clientId);
+        }
+
+        public void DeleteClients(List<int> clientIds)
+        {
+
+            _scheduleService.CleanUpClientData(clientIds); 
+
+            // === 2. Huvudlogik (Ta bort klienter) ===
+            try
+            {
+                List<Client> allClients = _clientStore.Load();
+                int initialCount = allClients.Count;
+
+                // Använder RemoveAll för att ta bort alla klienter vars ID matchar listan
+                // Detta är den korrekta Linq/List-metoden.
+                allClients.RemoveAll(c => clientIds.Contains(c.Id));
+
+                if (allClients.Count == initialCount)
+                {
+                    // Om listan inte krympte, betyder det att inga matchande ID:n hittades.
+                    throw new InvalidOperationException("Hittade inga klienter att ta bort.");
+                }
+
+                _clientStore.Save(allClients); // Spara den uppdaterade listan
+            }
+            catch (Exception ex)
+            {
+                // Kasta ett generellt fel uppåt för att UI:t ska kunna hantera det
+                throw new Exception("Ett kritiskt fel uppstod vid borttagning av klient(er).", ex);
+            }
         }
 
     }
