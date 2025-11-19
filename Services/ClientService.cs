@@ -1,8 +1,6 @@
 ﻿
 using FitnessProgressTracker.Models;
 using FitnessProgressTracker.Services.Interfaces;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace FitnessProgressTracker.Services
 {
@@ -54,7 +52,7 @@ namespace FitnessProgressTracker.Services
         public void DeleteClients(List<int> clientIds)
         {
 
-            _scheduleService.CleanUpClientData(clientIds); 
+            _scheduleService.CleanUpClientData(clientIds);
 
             // === 2. Huvudlogik (Ta bort klienter) ===
             try

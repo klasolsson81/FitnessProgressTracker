@@ -1,8 +1,6 @@
 ﻿using FitnessProgressTracker.Models;
 using FitnessProgressTracker.Services.Interfaces;
 using Spectre.Console;
-using System.Collections.Generic;
-using System.Linq;
 
 namespace FitnessProgressTracker.Services
 {

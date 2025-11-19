@@ -1,6 +1,6 @@
-﻿using FitnessProgressTracker.Services;
+﻿using FitnessProgressTracker.Models;
+using FitnessProgressTracker.Services;
 using FitnessProgressTracker.Services.Interfaces;
-using FitnessProgressTracker.Models;
 using FitnessProgressTracker.UI;
 using Spectre.Console;
 
