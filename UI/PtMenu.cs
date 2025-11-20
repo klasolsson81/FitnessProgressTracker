@@ -145,11 +145,97 @@ namespace FitnessProgressTracker.UI
                         Console.ReadKey(true);
                         break;
 
-                    case "🤖 Skapa träningsschema (AI-hjälp)":
-                        SpectreUIHelper.Error("Funktionen för att skapa träningsschema är under utveckling.");
-                        AnsiConsole.MarkupLine("\n[grey]Tryck tangent för att fortsätta...[/]");
-                        Console.ReadKey(true);
-                        break;
+					case "🤖 Skapa träningsschema (AI-hjälp)":
+						// — Review-flöde för träningsschema —
+						try
+						{
+							// 1) Hämta senaste version av klienten från clientService
+							Client freshClient = _clientService.GetClientById(client.Id);
+
+							// 2) Hämta klientens målbeskrivning (ex: "Bygga styrka")
+							string goal = freshClient.GoalDescription;
+
+							// 3) Fråga PT om antal träningspass per vecka
+							int daysPerWeek = AnsiConsole.Ask<int>("Ange antal träningspass per vecka:");
+
+							// 4) Visa loading/spinner tills AI har skapat schemat
+							WorkoutPlan plan = null; // Här sparas resultatet från AI
+
+							AnsiConsole.Status()
+								.Spinner(Spinner.Known.Dots)
+								.SpinnerStyle(Style.Parse("green"))
+								.Start("AI skapar träningsschema... vänligen vänta...", ctx =>
+								{
+									// Anropa ScheduleService för att skapa ett förslag (sparas som pending)
+									plan = _scheduleService.CreateAndLinkWorkoutPlan(freshClient.Id, goal, daysPerWeek).Result;
+								});
+
+							// 5) Kontrollera att planen verkligen skapades
+							if (plan == null)
+							{
+								SpectreUIHelper.Error("AI kunde inte skapa ett träningsschema. Försök igen senare.");
+								break;
+							}
+
+							// 6) Review-loop: PT kan acceptera eller generera nytt schema
+							bool reviewing = true;
+							while (reviewing)
+							{
+								// Visa träningsschemat i en tabell
+								ShowWorkoutPlanReviewTable(plan);
+
+								// 7) Låt PT välja vad som ska göras
+								var action = AnsiConsole.Prompt(
+									new SelectionPrompt<string>()
+										.Title("Välj åtgärd:")
+										.AddChoices("✔ Acceptera och spara", "🔄 Generera nytt"));
+
+								switch (action)
+								{
+									case "✔ Acceptera och spara":
+										// NYTT: commit sparar pending-plan till fil och länkar till klient
+										var saved = _scheduleService.CommitPendingWorkoutPlan(freshClient.Id);
+										if (saved != null)
+											SpectreUIHelper.Success($"Träningsschema '{saved.Name}' sparat!");
+										else
+											SpectreUIHelper.Error("Kunde inte spara träningsschemat.");
+										reviewing = false;
+										break;
+
+									case "🔄 Generera nytt":
+										// NYTT: anropa AI igen för ett nytt förslag
+										plan = _scheduleService.CreateAndLinkWorkoutPlan(freshClient.Id, goal, daysPerWeek).Result;
+										if (plan == null)
+										{
+											SpectreUIHelper.Error("AI kunde inte generera ett nytt schema.");
+											reviewing = false;
+										}
+										
+										break;
+
+									case "↩️ Avbryt":
+										// Kassera pending-plan (töm sker i service inte här), visa meddelande
+										SpectreUIHelper.Error("Inget kostschema sparades.");
+										reviewing = false;
+										break;
+
+
+
+
+								}
+							} 
+
+						}
+						catch (Exception ex)
+						{
+							SpectreUIHelper.Error($"Fel: {ex.Message}");
+						}
+
+						// 8) Vänta innan återgång till klientmenyn
+						AnsiConsole.MarkupLine("\n[grey]Tryck tangent för att fortsätta...[/]");
+						Console.ReadKey(true);
+						break;
+
 
 
 					case "🥗 Skapa kostschema (AI-hjälp)":
@@ -256,9 +342,9 @@ namespace FitnessProgressTracker.UI
             }
         }
 
-        // ---------------------------
+        
         // Lista klienter
-        // ---------------------------
+        
         private void ShowClientListMenu(PT pt)
         {
             SpectreUIHelper.Loading("Hämtar dina klienter...");
@@ -392,6 +478,51 @@ namespace FitnessProgressTracker.UI
 
 			AnsiConsole.Write(table);
 		}
+
+
+		// Denna metod ritar upp ett veckoschema i en Spectre.Console-tabell
+		// så att PT: kan granska varje dag och övning innan den sparas.
+
+		private void ShowWorkoutPlanReviewTable(WorkoutPlan plan)
+		{
+			
+			AnsiConsole.Clear();
+
+			// Skapar en snygg Spectre.Console-tabell med rundad ram
+			var table = new Table()
+				.Border(TableBorder.Rounded)
+				.Title($"[bold blue]{plan.Name}[/]"); // Visar planens namn högst upp
+
+			// Lägger till kolumner i tabellen
+			table.AddColumn(new TableColumn("[yellow]Dag[/]").Centered());        // Kolumn 1: Dag
+			table.AddColumn(new TableColumn("[green]Fokusområde[/]").Centered()); // Kolumn 2: Fokusområde
+			table.AddColumn(new TableColumn("[cyan]Övningar[/]").LeftAligned());  // Kolumn 3: Listan med övningar
+
+            // Går igenom varje dags träningspass i träningsschemat
+            foreach (var day in plan.DailyWorkouts)
+            {
+                // Bygger en textlista med alla övningar för dagen
+                // Format: "Bänkpress — 4 set × 10 reps"
+                string exerciseText = string.Join("\n",
+                    day.Exercises.Select(ex => $"{ex.Name} — {ex.SetsAndReps}"));
+
+
+
+                // Lägger in en rad i tabellen med dagens info
+                table.AddRow(
+                    $"[bold]{day.Day}[/]",    // Dagens namn (ex: Måndag)
+                    day.FocusArea,            // Fokusområde (ex: Bröst/Triceps)
+                    exerciseText              // Alla övningar för dagen
+                );
+            
+			}
+
+			// Skriver ut tabellen på skärmen
+			AnsiConsole.Write(table);
+		}
+
+
+
 
 	}
 }
