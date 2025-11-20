@@ -146,8 +146,14 @@ namespace FitnessProgressTracker.UI
                         break;
 
                     case "🤖 Skapa träningsschema (AI-hjälp)":
+                        SpectreUIHelper.Error("Funktionen för att skapa träningsschema är under utveckling.");
+                        AnsiConsole.MarkupLine("\n[grey]Tryck tangent för att fortsätta...[/]");
+                        Console.ReadKey(true);
+                        break;
+
+
 					case "🥗 Skapa kostschema (AI-hjälp)":
-						// ===== NYTT: START — review-flöde för kostschema =====
+						//  — review-flöde för kostschema //
 						try
 						{
 							// 1) Hämta frisk (uppdaterad) klient från clientService
@@ -159,8 +165,26 @@ namespace FitnessProgressTracker.UI
 							// 3) Fråga PT om dagligt kalorimål
 							int calories = AnsiConsole.Ask<int>("Ange dagligt kalorimål (kcal):");
 
-							// 4) Be ScheduleService skapa ett förslag (sparas som pending i service)
-							var plan = _scheduleService.CreateAndLinkDietPlan(freshClient.Id, goal, calories).Result;
+
+							// 🔥 AI loading (visas tills planen är klar)
+
+							DietPlan plan = null;
+
+							AnsiConsole.Status()
+								.Spinner(Spinner.Known.Dots)
+								.SpinnerStyle(Style.Parse("green"))
+								.Start("AI skapar kostschema... vänligen vänta...", ctx =>
+								{
+
+									// 4) Be ScheduleService skapa ett förslag (sparas som pending i service)
+									plan = _scheduleService
+										.CreateAndLinkDietPlan(freshClient.Id, goal, calories)
+										.Result;
+								});
+
+
+
+							
 							if (plan == null)
 							{
 								SpectreUIHelper.Error("AI kunde inte skapa ett kostschema. Försök igen senare.");
@@ -215,7 +239,7 @@ namespace FitnessProgressTracker.UI
 						{
 							SpectreUIHelper.Error($"Fel: {ex.Message}");
 						}
-						// ===== NYTT: END =====
+						
 						// Pausa innan återgång till meny
 						AnsiConsole.MarkupLine("\n[grey]Tryck tangent för att fortsätta...[/]");
 						Console.ReadKey(true);
