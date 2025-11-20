@@ -117,11 +117,13 @@ namespace FitnessProgressTracker.Services
 				_clientStore.Save(allClients);
 			}
 
-			// 6) Returnera sparad plan och töm pending
+			// 6) Returnera sparad plan och töm pending denna gäller SChema avbryts case 
 			var saved = _pendingWorkoutPlan;
 			_pendingWorkoutPlan = null; // NYTT: töm temporärt fält
 			return saved;
 		}
+
+	
 
 		// Genererar kostplan via AI men sparar EJ i fil.
 		public async Task<DietPlan> CreateAndLinkDietPlan(int clientId, string goalDescription, int targetCalories)

@@ -1,1 +1,190 @@
-[]
+[
+  {
+    "Id": 1,
+    "ClientId": 6,
+    "Name": "G\u00E5 ner i vikt 5-dagars",
+    "DailyWorkouts": [
+      {
+        "Day": "Dag 1 (M\u00E5ndag)",
+        "FocusArea": "Kondition \u0026 Fettf\u00F6rbr\u00E4nning",
+        "Exercises": [
+          {
+            "Name": "L\u00F6pning",
+            "SetsAndReps": "30 minuter"
+          },
+          {
+            "Name": "Burpees",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Plankan",
+            "SetsAndReps": "3 set x 30 sekunder"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 2 (Tisdag)",
+        "FocusArea": "Styrka - Helkropp",
+        "Exercises": [
+          {
+            "Name": "Kn\u00E4b\u00F6j",
+            "SetsAndReps": "3 set x 12 reps"
+          },
+          {
+            "Name": "B\u00E4nkpress",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Rodd",
+            "SetsAndReps": "3 set x 12 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 3 (Onsdag)",
+        "FocusArea": "Kondition \u0026 R\u00F6rlighet",
+        "Exercises": [
+          {
+            "Name": "Cykling",
+            "SetsAndReps": "30 minuter"
+          },
+          {
+            "Name": "Yoga",
+            "SetsAndReps": "30 minuter"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 4 (Torsdag)",
+        "FocusArea": "Styrka - Underkropp",
+        "Exercises": [
+          {
+            "Name": "Marklyft",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Vadpress",
+            "SetsAndReps": "3 set x 15 reps"
+          },
+          {
+            "Name": "Upphopp",
+            "SetsAndReps": "3 set x 10 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 5 (Fredag)",
+        "FocusArea": "Kondition \u0026 Core",
+        "Exercises": [
+          {
+            "Name": "Intervalltr\u00E4ning (herkules)",
+            "SetsAndReps": "5 set x 1 minut"
+          },
+          {
+            "Name": "Russian twists",
+            "SetsAndReps": "3 set x 15 reps"
+          },
+          {
+            "Name": "Sit-ups",
+            "SetsAndReps": "3 set x 15 reps"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 2,
+    "ClientId": 5,
+    "Name": "Bygga Muskler 4-dagars",
+    "DailyWorkouts": [
+      {
+        "Day": "Dag 1 (M\u00E5ndag)",
+        "FocusArea": "Br\u00F6st \u0026 Triceps",
+        "Exercises": [
+          {
+            "Name": "B\u00E4nkpress",
+            "SetsAndReps": "4 set x 8 reps"
+          },
+          {
+            "Name": "Hantelpress",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Dips",
+            "SetsAndReps": "3 set x 8 reps"
+          },
+          {
+            "Name": "Tricepspushdown",
+            "SetsAndReps": "3 set x 12 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 2 (Tisdag)",
+        "FocusArea": "Rygg \u0026 Biceps",
+        "Exercises": [
+          {
+            "Name": "Marklyft",
+            "SetsAndReps": "4 set x 6 reps"
+          },
+          {
+            "Name": "Skivst\u00E5ngsrodd",
+            "SetsAndReps": "3 set x 8 reps"
+          },
+          {
+            "Name": "Pull-ups",
+            "SetsAndReps": "3 set x 6 reps"
+          },
+          {
+            "Name": "Bicepscurl",
+            "SetsAndReps": "3 set x 10 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 3 (Torsdag)",
+        "FocusArea": "Ben \u0026 Axlar",
+        "Exercises": [
+          {
+            "Name": "Kn\u00E4b\u00F6j",
+            "SetsAndReps": "4 set x 8 reps"
+          },
+          {
+            "Name": "Benspark",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Axelpress",
+            "SetsAndReps": "3 set x 8 reps"
+          },
+          {
+            "Name": "Lateral Raises",
+            "SetsAndReps": "3 set x 12 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 4 (Fredag)",
+        "FocusArea": "K\u00E4rna \u0026 Cardio",
+        "Exercises": [
+          {
+            "Name": "Plankan",
+            "SetsAndReps": "3 set x 30 sekunder"
+          },
+          {
+            "Name": "Russian Twists",
+            "SetsAndReps": "3 set x 15 reps"
+          },
+          {
+            "Name": "Bicycle Crunches",
+            "SetsAndReps": "3 set x 15 reps"
+          },
+          {
+            "Name": "30 min l\u00F6pning",
+            "SetsAndReps": "N/A"
+          }
+        ]
+      }
+    ]
+  }
+]

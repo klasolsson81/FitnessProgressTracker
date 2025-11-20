@@ -8,9 +8,9 @@
       5
     ],
     "ProgressLogIds": [],
-    "GoalDescription": "g\u00E5uppvikt",
-    "TargetWeight": 60,
-    "WorkoutsPerWeek": 7,
+    "GoalDescription": "g\u00E5 uppvikt",
+    "TargetWeight": 100,
+    "WorkoutsPerWeek": 4,
     "Id": 4,
     "Username": "mohammed",
     "PasswordHash": "Hejhej123",
@@ -22,7 +22,9 @@
     "CurrentWorkoutPlan": null,
     "CurrentDietPlan": null,
     "AssignedPtId": 1,
-    "WorkoutPlanIds": [],
+    "WorkoutPlanIds": [
+      2
+    ],
     "DietPlanIds": [
       1,
       2,
@@ -30,8 +32,8 @@
       4
     ],
     "ProgressLogIds": [],
-    "GoalDescription": "g\u00E5 upp vikt",
-    "TargetWeight": 63,
+    "GoalDescription": "bygga musklarna ",
+    "TargetWeight": 74,
     "WorkoutsPerWeek": 4,
     "Id": 5,
     "Username": "Klient1",
@@ -44,12 +46,14 @@
     "CurrentWorkoutPlan": null,
     "CurrentDietPlan": null,
     "AssignedPtId": 1,
-    "WorkoutPlanIds": [],
+    "WorkoutPlanIds": [
+      1
+    ],
     "DietPlanIds": [],
     "ProgressLogIds": [],
-    "GoalDescription": "bygga musklar ",
-    "TargetWeight": 70,
-    "WorkoutsPerWeek": 5,
+    "GoalDescription": "g\u00E5 nervikt",
+    "TargetWeight": 120,
+    "WorkoutsPerWeek": 6,
     "Id": 6,
     "Username": "Klas1",
     "PasswordHash": "Klas123456",
