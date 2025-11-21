@@ -177,47 +177,65 @@ namespace FitnessProgressTracker.UI
 								break;
 							}
 
-							// 6) Review-loop: PT kan acceptera eller generera nytt schema
+
+							// 5) UI-loop där PT kan acceptera eller generera nytt
 							bool reviewing = true;
 							while (reviewing)
 							{
-								// Visa träningsschemat i en tabell
+								// Visa tabellen
 								ShowWorkoutPlanReviewTable(plan);
 
-								// 7) Låt PT välja vad som ska göras
+								// Välj handling
 								var action = AnsiConsole.Prompt(
 									new SelectionPrompt<string>()
 										.Title("Välj åtgärd:")
-										.AddChoices("✔ Acceptera och spara", "🔄 Generera nytt"));
+										.AddChoices("✔ Acceptera och spara", "🔄 Generera nytt", "↩️ Avbryt"));
 
 								switch (action)
 								{
 									case "✔ Acceptera och spara":
-										// NYTT: commit sparar pending-plan till fil och länkar till klient
 										var saved = _scheduleService.CommitPendingWorkoutPlan(freshClient.Id);
 										if (saved != null)
 											SpectreUIHelper.Success($"Träningsschema '{saved.Name}' sparat!");
 										else
 											SpectreUIHelper.Error("Kunde inte spara träningsschemat.");
+
 										reviewing = false;
 										break;
 
 									case "🔄 Generera nytt":
-										// NYTT: anropa AI igen för ett nytt förslag
-										plan = _scheduleService.CreateAndLinkWorkoutPlan(freshClient.Id, goal, daysPerWeek).Result;
-										if (plan == null)
 										{
-											SpectreUIHelper.Error("AI kunde inte generera ett nytt schema.");
-											reviewing = false;
+											WorkoutPlan newPlan = null;
+
+											// Spinner medan AI jobbar
+											AnsiConsole.Status()
+												.Spinner(Spinner.Known.Dots)
+												.SpinnerStyle(Style.Parse("green"))
+												.Start("AI skapar ett nytt träningsschema... vänligen vänta...", ctx =>
+												{
+													newPlan = _scheduleService
+														.CreateAndLinkWorkoutPlan(freshClient.Id, goal, daysPerWeek)
+														.Result;
+												});
+
+											if (newPlan == null)
+											{
+												SpectreUIHelper.Error("AI kunde inte generera ett nytt schema.");
+												reviewing = false;
+												break;
+											}
+
+											// Uppdatera aktiv plan
+											plan = newPlan;
+											break;
 										}
-										
-										break;
 
 									case "↩️ Avbryt":
-										// Kassera pending-plan (töm sker i service inte här), visa meddelande
-										SpectreUIHelper.Error("Inget kostschema sparades.");
+										SpectreUIHelper.Error("Inget träningsschema sparades.");
 										reviewing = false;
 										break;
+
+
 
 
 
