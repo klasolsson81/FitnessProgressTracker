@@ -113,13 +113,13 @@ namespace FitnessProgressTracker.UI
                             {
                                 // Skapa och visa Klient-menyn
                                 ClientMenu clientMenu = new ClientMenu();
-                                clientMenu.Show(loggedInUser as Client); // "as Client" konverterar
+                                clientMenu.Show((Client)loggedInUser); 
                             }
                             else if (loggedInUser.Role == "PT")
                             {
                                 // Skapa och visa PT-menyn
                                 PtMenu ptMenu = new PtMenu(_clientService, _scheduleService, _progressService);
-                                ptMenu.Show(loggedInUser as PT); // "as PT" konverterar
+                                ptMenu.Show((PT)loggedInUser);
                             }
                             else
                             {

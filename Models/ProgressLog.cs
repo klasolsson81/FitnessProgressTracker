@@ -12,7 +12,7 @@ namespace FitnessProgressTracker.Models
 		public int Id { get; set; }
 		public DateTime Date { get; set; }
 		public double Weight { get; set; }
-		public string Notes { get; set; }
+		public string? Notes { get; set; }
 
         public int ClientId { get; set; }
 

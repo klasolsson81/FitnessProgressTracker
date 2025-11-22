@@ -11,7 +11,7 @@ namespace FitnessProgressTracker.Models
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
-        public string Name { get; set; } // t.ex. "Viktnedgång 4 dagar"
+        public string? Name { get; set; } // t.ex. "Viktnedgång 4 dagar"
         public List<DailyWorkout> DailyWorkouts { get; set; } = new List<DailyWorkout>();
     }
 }

@@ -39,7 +39,7 @@ namespace FitnessProgressTracker.Services
                 }
 
                 // 4. Konvertera (Deserialisera) JSON-texten till en List<T> och returnera den
-                return JsonSerializer.Deserialize<List<T>>(json);
+                return JsonSerializer.Deserialize<List<T>>(json) ?? new List<T>();
             }
             catch (Exception ex)
             {
@@ -58,8 +58,8 @@ namespace FitnessProgressTracker.Services
             try
             {
                 // 1. Kontrollera om mappen ("data/") existerar
-                string directory = Path.GetDirectoryName(_filePath);
-                if (!Directory.Exists(directory))
+                string? directory = Path.GetDirectoryName(_filePath);
+                if (directory != null && !Directory.Exists(directory))
                 {
                     // Skapa mappen om den inte finns
                     Directory.CreateDirectory(directory);

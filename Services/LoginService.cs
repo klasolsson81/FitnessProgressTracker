@@ -48,8 +48,7 @@ namespace FitnessProgressTracker.Services
                 // Ladda ALLA användare (både klienter och PTs)
                 List<User> allUsers = LoadAllUsers();
 
-                bool usernameExists = allUsers.Any(u =>
-                    u.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase));
+                bool usernameExists = allUsers.Any(u => string.Equals(u.Username, username, StringComparison.InvariantCultureIgnoreCase));
 
                 if (usernameExists)
                 {
@@ -90,7 +89,8 @@ namespace FitnessProgressTracker.Services
                 // Ladda ALLA användare
                 List<User> allUsers = LoadAllUsers();
 
-                User user = allUsers.FirstOrDefault(u =>
+                User? user = allUsers.FirstOrDefault(u =>
+                    !string.IsNullOrEmpty(u.Username) &&
                     u.Username.Equals(username, StringComparison.InvariantCultureIgnoreCase) &&
                     u.PasswordHash == password);
 

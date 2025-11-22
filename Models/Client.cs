@@ -11,8 +11,8 @@ namespace FitnessProgressTracker.Models
     public class Client : User
     {
         
-		public WorkoutPlan CurrentWorkoutPlan { get; set; }
-		public DietPlan CurrentDietPlan { get; set; }// Koppling till PT
+		public WorkoutPlan? CurrentWorkoutPlan { get; set; }
+		public DietPlan? CurrentDietPlan { get; set; }// Koppling till PT
         public int AssignedPtId { get; set; }
 
         // Kopplingar till scheman och loggar (bara ID:n)
@@ -24,5 +24,6 @@ namespace FitnessProgressTracker.Models
         public string GoalDescription { get; set; } = "Inget mål satt";
         public double TargetWeight { get; set; } // t.ex. 75.5 kg
         public int WorkoutsPerWeek { get; set; } // t.ex. 3
+        public int TargetCalories { get; set; }
     }
 }

@@ -21,7 +21,7 @@ namespace FitnessProgressTracker.Services
             _client = new OpenAIClient(apiKey);
         }
 
-        public async Task<WorkoutPlan> GenerateWorkoutPlan(string goal, int daysPerWeek)
+        public async Task<WorkoutPlan?> GenerateWorkoutPlan(string goal, int daysPerWeek)
         {
             // 1. Skapa en *mycket* detaljerad System Prompt
             string systemPrompt = @"
@@ -40,12 +40,19 @@ namespace FitnessProgressTracker.Services
             public List<Exercise> Exercises { get; set; }
         }
         public class Exercise {
-            public string Name { get; set; } // t.ex. 'Bänkpress'
-            public string SetsAndReps { get; set; } // t.ex. '3 set x 10 reps'
+            public string Name { get; set; } // t.ex. 'Bänkpress' - MAX 30 tecken
+            public string SetsAndReps { get; set; } // t.ex. '3 set x 10 reps' - MAX 20 tecken
         }
+
+        VIKTIGA REGLER:
+        1. Varje Exercise.Name får vara MAX 30 tecken långt
+        2. Varje Exercise.SetsAndReps får vara MAX 20 tecken långt  
+        3. Använd korta, koncisa namn på övningar
+        4. Använd standardformat för sets/reps: '3 set x 10 reps'
+        5. Undvik långa beskrivningar och förklaringar
     ";
 
-            string userPrompt = $"Skapa ett träningsschema för målet '{goal}' med {daysPerWeek} träningspass per vecka. Dela upp passen i logiska dagar (t.ex. 'Dag 1 (Måndag)', 'Dag 2 (Tisdag)' osv.).";
+            string userPrompt = $"Skapa ett träningsschema för målet '{goal}' med {daysPerWeek} träningspass per vecka. Dela upp passen i logiska dagar (t.ex. 'Dag 1 (Måndag)', 'Dag 2 (Tisdag)' osv.). Använd korta övningsnamn och sets/reps-beskrivningar.";
 
             // 2. Skapa anropet
             var chatClient = _client.GetChatClient(_modelName);
@@ -70,7 +77,7 @@ namespace FitnessProgressTracker.Services
                 aiResponseJson = aiResponseJson.Replace("```json", "").Replace("```", "").Trim();
 
                 // 4. Omvandla AI:ns JSON-svar till vårt NYA C#-objekt
-                WorkoutPlan plan = JsonSerializer.Deserialize<WorkoutPlan>(aiResponseJson);
+                WorkoutPlan? plan = JsonSerializer.Deserialize<WorkoutPlan>(aiResponseJson);
                 return plan;
             }
             catch (Exception ex)
@@ -80,7 +87,7 @@ namespace FitnessProgressTracker.Services
             }
         }
 
-        public async Task<DietPlan> GenerateDietPlan(string goalDescription, int targetCalories)
+        public async Task<DietPlan?> GenerateDietPlan(string goalDescription, int targetCalories)
         {
             // 1. Skapa en *mycket* detaljerad System Prompt
             // Denna definierar AI:ns roll och det EXAKTA JSON-formatet vi kräver.
@@ -137,7 +144,7 @@ namespace FitnessProgressTracker.Services
                 aiResponseJson = aiResponseJson.Replace("```json", "").Replace("```", "").Trim();
 
                 // 5. Omvandla AI:ns JSON-svar till vårt NYA C#-objekt
-                DietPlan plan = JsonSerializer.Deserialize<DietPlan>(aiResponseJson);
+                DietPlan? plan = JsonSerializer.Deserialize<DietPlan>(aiResponseJson);
 
                 return plan;
             }

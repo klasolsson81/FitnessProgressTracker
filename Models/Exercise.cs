@@ -8,7 +8,7 @@ namespace FitnessProgressTracker.Models
 {
     public class Exercise
     {
-        public string Name { get; set; } // t.ex. "Bänkpress"
-        public string SetsAndReps { get; set; } // t.ex. "3 set x 10 reps"
+        public string? Name { get; set; } // t.ex. "Bänkpress"
+        public string? SetsAndReps { get; set; } // t.ex. "3 set x 10 reps"
     }
 }

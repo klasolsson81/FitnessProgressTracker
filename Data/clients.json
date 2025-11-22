@@ -3,40 +3,23 @@
     "CurrentWorkoutPlan": null,
     "CurrentDietPlan": null,
     "AssignedPtId": 1,
-    "WorkoutPlanIds": [],
-    "DietPlanIds": [
-      5
-    ],
-    "ProgressLogIds": [],
-    "GoalDescription": "g\u00E5uppvikt",
-    "TargetWeight": 60,
-    "WorkoutsPerWeek": 4,
-    "Id": 4,
-    "Username": "mohammed",
-    "PasswordHash": "Hejhej123",
-    "FirstName": "mohamed",
-    "LastName": "yusur",
-    "Role": "Client"
-  },
-  {
-    "CurrentWorkoutPlan": null,
-    "CurrentDietPlan": null,
-    "AssignedPtId": 1,
     "WorkoutPlanIds": [
-      2
+      1,
+      4,
+      5
     ],
     "DietPlanIds": [
       1,
-      2,
-      3,
-      4
+      4,
+      5
     ],
     "ProgressLogIds": [],
-    "GoalDescription": "bygga musklarna ",
-    "TargetWeight": 74,
+    "GoalDescription": "G\u00E5 ner i vikt",
+    "TargetWeight": 80,
     "WorkoutsPerWeek": 4,
-    "Id": 5,
-    "Username": "Klient1",
+    "TargetCalories": 2000,
+    "Id": 2,
+    "Username": "Klas",
     "PasswordHash": "Klas123456",
     "FirstName": "Klas",
     "LastName": "Olsson",
@@ -47,18 +30,43 @@
     "CurrentDietPlan": null,
     "AssignedPtId": 1,
     "WorkoutPlanIds": [
-      1
+      2
     ],
-    "DietPlanIds": [],
+    "DietPlanIds": [
+      2
+    ],
     "ProgressLogIds": [],
-    "GoalDescription": "g\u00E5 nervikt",
-    "TargetWeight": 120,
+    "GoalDescription": "Bygga muskler",
+    "TargetWeight": 75,
     "WorkoutsPerWeek": 6,
-    "Id": 6,
-    "Username": "Klas1",
-    "PasswordHash": "Klas123456",
-    "FirstName": "Klas",
-    "LastName": "Ols",
+    "TargetCalories": 2500,
+    "Id": 3,
+    "Username": "Anna",
+    "PasswordHash": "Anna123456",
+    "FirstName": "Anna",
+    "LastName": "Andersson",
+    "Role": "Client"
+  },
+  {
+    "CurrentWorkoutPlan": null,
+    "CurrentDietPlan": null,
+    "AssignedPtId": 1,
+    "WorkoutPlanIds": [
+      3
+    ],
+    "DietPlanIds": [
+      3
+    ],
+    "ProgressLogIds": [],
+    "GoalDescription": "Bli stark som hulken",
+    "TargetWeight": 100,
+    "WorkoutsPerWeek": 7,
+    "TargetCalories": 4000,
+    "Id": 4,
+    "Username": "Nemo",
+    "PasswordHash": "Nemo123456",
+    "FirstName": "Nemo",
+    "LastName": "Sensei",
     "Role": "Client"
   }
 ]

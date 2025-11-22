@@ -66,5 +66,11 @@ namespace FitnessProgressTracker.Services
 
             AnsiConsole.Write(table);
         }
+
+        public void DeleteAllProgress()
+        {
+            // Använd _logStore istället för _progressStore
+            _logStore.Save(new List<ProgressLog>());
+        }
     }
 }

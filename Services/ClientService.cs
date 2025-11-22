@@ -2,12 +2,14 @@
 using FitnessProgressTracker.Models;
 using FitnessProgressTracker.Services.Interfaces;
 
+
 namespace FitnessProgressTracker.Services
 {
     public class ClientService
     {
         private readonly IDataStore<Client> _clientStore;
         private readonly ScheduleService _scheduleService;
+        private ProgressService? _progressService;
 
         public ClientService(IDataStore<Client> clientStore, ScheduleService scheduleService)
         {
@@ -15,9 +17,9 @@ namespace FitnessProgressTracker.Services
             _scheduleService = scheduleService;
         }
 
-        public ClientService(IDataStore<Client> clientStore)
+        public void SetProgressService(ProgressService progressService)
         {
-            _clientStore = clientStore;
+            _progressService = progressService;
         }
 
         // Hämta alla klienter som tillhör en specifik PT
@@ -27,10 +29,10 @@ namespace FitnessProgressTracker.Services
             return allClients.Where(c => c.AssignedPtId == ptId).ToList();
         }
 
-        public void UpdateClientGoals(int clientId, string goalDesc, double targetWeight, int workoutsPerWeek)
+        public void UpdateClientGoals(int clientId, string goalDesc, double targetWeight, int workoutsPerWeek, int targetCalories)
         {
             List<Client> allClients = _clientStore.Load();
-            Client clientToUpdate = allClients.FirstOrDefault(c => c.Id == clientId);
+            Client? clientToUpdate = allClients.FirstOrDefault(c => c.Id == clientId);
 
             if (clientToUpdate != null)
             {
@@ -38,11 +40,14 @@ namespace FitnessProgressTracker.Services
                 clientToUpdate.TargetWeight = targetWeight;
                 clientToUpdate.WorkoutsPerWeek = workoutsPerWeek;
 
-                _clientStore.Save(allClients); // Spara ändringarna
+                // LÄGG TILL DENNA RAD:
+                clientToUpdate.TargetCalories = targetCalories;
+
+                _clientStore.Save(allClients); 
             }
         }
 
-        public Client GetClientById(int clientId)
+        public Client? GetClientById(int clientId)
         {
             var allClients = _clientStore.Load();
             // Returnera den första klienten som matchar ID, annars null
@@ -51,7 +56,7 @@ namespace FitnessProgressTracker.Services
 
         public void DeleteClients(List<int> clientIds)
         {
-
+            // 1. Rensa all associerad data (anropar ScheduleService)
             _scheduleService.CleanUpClientData(clientIds);
 
             // === 2. Huvudlogik (Ta bort klienter) ===
@@ -61,7 +66,6 @@ namespace FitnessProgressTracker.Services
                 int initialCount = allClients.Count;
 
                 // Använder RemoveAll för att ta bort alla klienter vars ID matchar listan
-                // Detta är den korrekta Linq/List-metoden.
                 allClients.RemoveAll(c => clientIds.Contains(c.Id));
 
                 if (allClients.Count == initialCount)
@@ -79,5 +83,16 @@ namespace FitnessProgressTracker.Services
             }
         }
 
+        public void DeleteAllData()
+        {
+            // 1. Töm scheman
+            _scheduleService.DeleteAllPlans();
+
+            // 2. Töm progress-loggar
+            _progressService?.DeleteAllProgress();
+
+            // 3. Töm klientlistan
+            _clientStore.Save(new List<Client>());
+        }
     }
 }
