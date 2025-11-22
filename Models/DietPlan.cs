@@ -11,7 +11,7 @@ namespace FitnessProgressTracker.Models
     {
         public int Id { get; set; }
         public int ClientId { get; set; }
-        public string Name { get; set; } // t.ex. "Viktnedgång 2000kcal"
+        public string? Name { get; set; } // t.ex. "Viktnedgång 2000kcal"
         public List<DailyMealPlan> DailyMeals { get; set; } = new List<DailyMealPlan>();
     }
 }
