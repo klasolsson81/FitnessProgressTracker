@@ -1,11 +1,50 @@
 ﻿using FitnessProgressTracker.Models;
+using FitnessProgressTracker.Services;
+using FitnessProgressTracker.Services.Interfaces;
 using Spectre.Console;
+using System.IO;
+
 
 namespace FitnessProgressTracker.UI
 {
     public class ClientMenu
     {
         // Visar klientens meny
+        private readonly ClientService _clientService;
+        private readonly ScheduleService _scheduleService;
+        private readonly ProgressService _progressService;
+        private readonly IDataStore<WorkoutPlan> _workoutStore;
+        private readonly IDataStore<DietPlan> _dietStore;
+
+        public ClientMenu(
+            ClientService clientService,
+            ScheduleService scheduleService,
+            ProgressService progressService)
+        {
+            _clientService = clientService;
+            _scheduleService = scheduleService;
+            _progressService = progressService;
+
+            try
+            {
+                
+                string baseDirectory = AppContext.BaseDirectory;
+                string projectRoot = Path.GetFullPath(Path.Combine(baseDirectory, "../../../"));
+                string workoutPath = Path.Combine(projectRoot, "data/workouts.json");
+                string dietPath = Path.Combine(projectRoot, "data/diets.json");
+
+                _workoutStore = new JsonDataStore<WorkoutPlan>(workoutPath);
+                _dietStore = new JsonDataStore<DietPlan>(dietPath);
+            }
+            catch (Exception ex)
+            {
+                SpectreUIHelper.Error($"Kunde inte initiera ClientMenu: {ex.Message}");
+                throw;
+            }
+        }
+
+
+
         public void Show(Client client)
         {
             try
@@ -28,10 +67,9 @@ namespace FitnessProgressTracker.UI
                             .AddChoices(
                                 "💪 Visa träningsschema",
                                 "🥗 Visa kostschema",
-                                "🎯 Uppdatera mål",
+                                "🎯 visa mina mål",
                                 "📘 Logga träning",
                                 "📊 Se framsteg och statistik",
-                                "💬 Skicka meddelande till PT",
                                 "🚪 Logga ut"));
 
                     AnsiConsole.Clear();
@@ -50,8 +88,8 @@ namespace FitnessProgressTracker.UI
                             SpectreUIHelper.Motivation();
                             break;
 
-                        case "🎯 Uppdatera mål":
-                            SpectreUIHelper.Loading("Uppdaterar mål...");
+                        case "🎯 Visa mina mål":
+                            SpectreUIHelper.Loading("Hämtar mål...");
                             AnsiConsole.MarkupLine("[green]Dina mål har uppdaterats![/]");
                             SpectreUIHelper.Motivation();
                             break;
@@ -65,12 +103,6 @@ namespace FitnessProgressTracker.UI
                         case "📊 Se framsteg och statistik":
                             SpectreUIHelper.Loading("Hämtar statistik...");
                             AnsiConsole.MarkupLine("[blue]Här är dina framsteg och statistik![/]");
-                            SpectreUIHelper.Motivation();
-                            break;
-
-                        case "💬 Skicka meddelande till PT":
-                            SpectreUIHelper.Loading("Skickar meddelande...");
-                            AnsiConsole.MarkupLine("[green]Meddelande skickat till din PT![/]");
                             SpectreUIHelper.Motivation();
                             break;
 
