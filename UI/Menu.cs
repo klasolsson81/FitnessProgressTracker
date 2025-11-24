@@ -40,7 +40,7 @@ namespace FitnessProgressTracker.UI
                             var firstName = AnsiConsole.Ask<string>("[cyan1]Ange Förnamn[/] [italic grey](inga mellanslag):[/]");
                             var lastName = AnsiConsole.Ask<string>("[cyan1]Ange Efternamn[/] [italic grey](inga mellanslag):[/]");
 
-                            // 2. Ställ lösenordsfrågan med INBYGGD validering
+                            // 2 Ställ lösenordsfrågan med INBYGGD validering
                             var password = AnsiConsole.Prompt(
                                 new TextPrompt<string>("[cyan1]Ange Lösenord[/] [italic grey](min 8 tecken, en siffra, en stor/liten bokstav):[/]")
                                     .Secret() // <-- Döljer lösenordet

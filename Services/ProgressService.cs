@@ -37,7 +37,7 @@ namespace FitnessProgressTracker.Services
                 return;
             }
 
-            // 2. Hämta loggar
+            // 2 Hämta loggar
             var logs = GetLogsForClient(clientId);
 
 
@@ -87,7 +87,7 @@ namespace FitnessProgressTracker.Services
 
         public void DeleteAllProgress()
         {
-            // Använd _logStore istället för _progressStore
+            
             _logStore.Save(new List<ProgressLog>());
         }
     }

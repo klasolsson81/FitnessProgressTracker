@@ -112,7 +112,7 @@ namespace FitnessProgressTracker.UI
                             continue; // hoppa över "tryck för att fortsätta"
                     }
 
-                    // Vänta på att användaren trycker innan menyn visas igen
+                    // Vänta på att användaren trycker innan menyn visas igen.
                     AnsiConsole.MarkupLine("\n[grey]Tryck på valfri tangent för att återgå till menyn...[/]");
                     Console.ReadKey(true);
                 }
