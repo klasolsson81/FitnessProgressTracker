@@ -108,11 +108,7 @@ namespace FitnessProgressTracker.UI
                             {
                                 try
                                 {
-                                    ClientMenu clientMenu = new ClientMenu(
-                                        _clientService,
-                                        _scheduleService,
-                                        _progressService
-                                    );
+                                    ClientMenu clientMenu = new ClientMenu(_progressService);
                                     clientMenu.Show((Client)loggedInUser);
                                 }
                                 catch (Exception ex)
