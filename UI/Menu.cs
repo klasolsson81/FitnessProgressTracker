@@ -1,11 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Linq;
-using System.Text;
-using System.Threading.Tasks;
-using Spectre.Console;
+﻿using FitnessProgressTracker.Models;
 using FitnessProgressTracker.Services;
-using FitnessProgressTracker.Models;
+using Spectre.Console;
 
 namespace FitnessProgressTracker.UI
 {
@@ -111,10 +106,21 @@ namespace FitnessProgressTracker.UI
                             // 3. KONTROLLERA ROLLEN och visa rätt meny
                             if (loggedInUser.Role == "Client")
                             {
-                                // Skapa och visa Klient-menyn
-                                ClientMenu clientMenu = new ClientMenu();
-                                clientMenu.Show((Client)loggedInUser); 
+                                try
+                                {
+                                    ClientMenu clientMenu = new ClientMenu(
+                                        _clientService,
+                                        _scheduleService,
+                                        _progressService
+                                    );
+                                    clientMenu.Show((Client)loggedInUser);
+                                }
+                                catch (Exception ex)
+                                {
+                                    SpectreUIHelper.Error($"Kunde inte skapa klientmeny: {ex.Message}");
+                                }
                             }
+
                             else if (loggedInUser.Role == "PT")
                             {
                                 // Skapa och visa PT-menyn
