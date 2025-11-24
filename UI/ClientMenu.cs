@@ -1,50 +1,20 @@
 ﻿using FitnessProgressTracker.Models;
 using FitnessProgressTracker.Services;
-using FitnessProgressTracker.Services.Interfaces;
 using Spectre.Console;
-using System.IO;
-
+using System.Security.Cryptography.X509Certificates;
 
 namespace FitnessProgressTracker.UI
 {
     public class ClientMenu
     {
-        // Visar klientens meny
-        private readonly ClientService _clientService;
-        private readonly ScheduleService _scheduleService;
         private readonly ProgressService _progressService;
-        private readonly IDataStore<WorkoutPlan> _workoutStore;
-        private readonly IDataStore<DietPlan> _dietStore;
 
-        public ClientMenu(
-            ClientService clientService,
-            ScheduleService scheduleService,
-            ProgressService progressService)
+        public ClientMenu(ProgressService progressService)
         {
-            _clientService = clientService;
-            _scheduleService = scheduleService;
             _progressService = progressService;
-
-            try
-            {
-                
-                string baseDirectory = AppContext.BaseDirectory;
-                string projectRoot = Path.GetFullPath(Path.Combine(baseDirectory, "../../../"));
-                string workoutPath = Path.Combine(projectRoot, "data/workouts.json");
-                string dietPath = Path.Combine(projectRoot, "data/diets.json");
-
-                _workoutStore = new JsonDataStore<WorkoutPlan>(workoutPath);
-                _dietStore = new JsonDataStore<DietPlan>(dietPath);
-            }
-            catch (Exception ex)
-            {
-                SpectreUIHelper.Error($"Kunde inte initiera ClientMenu: {ex.Message}");
-                throw;
-            }
         }
 
-
-
+        // Visar klientens meny
         public void Show(Client client)
         {
             try
@@ -67,9 +37,10 @@ namespace FitnessProgressTracker.UI
                             .AddChoices(
                                 "💪 Visa träningsschema",
                                 "🥗 Visa kostschema",
-                                "🎯 visa mina mål",
+                                "🎯 Uppdatera mål",
                                 "📘 Logga träning",
                                 "📊 Se framsteg och statistik",
+                                "💬 Skicka meddelande till PT",
                                 "🚪 Logga ut"));
 
                     AnsiConsole.Clear();
@@ -88,8 +59,8 @@ namespace FitnessProgressTracker.UI
                             SpectreUIHelper.Motivation();
                             break;
 
-                        case "🎯 Visa mina mål":
-                            SpectreUIHelper.Loading("Hämtar mål...");
+                        case "🎯 Uppdatera mål":
+                            SpectreUIHelper.Loading("Uppdaterar mål...");
                             AnsiConsole.MarkupLine("[green]Dina mål har uppdaterats![/]");
                             SpectreUIHelper.Motivation();
                             break;
@@ -101,18 +72,21 @@ namespace FitnessProgressTracker.UI
                             break;
 
                         case "📊 Se framsteg och statistik":
-                            SpectreUIHelper.Loading("Hämtar statistik...");
-                            AnsiConsole.MarkupLine("[blue]Här är dina framsteg och statistik![/]");
+                            ShowProgressStats(client);
+                            break;
+
+                        case "💬 Skicka meddelande till PT":
+                            SpectreUIHelper.Loading("Skickar meddelande...");
+                            AnsiConsole.MarkupLine("[green]Meddelande skickat till din PT![/]");
                             SpectreUIHelper.Motivation();
                             break;
 
                         case "🚪 Logga ut":
                             SpectreUIHelper.Success("Du är utloggad. Bra jobbat idag! 💪");
                             isRunning = false;
-                            continue; // hoppa över "tryck för att fortsätta"
+                            continue;
                     }
 
-                    // Vänta på att användaren trycker innan menyn visas igen.
                     AnsiConsole.MarkupLine("\n[grey]Tryck på valfri tangent för att återgå till menyn...[/]");
                     Console.ReadKey(true);
                 }
@@ -121,6 +95,11 @@ namespace FitnessProgressTracker.UI
             {
                 SpectreUIHelper.Error($"Ett fel uppstod i klientmenyn: {ex.Message}");
             }
+        }
+        private void ShowProgressStats(Client client)
+        {
+            _progressService.ShowClientProgress(client.Id);
+            SpectreUIHelper.Motivation();
         }
     }
 }

@@ -68,5 +68,23 @@
     "FirstName": "Nemo",
     "LastName": "Sensei",
     "Role": "Client"
+  },
+  {
+    "CurrentWorkoutPlan": null,
+    "CurrentDietPlan": null,
+    "AssignedPtId": 1,
+    "WorkoutPlanIds": [],
+    "DietPlanIds": [],
+    "ProgressLogIds": [],
+    "GoalDescription": "Inget m\u00E5l satt",
+    "TargetWeight": 0,
+    "WorkoutsPerWeek": 0,
+    "TargetCalories": 0,
+    "Id": 5,
+    "Username": "Sijal",
+    "PasswordHash": "Gothia2025",
+    "FirstName": "Sajad",
+    "LastName": "Azizi",
+    "Role": "Client"
   }
 ]
