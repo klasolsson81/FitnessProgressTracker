@@ -66,9 +66,7 @@ namespace FitnessProgressTracker.UI
                             break;
 
                         case "📘 Logga träning":
-                            SpectreUIHelper.Loading("Loggar dagens träning...");
-                            AnsiConsole.MarkupLine("[green]Träning registrerad![/]");
-                            SpectreUIHelper.Motivation();
+                            LogWorkout(client);
                             break;
 
                         case "📊 Se framsteg och statistik":
@@ -101,5 +99,54 @@ namespace FitnessProgressTracker.UI
             _progressService.ShowClientProgress(client.Id);
             SpectreUIHelper.Motivation();
         }
+       
+            private void LogWorkout(Client client)
+        {
+            try
+            {
+                // Fråga om datum
+                var date = AnsiConsole.Prompt(
+                    new TextPrompt<DateTime>("[cyan]Datum (yyyy-MM-dd):[/]")
+                        .DefaultValue(DateTime.Now)
+                );
+
+                // Fråga om vikt med validering
+                var weight = AnsiConsole.Prompt(
+                    new TextPrompt<double>("[cyan]Vikt (kg):[/]")
+                        .Validate(w => w > 0 && w < 300
+                            ? ValidationResult.Success()
+                            : ValidationResult.Error("[red]Ogiltig vikt[/]"))
+                );
+
+                // Fråga om anteckning
+                var notes = AnsiConsole.Ask<string>("[cyan]Anteckning:[/]", string.Empty);
+
+                SpectreUIHelper.Loading("Sparar...");
+
+                // Hämta befintliga loggar för att skapa unikt ID
+                var allLogs = _progressService.GetLogsForClient(client.Id)?.ToList() ?? new List<ProgressLog>();
+
+                // Skapa ny logg
+                var newLog = new ProgressLog
+                {
+                    Id = allLogs.Count > 0 ? allLogs.Max(l => l.Id) + 1 : 1,
+                    ClientId = client.Id,
+                    Date = date,
+                    Weight = weight,
+                    Notes = notes
+                };
+
+                // Spara loggen
+                _progressService.AddProgressLog(newLog);
+
+                SpectreUIHelper.Success($"Loggat! Vikt: {weight} kg");
+                SpectreUIHelper.Motivation();
+            }
+            catch (Exception ex)
+            {
+                SpectreUIHelper.Error($"Kunde inte logga träning: {ex.Message}");
+            }
+        }
     }
-}
+}  
+
