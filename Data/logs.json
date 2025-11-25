@@ -68,5 +68,96 @@
     "Weight": 120,
     "Notes": "FRAMSTEG!!!",
     "ClientId": 2
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T18:23:53.8437196+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 1 (M\u00E5ndag) (Vecka 45)",
+    "ClientId": 3
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T18:24:09.3386912+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 2 (Tisdag) (Vecka 45)",
+    "ClientId": 3
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T18:24:14.7880422+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 3 (Torsdag) (Vecka 45)",
+    "ClientId": 3
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T18:24:41.8648054+01:00",
+    "Weight": 74,
+    "Notes": ".",
+    "ClientId": 3
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T18:27:42.6630412+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 1 (M\u00E5ndag) (Vecka 46)",
+    "ClientId": 3
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T18:27:47.4410341+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 2 (Tisdag) (Vecka 46)",
+    "ClientId": 3
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T18:27:53.7251713+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 3 (Torsdag) (Vecka 46)",
+    "ClientId": 3
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T18:27:58.6687696+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 4 (Fredag) (Vecka 46)",
+    "ClientId": 3
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T18:28:08.5618769+01:00",
+    "Weight": 74,
+    "Notes": ".",
+    "ClientId": 3
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T18:30:28.3304838+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 1 (M\u00E5ndag) (Vecka 47)",
+    "ClientId": 3
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T18:30:33.3112968+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 2 (Onsdag) (Vecka 47)",
+    "ClientId": 3
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T18:30:36.7642761+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 3 (Fredag) (Vecka 47)",
+    "ClientId": 3
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T18:30:43.7796349+01:00",
+    "Weight": 75,
+    "Notes": ".",
+    "ClientId": 3
   }
 ]

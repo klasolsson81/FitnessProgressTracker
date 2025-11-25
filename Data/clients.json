@@ -24,5 +24,31 @@
     "FirstName": "Klas",
     "LastName": "Olsson",
     "Role": "Client"
+  },
+  {
+    "CurrentWorkoutPlan": null,
+    "CurrentDietPlan": null,
+    "AssignedPtId": 1,
+    "WorkoutPlanIds": [
+      4,
+      5,
+      6
+    ],
+    "DietPlanIds": [
+      4,
+      5,
+      6
+    ],
+    "ProgressLogIds": [],
+    "GoalDescription": "Viktuppg\u00E5ng",
+    "TargetWeight": 80,
+    "WorkoutsPerWeek": 3,
+    "TargetCalories": 2500,
+    "Id": 3,
+    "Username": "Yonis",
+    "PasswordHash": "Yonis123",
+    "FirstName": "Yonis",
+    "LastName": "B",
+    "Role": "Client"
   }
 ]
