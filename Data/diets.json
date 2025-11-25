@@ -2,567 +2,192 @@
   {
     "Id": 1,
     "ClientId": 2,
-    "Name": "G\u00E5 ner i vikt 2000 kcal",
+    "Name": "G\u00E5 ner i vikt 1500 kcal",
+    "Week": 45,
     "DailyMeals": [
       {
         "Day": "M\u00E5ndag",
-        "Breakfast": "Havregrynsgr\u00F6t med b\u00E4r och en matsked honung",
-        "Lunch": "Kycklingsallad med gr\u00F6nsaker och balsamvin\u00E4ger",
-        "Dinner": "Grillad lax med quinoa och \u00E5ngade broccolibuketter",
-        "Snacks": "En frukt och en n\u00E4ve mandlar",
-        "TotalCalories": 1980
+        "Breakfast": "1 sk\u00E5l havregrynsgr\u00F6t med b\u00E4r (250 kcal)",
+        "Lunch": "Kycklingsallad med gr\u00F6nsaker och vin\u00E4grett (400 kcal)",
+        "Dinner": "Grillad lax med quinoa och broccoli (550 kcal)",
+        "Snacks": "En frukt och en n\u00E4ve n\u00F6tter (300 kcal)",
+        "TotalCalories": 1500
       },
       {
         "Day": "Tisdag",
-        "Breakfast": "Smoothie med spenat, banan och proteinpulver",
-        "Lunch": "Fullkornswrap med kalkon, avokado och gr\u00F6nsaker",
-        "Dinner": "Biffsallad med edamame och sesamfr\u00F6n",
-        "Snacks": "Morotsstavar med hummus",
-        "TotalCalories": 2010
+        "Breakfast": "Smoothie med banan, spenat och proteinpulver (300 kcal)",
+        "Lunch": "Kik\u00E4rtssallad med fetaost (400 kcal)",
+        "Dinner": "Stekt kalkon med s\u00F6tpotatis och gr\u00F6nsaker (500 kcal)",
+        "Snacks": "Yoghurt med honung och n\u00F6tter (300 kcal)",
+        "TotalCalories": 1500
       },
       {
         "Day": "Onsdag",
-        "Breakfast": "Yoghurt med granola och b\u00E4r",
-        "Lunch": "Quinoasallad med kik\u00E4rtor och fetaost",
-        "Dinner": "Stekt torsk med bulgur och gr\u00F6nsaker",
-        "Snacks": "En frukt och n\u00E5gra valn\u00F6tter",
-        "TotalCalories": 1995
+        "Breakfast": "2 \u00E4gg med avokado p\u00E5 fullkornsbr\u00F6d (350 kcal)",
+        "Lunch": "Tonfisksallad med b\u00F6nor (400 kcal)",
+        "Dinner": "Ugnsbakad kyckling med gr\u00F6nsaker (500 kcal)",
+        "Snacks": "En proteinbar (250 kcal)",
+        "TotalCalories": 1500
       },
       {
         "Day": "Torsdag",
-        "Breakfast": "\u00C4ggr\u00F6ra med spenat och tomat",
-        "Lunch": "R\u00F6dbetssallad med getost och rucola",
-        "Dinner": "Kycklingfil\u00E9 med s\u00F6tt ris och gr\u00F6nsaker",
-        "Snacks": "Skivor av gurka och paprika med tzatziki",
-        "TotalCalories": 1985
+        "Breakfast": "Chiafr\u00F6pudding med b\u00E4r (300 kcal)",
+        "Lunch": "Quinoasallad med gr\u00F6nsaker och lammk\u00F6tt (450 kcal)",
+        "Dinner": "Spaghetti med tomats\u00E5s och gr\u00F6nsaker (400 kcal)",
+        "Snacks": "Mor\u00F6tter och hummus (350 kcal)",
+        "TotalCalories": 1500
       },
       {
         "Day": "Fredag",
-        "Breakfast": "Chiapudding med mandelmj\u00F6lk och b\u00E4r",
-        "Lunch": "Tofu stir-fry med gr\u00F6nsaker och fullkornsris",
-        "Dinner": "Lammf\u00E4rsbiffar med tabbouleh",
-        "Snacks": "En apelsin och en n\u00E4ve solrosfr\u00F6n",
-        "TotalCalories": 2005
+        "Breakfast": "Omelett med gr\u00F6nsaker (300 kcal)",
+        "Lunch": "Wrap med kyckling och gr\u00F6nsaker (400 kcal)",
+        "Dinner": "Fish tacos med coleslaw (500 kcal)",
+        "Snacks": "En handfull mandlar (300 kcal)",
+        "TotalCalories": 1500
       },
       {
         "Day": "L\u00F6rdag",
-        "Breakfast": "Pannkakor med havremj\u00F6l och banan",
-        "Lunch": "Tonfisksallad med b\u00F6nor och avokado",
-        "Dinner": "Grillade gr\u00F6nsaker med polenta",
-        "Snacks": "Yoghurt med n\u00F6tter",
-        "TotalCalories": 1998
+        "Breakfast": "Pannkakor med banan och n\u00F6tkr\u00E4m (350 kcal)",
+        "Lunch": "Vegetarisk burrito (400 kcal)",
+        "Dinner": "Grillad biff med sparris (500 kcal)",
+        "Snacks": "Popcorn utan sm\u00F6r (250 kcal)",
+        "TotalCalories": 1500
       },
       {
         "Day": "S\u00F6ndag",
-        "Breakfast": "Fruktsallad med kvarg",
-        "Lunch": "Kik\u00E4rtsgryta med spenat och ris",
-        "Dinner": "Ugnsbakad kyckling med rotfrukter",
-        "Snacks": "Popcorn och en frukt",
-        "TotalCalories": 2001
+        "Breakfast": "Havregrynsgr\u00F6t med \u00E4pple och kanel (250 kcal)",
+        "Lunch": "Linsgryta med gr\u00F6nsaker (400 kcal)",
+        "Dinner": "Kyckling med ris och gr\u00F6nsaker (550 kcal)",
+        "Snacks": "Ett \u00E4pple med mandelsm\u00F6r (300 kcal)",
+        "TotalCalories": 1500
       }
     ]
   },
   {
     "Id": 2,
-    "ClientId": 3,
-    "Name": "Bygga muskler 2500 kcal",
+    "ClientId": 2,
+    "Name": "Viktnedg\u00E5ng 1500 kcal",
+    "Week": 46,
     "DailyMeals": [
       {
         "Day": "M\u00E5ndag",
-        "Breakfast": "\u00C4ggr\u00F6ra med spenat och tomat samt fullkornsbr\u00F6d",
-        "Lunch": "Grillad kyckling med quinoa och \u00E5ngade gr\u00F6nsaker",
-        "Dinner": "Oxfil\u00E9 med s\u00F6tpotatis och gr\u00F6nsallad",
-        "Snacks": "Grekisk yoghurt med honung och valn\u00F6tter",
-        "TotalCalories": 2500
+        "Breakfast": "Havregrynsgr\u00F6t med b\u00E4r och honung",
+        "Lunch": "Quinoasallad med kik\u00E4rtor och gr\u00F6nsaker",
+        "Dinner": "Grillad kyckling med broccoli och s\u00F6tpotatis",
+        "Snacks": "Ett \u00E4pple och en n\u00E4ve mandlar",
+        "TotalCalories": 1500
       },
       {
         "Day": "Tisdag",
-        "Breakfast": "Havregrynsgr\u00F6t med \u00E4pple och kanel",
-        "Lunch": "Laxfil\u00E9 med fullkornspasta och broccolimos",
-        "Dinner": "K\u00F6ttf\u00E4rss\u00E5s med b\u00F6npasta och parmesan",
-        "Snacks": "Smoothie med banan, proteinpulver och jordn\u00F6tssm\u00F6r",
-        "TotalCalories": 2490
+        "Breakfast": "Yoghurt med granola och frukt",
+        "Lunch": "Tonfisksallad med spenat och avokado",
+        "Dinner": "Ugnsbakad lax med gr\u00F6nsaksmedley",
+        "Snacks": "Morotsstavar med hummus",
+        "TotalCalories": 1490
       },
       {
         "Day": "Onsdag",
-        "Breakfast": "Proteinsmoothie med b\u00E4r och havregryn",
-        "Lunch": "Kik\u00E4rtssallad med fetaost och olivolja",
-        "Dinner": "Grillad kyckling med ris och wokade gr\u00F6nsaker",
-        "Snacks": "En n\u00E4ve n\u00F6tter och en banan",
-        "TotalCalories": 2510
+        "Breakfast": "Smoothie med banan, spenat och mandelmj\u00F6lk",
+        "Lunch": "Kik\u00E4rtsbiffar med tzatziki och gr\u00F6nsaker",
+        "Dinner": "N\u00F6tk\u00F6tt med quinoa och \u00E5ngade gr\u00F6nsaker",
+        "Snacks": "En handfull valn\u00F6tter",
+        "TotalCalories": 1520
       },
       {
         "Day": "Torsdag",
-        "Breakfast": "Omlett med skinka och ost samt fullkornsbr\u00F6d",
-        "Lunch": "Tonfisk med ris och gr\u00F6nsaker",
-        "Dinner": "Fl\u00E4skkotlett med potatismos och gr\u00F6nsallad",
-        "Snacks": "Hummus med morotsstavar",
-        "TotalCalories": 2505
+        "Breakfast": "\u00C4ggviteomelett med gr\u00F6nsaker",
+        "Lunch": "Grillad tofu med jasminris och broccoli",
+        "Dinner": "Kalkonf\u00E4rs med zucchinipasta",
+        "Snacks": "En p\u00E4ron och en proteinbar",
+        "TotalCalories": 1500
       },
       {
         "Day": "Fredag",
-        "Breakfast": "Chiapudding med banan och mandelmj\u00F6lk",
-        "Lunch": "Kycklingwrap med avokado och gr\u00F6nsaker",
-        "Dinner": "Grillad lax med couscous och spenatsallad",
-        "Snacks": "Proteinbar och en frukt",
-        "TotalCalories": 2480
+        "Breakfast": "Chiapudding med kokosmj\u00F6lk och b\u00E4r",
+        "Lunch": "Linsgryta med spenat och mor\u00F6tter",
+        "Dinner": "Fisk tacos med k\u00E5l och lime",
+        "Snacks": "Snackgr\u00F6nsaker med guacamole",
+        "TotalCalories": 1510
       },
       {
         "Day": "L\u00F6rdag",
-        "Breakfast": "Pannkakor med proteinpulver och b\u00E4r",
-        "Lunch": "Nudelsallad med teriyakis\u00E5s och r\u00E4kor",
-        "Dinner": "Helstekt kyckling med potatis och rostad sparris",
-        "Snacks": "Yoghurt med energimix",
-        "TotalCalories": 2520
+        "Breakfast": "Fullkornsbr\u00F6d med avokado och pocherat \u00E4gg",
+        "Lunch": "Buddha bowl med quinoa, gr\u00F6nsaker och tahinidressing",
+        "Dinner": "Kycklingfajitas med paprika och l\u00F6k",
+        "Snacks": "Ett par rutor m\u00F6rk choklad",
+        "TotalCalories": 1480
       },
       {
         "Day": "S\u00F6ndag",
-        "Breakfast": "Rostat br\u00F6d med avokado och pocherat \u00E4gg",
-        "Lunch": "S\u00F6ndagsstek med gr\u00F6nsaker och bruns\u00E5s",
-        "Dinner": "Vegetarisk gryta med b\u00F6nor och ris",
-        "Snacks": "Snap peas och proteinshake",
-        "TotalCalories": 2500
+        "Breakfast": "Pannkakor av havremj\u00F6l med b\u00E4r",
+        "Lunch": "Grillad halloumi med gr\u00F6nsallad",
+        "Dinner": "Ratatouille med b\u00F6nor",
+        "Snacks": "En smoothie med b\u00E4r och spenat",
+        "TotalCalories": 1505
       }
     ]
   },
   {
     "Id": 3,
-    "ClientId": 4,
-    "Name": "Bli stark som hulken 4000 kcal",
-    "DailyMeals": [
-      {
-        "Day": "M\u00E5ndag",
-        "Breakfast": "Havregrynsgr\u00F6t med mj\u00F6lk, banan och mandlar",
-        "Lunch": "Grillad kyckling med quinoa och gr\u00F6nsaker",
-        "Dinner": "N\u00F6tf\u00E4rsbiffar med s\u00F6tpotatis och broccoli",
-        "Snacks": "Proteinsmoothie och en handfull valn\u00F6tter",
-        "TotalCalories": 3980
-      },
-      {
-        "Day": "Tisdag",
-        "Breakfast": "Scrambled eggs med spenat och fullkornsbr\u00F6d",
-        "Lunch": "Lax med ris och avokadosallad",
-        "Dinner": "Kycklingwok med gr\u00F6nsaker och cashewn\u00F6tter",
-        "Snacks": "Hummus med morotsstavar och en proteinbar",
-        "TotalCalories": 4020
-      },
-      {
-        "Day": "Onsdag",
-        "Breakfast": "Smoothie bowl med b\u00E4r, n\u00F6tter och chiafr\u00F6n",
-        "Lunch": "Biff med fullkornsbulgur och grillade gr\u00F6nsaker",
-        "Dinner": "Bakad torsk med potatis och \u00F6rts\u00E5s",
-        "Snacks": "Keso med frukt och en handfull mandlar",
-        "TotalCalories": 3995
-      },
-      {
-        "Day": "Torsdag",
-        "Breakfast": "Yoghurt med granola och honung",
-        "Lunch": "Kalkonwrap med avokado och salsa",
-        "Dinner": "Fl\u00E4skfil\u00E9 med ugnsrostade rotfrukter",
-        "Snacks": "Proteinshake och en energibar",
-        "TotalCalories": 4015
-      },
-      {
-        "Day": "Fredag",
-        "Breakfast": "Omelett med paprika, l\u00F6k och fetaost",
-        "Lunch": "R\u00E4ksallad med quinoa och avokado",
-        "Dinner": "Lammkotletter med couscous och gr\u00F6nsaker",
-        "Snacks": "\u00C4pple och jordn\u00F6tssm\u00F6r, samt en handfull pistaschn\u00F6tter",
-        "TotalCalories": 3988
-      },
-      {
-        "Day": "L\u00F6rdag",
-        "Breakfast": "Pannkakor med b\u00E4r och l\u00F6nnsirap",
-        "Lunch": "Vegetarisk lasagne med spenat och ricotta",
-        "Dinner": "Grillad tonfisk med risnudlar och gr\u00F6nsaker",
-        "Snacks": "Energiboll med dadlar och n\u00F6tter",
-        "TotalCalories": 4005
-      },
-      {
-        "Day": "S\u00F6ndag",
-        "Breakfast": "Chiafr\u00F6gr\u00F6t med frukt och n\u00F6tter",
-        "Lunch": "Taco med k\u00F6ttf\u00E4rs, gr\u00F6nsaker och guacamole",
-        "Dinner": "Stekt kyckling med potatisgrat\u00E4ng",
-        "Snacks": "Smoothie med proteinpulver och en handfull mandlar",
-        "TotalCalories": 3992
-      }
-    ]
-  },
-  {
-    "Id": 4,
     "ClientId": 2,
-    "Name": "G\u00E5 ner i vikt 2000 kcal",
+    "Name": "G\u00E5 ner i vikt 1500 kcal",
+    "Week": 47,
     "DailyMeals": [
       {
         "Day": "M\u00E5ndag",
-        "Breakfast": "Omelett med spenat och tomat",
-        "Lunch": "Grillad kyckling med quinoa och broccoli",
-        "Dinner": "Stekt torsk med s\u00F6tpotatis och gr\u00F6nsaker",
-        "Snacks": "\u00C4pple och en handfull mandlar",
-        "TotalCalories": 1995
-      },
-      {
-        "Day": "Tisdag",
-        "Breakfast": "Havregrynsgr\u00F6t med b\u00E4r och honung",
-        "Lunch": "Tonfisk-sallad med kik\u00E4rtor och gr\u00F6na blad",
-        "Dinner": "Vegan tacos med svarta b\u00F6nor och avokado",
-        "Snacks": "Morotsstavar med hummus",
-        "TotalCalories": 2001
-      },
-      {
-        "Day": "Onsdag",
-        "Breakfast": "Grekisk yoghurt med n\u00F6tter och honung",
-        "Lunch": "Kycklingwrap med gr\u00F6nsaker och tzatziki",
-        "Dinner": "Lax med rostad blomk\u00E5l och gr\u00F6na b\u00F6nor",
-        "Snacks": "Banan och en handfull valn\u00F6tter",
-        "TotalCalories": 1998
-      },
-      {
-        "Day": "Torsdag",
-        "Breakfast": "Smoothie med spenat, banan och mandelmj\u00F6lk",
-        "Lunch": "Vegetarisk b\u00F6nsoppa med fullkornsbr\u00F6d",
-        "Dinner": "Grillad flankstek med quinoa och sparris",
-        "Snacks": "En sk\u00E5l med b\u00E4r",
-        "TotalCalories": 2003
-      },
-      {
-        "Day": "Fredag",
-        "Breakfast": "\u00C4ggr\u00F6ra med avokado och fullkornsrostat br\u00F6d",
-        "Lunch": "Kalkonburgare med s\u00F6tpotatispommes",
-        "Dinner": "R\u00F6dsp\u00E4tta med citron och \u00E5ngad broccoli",
-        "Snacks": "Dadel och n\u00F6tmix",
-        "TotalCalories": 1997
-      },
-      {
-        "Day": "L\u00F6rdag",
-        "Breakfast": "Chiapudding med kokosmj\u00F6lk och mango",
-        "Lunch": "Quinoasalad med fetaost och oliver",
-        "Dinner": "Kryddig kyckling med basmatiris och gr\u00F6nsaker",
-        "Snacks": "P\u00E4ron och en handfull pumpak\u00E4rnor",
-        "TotalCalories": 2002
-      },
-      {
-        "Day": "S\u00F6ndag",
-        "Breakfast": "Fruktsallad med yoghurt och granola",
-        "Lunch": "Biff med gr\u00F6nsaksr\u00F6ra och potatismos",
-        "Dinner": "Bakad torsk med \u00E4rtor och potatis",
-        "Snacks": "Klick vaniljyoghurt med kanel",
-        "TotalCalories": 1994
-      }
-    ]
-  },
-  {
-    "Id": 5,
-    "ClientId": 2,
-    "Name": "G\u00E5 ner i vikt 2000 kcal",
-    "DailyMeals": [
-      {
-        "Day": "M\u00E5ndag",
-        "Breakfast": "Havregrynsgr\u00F6t med bl\u00E5b\u00E4r och mandlar",
-        "Lunch": "Grillad kyckling med quinoa och gr\u00F6nsallad",
-        "Dinner": "Laxfil\u00E9 med s\u00F6tpotatis och broccoli",
+        "Breakfast": "Havregrynsgr\u00F6t med en sked honung och b\u00E4r",
+        "Lunch": "Grillad kycklingsallad med blandade gr\u00F6nsaker",
+        "Dinner": "Lax med quinoa och stekta gr\u00F6nsaker",
         "Snacks": "En \u00E4pple och 10 mandlar",
-        "TotalCalories": 1985
-      },
-      {
-        "Day": "Tisdag",
-        "Breakfast": "Smoothie med spenat, banan och proteinpulver",
-        "Lunch": "Kik\u00E4rtsallad med tomat, gurka och fetaost",
-        "Dinner": "Kalkonbiffar med ugnsrostade gr\u00F6nsaker",
-        "Snacks": "Grekisk yoghurt med honung och valn\u00F6tter",
-        "TotalCalories": 2010
-      },
-      {
-        "Day": "Onsdag",
-        "Breakfast": "\u00C4ggr\u00F6ra med spenat och fullkornsbr\u00F6d",
-        "Lunch": "Tonfisksallad med avokado och blandad sallad",
-        "Dinner": "Kycklingwok med broccoli, paprika och r\u00E5ris",
-        "Snacks": "Morotsstavar med hummus",
-        "TotalCalories": 1995
-      },
-      {
-        "Day": "Torsdag",
-        "Breakfast": "Chiapudding med kokosmj\u00F6lk och b\u00E4r",
-        "Lunch": "Quinoasallad med grillad paprika och fetaost",
-        "Dinner": "Fisk tacos med kall s\u00E5s och k\u00E5l",
-        "Snacks": "En banan och en handfull n\u00F6tter",
-        "TotalCalories": 2005
-      },
-      {
-        "Day": "Fredag",
-        "Breakfast": "Fullkornsbagel med avokado och tomat",
-        "Lunch": "Grillad lax med couscous och sparris",
-        "Dinner": "Vegetarisk curry med linser och ris",
-        "Snacks": "En p\u00E4ron och n\u00E5gra mandlar",
-        "TotalCalories": 1980
-      },
-      {
-        "Day": "L\u00F6rdag",
-        "Breakfast": "Pannkakor av havremj\u00F6l med b\u00E4r och n\u00F6tter",
-        "Lunch": "Kyckling Caesar-sallad med fullkornskrutonger",
-        "Dinner": "Ugnsbakad torsk med s\u00F6tpotatis och gr\u00F6nsaker",
-        "Snacks": "En smoothie med proteinpulver",
-        "TotalCalories": 2002
-      },
-      {
-        "Day": "S\u00F6ndag",
-        "Breakfast": "Omelett med gr\u00F6nsaker och fetaost",
-        "Lunch": "Bulgursallad med grillade gr\u00F6nsaker och kyckling",
-        "Dinner": "Biff med potatis och gr\u00F6nsallad",
-        "Snacks": "Yoghurt med m\u00F6rk chokladbitar",
-        "TotalCalories": 1998
-      }
-    ]
-  },
-  {
-    "Id": 6,
-    "ClientId": 5,
-    "Name": "G\u00E5 ner i vikt 1000 kcal",
-    "DailyMeals": [
-      {
-        "Day": "M\u00E5ndag",
-        "Breakfast": "Gr\u00F6t med kvarg och b\u00E4r",
-        "Lunch": "Tonfisksallad med gr\u00F6nsaker",
-        "Dinner": "Kycklingfil\u00E9 med broccoli och quinoa",
-        "Snacks": "Morotsstavar med hummus",
-        "TotalCalories": 998
-      },
-      {
-        "Day": "Tisdag",
-        "Breakfast": "Avokado-toast p\u00E5 fullkornsbr\u00F6d",
-        "Lunch": "Kik\u00E4rtssallad med fetaost",
-        "Dinner": "Fisk tacos med k\u00E5lsallad",
-        "Snacks": "En \u00E4pple",
-        "TotalCalories": 1005
-      },
-      {
-        "Day": "Onsdag",
-        "Breakfast": "Smoothie med spenat, banan och mandelmj\u00F6lk",
-        "Lunch": "Grillad gr\u00F6nsakssallad med balsamvin\u00E4ger",
-        "Dinner": "Biff med s\u00F6tpotatis och gr\u00F6nsaker",
-        "Snacks": "N\u00F6tter (20g)",
-        "TotalCalories": 1002
-      },
-      {
-        "Day": "Torsdag",
-        "Breakfast": "Yoghurt med granola och frukt",
-        "Lunch": "Quinoasallad med avokado och tomat",
-        "Dinner": "Kalkonk\u00F6ttbullar med zucchinipasta",
-        "Snacks": "P\u00E4ron",
-        "TotalCalories": 996
-      },
-      {
-        "Day": "Fredag",
-        "Breakfast": "Havrepannkakor med b\u00E4r",
-        "Lunch": "R\u00E4ksallad med avokado",
-        "Dinner": "Lax med rostad blomk\u00E5l",
-        "Snacks": "En banan",
-        "TotalCalories": 1003
-      },
-      {
-        "Day": "L\u00F6rdag",
-        "Breakfast": "Chiapudding med kokosmj\u00F6lk och b\u00E4r",
-        "Lunch": "\u00C4gg- och spenatsallad",
-        "Dinner": "Grillad kyckling med gr\u00F6nsaker",
-        "Snacks": "Kiwi",
-        "TotalCalories": 1000
-      },
-      {
-        "Day": "S\u00F6ndag",
-        "Breakfast": "Banan- och havremuffins",
-        "Lunch": "F\u00E4rsk tonfisksallad",
-        "Dinner": "Vegetarisk curry med linser",
-        "Snacks": "En n\u00E4ve mandlar",
-        "TotalCalories": 1001
-      }
-    ]
-  },
-  {
-    "Id": 7,
-    "ClientId": 5,
-    "Name": "G\u00E5 ner i vikt 1200 kcal",
-    "DailyMeals": [
-      {
-        "Day": "M\u00E5ndag",
-        "Breakfast": "Havregrynsgr\u00F6t med skivor av banan och lite kanel",
-        "Lunch": "Kik\u00E4rtsallad med gr\u00F6nsaker och fetaost",
-        "Dinner": "Grillad kyckling med quinoa och dampade broccolibuketter",
-        "Snacks": "En \u00E4pple och en handfull mandlar",
-        "TotalCalories": 1210
+        "TotalCalories": 1500
       },
       {
         "Day": "Tisdag",
         "Breakfast": "Smoothie med spenat, banan och mandelmj\u00F6lk",
-        "Lunch": "Tonfisksallad med avokado och blandade gr\u00F6nsaker",
-        "Dinner": "Laxfil\u00E9 med rostade gr\u00F6nsaker",
-        "Snacks": "En handfull valn\u00F6tter",
-        "TotalCalories": 1195
+        "Lunch": "Pasta med tomats\u00E5s och en gr\u00F6nsallad",
+        "Dinner": "Grillad kalkon med s\u00F6tpotatis och broccoli",
+        "Snacks": "Morotsstavar med hummus",
+        "TotalCalories": 1500
       },
       {
         "Day": "Onsdag",
+        "Breakfast": "Greek yogurt med granola och b\u00E4r",
+        "Lunch": "Tonfisksallad med avokado och tomater",
+        "Dinner": "Stekt tofu med ris och gr\u00F6nsaker",
+        "Snacks": "En p\u00E4ron och 10 valn\u00F6tter",
+        "TotalCalories": 1500
+      },
+      {
+        "Day": "Torsdag",
         "Breakfast": "\u00C4ggr\u00F6ra med spenat och tomat",
-        "Lunch": "Quinoasallad med b\u00F6ner och majs",
-        "Dinner": "Ugnsbakad torsk med s\u00F6tpotatis",
-        "Snacks": "Mor\u00F6tter och hummus",
-        "TotalCalories": 1220
-      },
-      {
-        "Day": "Torsdag",
-        "Breakfast": "Chiapudding med b\u00E4r",
-        "Lunch": "Grillad kalkonwrap med sallad och avokado",
-        "Dinner": "K\u00F6ttf\u00E4rsbiffar med blomk\u00E5lsmos",
-        "Snacks": "En p\u00E4ron",
-        "TotalCalories": 1180
+        "Lunch": "Kik\u00E4rtsburgare med gr\u00F6nsaker",
+        "Dinner": "Kyckling med ugnsbakade gr\u00F6nsaker",
+        "Snacks": "En banan och en n\u00E4ve jordn\u00F6tter",
+        "TotalCalories": 1500
       },
       {
         "Day": "Fredag",
-        "Breakfast": "Yoghurt med granola och f\u00E4rska frukter",
-        "Lunch": "Sushi med gr\u00F6nsaker och lax",
-        "Dinner": "Vegetarisk gryta med linser och gr\u00F6nsaker",
-        "Snacks": "En skiva vattenmelon",
-        "TotalCalories": 1205
+        "Breakfast": "Chiafr\u00F6-pudding med b\u00E4r",
+        "Lunch": "Quinoasallad med fetaost och oliver",
+        "Dinner": "Fisk med potatis och \u00E5ngade gr\u00F6nsaker",
+        "Snacks": "En apelsin och 5 mandlar",
+        "TotalCalories": 1500
       },
       {
         "Day": "L\u00F6rdag",
-        "Breakfast": "Smoothie bowl med b\u00E4r och n\u00F6tter",
-        "Lunch": "\u00C4gg- och avokadosm\u00F6rg\u00E5s p\u00E5 fullkornsbr\u00F6d",
-        "Dinner": "Kycklingwok med gr\u00F6nsaker och r\u00E5ris",
-        "Snacks": "En handfull pistagen\u00F6tter",
-        "TotalCalories": 1210
+        "Breakfast": "Smoothie bowl med banan och n\u00F6tter",
+        "Lunch": "Grillad gr\u00F6nsakswrap med hummus",
+        "Dinner": "Ratatouille med brunt ris",
+        "Snacks": "En kiwi och en n\u00E4ve solrosfr\u00F6n",
+        "TotalCalories": 1500
       },
       {
         "Day": "S\u00F6ndag",
-        "Breakfast": "Fruktsallad med yoghurt",
-        "Lunch": "R\u00F6dbetssallad med getost och valn\u00F6tter",
-        "Dinner": "Fylld paprika med vegetarisk f\u00E4rs och ris",
-        "Snacks": "En apelsin",
-        "TotalCalories": 1190
-      }
-    ]
-  },
-  {
-    "Id": 8,
-    "ClientId": 5,
-    "Name": "Byggamuskler 1000 kcal",
-    "DailyMeals": [
-      {
-        "Day": "M\u00E5ndag",
-        "Breakfast": "\u00C4ggr\u00F6ra med spenat och fetaost",
-        "Lunch": "Quinoasallad med kyckling och gr\u00F6nsaker",
-        "Dinner": "Grillad lax med broccoli och s\u00F6tpotatis",
-        "Snacks": "En handfull mandlar",
-        "TotalCalories": 1005
-      },
-      {
-        "Day": "Tisdag",
-        "Breakfast": "Havregrynsgr\u00F6t med proteinpulver och b\u00E4r",
-        "Lunch": "Kik\u00E4rtssallad med avokado och tomat",
-        "Dinner": "Kycklingfil\u00E9 med quinoa och haricots verts",
-        "Snacks": "Grekisk yoghurt med honung",
-        "TotalCalories": 992
-      },
-      {
-        "Day": "Onsdag",
-        "Breakfast": "Smoothie med spenat, banan och jordn\u00F6tssm\u00F6r",
-        "Lunch": "Tonfiskr\u00F6ra med fullkornsbr\u00F6d",
-        "Dinner": "N\u00F6tk\u00F6tt med ris och gr\u00F6nsaker",
-        "Snacks": "\u00C4pple med mandelsm\u00F6r",
-        "TotalCalories": 1003
-      },
-      {
-        "Day": "Torsdag",
-        "Breakfast": "Bananpannkakor med proteinpulver",
-        "Lunch": "Kycklingsallad med n\u00F6tter och fetaost",
-        "Dinner": "Ugnsbakad torsk med gr\u00F6na b\u00F6nor",
-        "Snacks": "Ett kokt \u00E4gg",
-        "TotalCalories": 1001
-      },
-      {
-        "Day": "Fredag",
-        "Breakfast": "Yoghurt med granola och b\u00E4r",
-        "Lunch": "B\u00F6nburgare med s\u00F6tpotatispommes",
-        "Dinner": "Grillad kyckling med couscous och gr\u00F6nsaker",
-        "Snacks": "En apelsin",
-        "TotalCalories": 998
-      },
-      {
-        "Day": "L\u00F6rdag",
-        "Breakfast": "Omelett med svamp och paprika",
-        "Lunch": "Linsoppa med fullkornsbr\u00F6d",
-        "Dinner": "K\u00F6ttf\u00E4rss\u00E5s med zoodles (zucchini-nudlar)",
-        "Snacks": "En n\u00E4ve valn\u00F6tter",
-        "TotalCalories": 1004
-      },
-      {
-        "Day": "S\u00F6ndag",
-        "Breakfast": "Chiapudding med kokosmj\u00F6lk och frukt",
-        "Lunch": "Grillad halloumi med quinoa och gr\u00F6nsaker",
-        "Dinner": "Kycklingwok med broccoli och paprika",
-        "Snacks": "Ett p\u00E4ron",
-        "TotalCalories": 1000
-      }
-    ]
-  },
-  {
-    "Id": 9,
-    "ClientId": 5,
-    "Name": "G\u00E5nervikt 1230 kcal",
-    "DailyMeals": [
-      {
-        "Day": "M\u00E5ndag",
-        "Breakfast": "Havregrynsgr\u00F6t med b\u00E4r och honung",
-        "Lunch": "Quinoasallad med gr\u00F6nsaker och kik\u00E4rtor",
-        "Dinner": "Grillad kyckling med broccoli och fullkornsris",
-        "Snacks": "En \u00E4pple och en handfull mandlar",
-        "TotalCalories": 1230
-      },
-      {
-        "Day": "Tisdag",
-        "Breakfast": "Smoothie med spenat, banan och mandelmj\u00F6lk",
-        "Lunch": "Linsgryta med mor\u00F6tter och spenat",
-        "Dinner": "Ugnsbakad lax med gr\u00F6n sparris och s\u00F6tpotatis",
-        "Snacks": "En grekisk yoghurt och n\u00E5gra valn\u00F6tter",
-        "TotalCalories": 1230
-      },
-      {
-        "Day": "Onsdag",
-        "Breakfast": "Fullkornsbr\u00F6d med avokado och tomat",
-        "Lunch": "Kalkonsallad med rucola och fetaost",
-        "Dinner": "Vegetarisk tacos med svarta b\u00F6nor och guacamole",
-        "Snacks": "En apelsin och n\u00E5gra pumpafr\u00F6n",
-        "TotalCalories": 1230
-      },
-      {
-        "Day": "Torsdag",
-        "Breakfast": "Chiapudding med kokos och b\u00E4r",
-        "Lunch": "Grillad gr\u00F6nsakssallad med halloumi",
-        "Dinner": "Stekt torsk med quinoa och gr\u00F6nk\u00E5l",
-        "Snacks": "Morotsstavar med hummus",
-        "TotalCalories": 1230
-      },
-      {
-        "Day": "Fredag",
-        "Breakfast": "Yoghurt med granola och f\u00E4rsk frukt",
-        "Lunch": "Soppa p\u00E5 r\u00F6da linser och spenat",
-        "Dinner": "Kycklingfajitas med paprika och l\u00F6k i fullkornstortilla",
-        "Snacks": "En banan och en handfull n\u00F6tter",
-        "TotalCalories": 1230
-      },
-      {
-        "Day": "L\u00F6rdag",
-        "Breakfast": "Smoothie bowl med b\u00E4r och n\u00F6tter",
-        "Lunch": "Tonfisksallad med gr\u00F6nsaker och avokado",
-        "Dinner": "Biff med svamp och gr\u00F6nsaker",
-        "Snacks": "En p\u00E4ron och n\u00E5gra mandlar",
-        "TotalCalories": 1230
-      },
-      {
-        "Day": "S\u00F6ndag",
-        "Breakfast": "Omelett med spenat och fetaost",
-        "Lunch": "Kik\u00E4rtssallad med tomat och gurka",
-        "Dinner": "Stekt lax med blomk\u00E5lsmos",
-        "Snacks": "Celery sticks och guacamole",
-        "TotalCalories": 1230
+        "Breakfast": "Pannkakor av havremj\u00F6l med frukt",
+        "Lunch": "Sallad med \u00E4gg och avokado",
+        "Dinner": "Kycklingfajitas med gr\u00F6nsaker",
+        "Snacks": "Gurka med tzatziki",
+        "TotalCalories": 1500
       }
     ]
   }

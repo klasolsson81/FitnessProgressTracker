@@ -5,97 +5,24 @@
     "AssignedPtId": 1,
     "WorkoutPlanIds": [
       1,
-      4,
-      5
+      2,
+      3
     ],
     "DietPlanIds": [
       1,
-      4,
-      5
+      2,
+      3
     ],
     "ProgressLogIds": [],
     "GoalDescription": "G\u00E5 ner i vikt",
-    "TargetWeight": 80,
+    "TargetWeight": 100,
     "WorkoutsPerWeek": 4,
-    "TargetCalories": 2000,
+    "TargetCalories": 1500,
     "Id": 2,
     "Username": "Klas",
     "PasswordHash": "Klas123456",
     "FirstName": "Klas",
     "LastName": "Olsson",
-    "Role": "Client"
-  },
-  {
-    "CurrentWorkoutPlan": null,
-    "CurrentDietPlan": null,
-    "AssignedPtId": 1,
-    "WorkoutPlanIds": [
-      2
-    ],
-    "DietPlanIds": [
-      2
-    ],
-    "ProgressLogIds": [],
-    "GoalDescription": "Bygga muskler",
-    "TargetWeight": 75,
-    "WorkoutsPerWeek": 6,
-    "TargetCalories": 2500,
-    "Id": 3,
-    "Username": "Anna",
-    "PasswordHash": "Anna123456",
-    "FirstName": "Anna",
-    "LastName": "Andersson",
-    "Role": "Client"
-  },
-  {
-    "CurrentWorkoutPlan": null,
-    "CurrentDietPlan": null,
-    "AssignedPtId": 1,
-    "WorkoutPlanIds": [
-      3
-    ],
-    "DietPlanIds": [
-      3
-    ],
-    "ProgressLogIds": [],
-    "GoalDescription": "Bli stark som hulken",
-    "TargetWeight": 100,
-    "WorkoutsPerWeek": 7,
-    "TargetCalories": 4000,
-    "Id": 4,
-    "Username": "Nemo",
-    "PasswordHash": "Nemo123456",
-    "FirstName": "Nemo",
-    "LastName": "Sensei",
-    "Role": "Client"
-  },
-  {
-    "CurrentWorkoutPlan": null,
-    "CurrentDietPlan": null,
-    "AssignedPtId": 1,
-    "WorkoutPlanIds": [
-      6,
-      7,
-      8,
-      9,
-      10
-    ],
-    "DietPlanIds": [
-      6,
-      7,
-      8,
-      9
-    ],
-    "ProgressLogIds": [],
-    "GoalDescription": "har nu gjort klart alla client-meny-taskar f\u00F6r Sprint 4. CM-0 \u00E4r den viktigaste uppgiften och m\u00E5ste alltid vara klar innan man g\u00F6r de andra, eftersom den kopplar ihop alla services och g\u00F6r s\u00E5 menyn fungerar tekniskt. N\u00E4r CM-0 fungerar kan man g\u00F6ra resten av taskarna (CM-1 till CM-5), som handlar om att visa tr\u00E4ningsschema, kostschema, m\u00E5l, logga tr\u00E4ning och se framsteg. Sprint 4 handlar helt enkelt om att g\u00F6ra hela client-menyn fullst\u00E4ndigt fungerande. Alla ska forts\u00E4tta jobba i egna branches och aldrig i main.Jag har nu gjort klart alla client-meny-taskar f\u00F6r Sprint 4. CM-0 \u00E4r den viktigaste uppgiften och m\u00E5ste alltid vara klar innan man g\u00F6r de andra, eftersom den kopplar ihop alla services och g\u00F6r s\u00E5 menyn fungerar tekniskt. N\u00E4r CM-0 fungerar kan man g\u00F6ra resten av taskarna (CM-1 till CM-5), som handlar om att visa tr\u00E4ningsschema, kostschema, m\u00E5l, logga tr\u00E4ning och se framsteg. Sprint 4 handlar helt enkelt om att g\u00F6ra hela client-menyn fullst\u00E4ndigt fungerande. Alla ska forts\u00E4tta jobba i egna branches och aldrig i main.Jag har nu gjort klart alla client-meny-taskar f\u00F6r Sprint 4. CM-0 \u00E4r den viktigaste uppgiften och m\u00E5ste alltid vara klar innan man g\u00F6r de andra, eftersom den kopplar ihop alla services och g\u00F6r s\u00E5 menyn fungerar tekniskt. N\u00E4r CM-0 fungerar kan man g\u00F6ra resten av taskarna (CM-1 till CM-5), som handlar om att visa tr\u00E4ningsschema, kostschema, m\u00E5l, logga tr\u00E4ning och se framsteg. Sprint 4 handlar helt enkelt om att g\u00F6ra hela client-menyn fullst\u00E4ndigt fungerande. Alla ska forts\u00E4tta jobba i egna branches och aldrig i main.",
-    "TargetWeight": 90,
-    "WorkoutsPerWeek": 6,
-    "TargetCalories": 1230,
-    "Id": 5,
-    "Username": "zidan",
-    "PasswordHash": "Sacad123",
-    "FirstName": "sacad",
-    "LastName": "elmi",
     "Role": "Client"
   }
 ]
