@@ -26,8 +26,16 @@ namespace FitnessProgressTracker.Services
                 .ToList();
         }
 
-        // Visa loggar i tabell
-        public void ShowClientProgress(int clientId)
+		// LÄGG TILL DENNA METOD UNDER GetLogsForClient:
+		public void AddProgressLog(ProgressLog log)
+		{
+			var allLogs = _logStore.Load() ?? new List<ProgressLog>();
+			allLogs.Add(log);
+			_logStore.Save(allLogs);
+		}
+
+		// Visa loggar i tabell
+		public void ShowClientProgress(int clientId)
         {
             // 1. Hämta klient
             var client = _clientService.GetClientById(clientId);

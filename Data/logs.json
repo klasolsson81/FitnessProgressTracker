@@ -1,1 +1,16 @@
-[]
+[
+  {
+    "Id": 1,
+    "Date": "2025-11-23T16:18:09.7119216+01:00",
+    "Weight": 80,
+    "Notes": "g\u00E5tt bra idag ",
+    "ClientId": 5
+  },
+  {
+    "Id": 2,
+    "Date": "2025-11-23T20:21:15.4102417+01:00",
+    "Weight": 78,
+    "Notes": "g\u00E5t ner n\u00E5gra kg",
+    "ClientId": 5
+  }
+]
