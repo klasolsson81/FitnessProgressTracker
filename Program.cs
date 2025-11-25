@@ -3,6 +3,7 @@ using FitnessProgressTracker.Services;
 using FitnessProgressTracker.Services.Interfaces;
 using FitnessProgressTracker.UI;
 using Spectre.Console;
+using System.IO;
 
 namespace FitnessProgressTracker
 {
