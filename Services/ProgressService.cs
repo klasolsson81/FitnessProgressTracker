@@ -48,6 +48,8 @@ namespace FitnessProgressTracker.Services
             // 2. Hämta loggar
             var logs = GetLogsForClient(clientId);
 
+
+
             // 3. Visa tabell
             AnsiConsole.Clear();
             AnsiConsole.MarkupLine($"[bold underline green]Progress för {client.FirstName ?? "N/A"} {client.LastName ?? ""}[/]");
@@ -75,10 +77,28 @@ namespace FitnessProgressTracker.Services
             AnsiConsole.Write(table);
         }
 
+        public void AddProgressLog(ProgressLog log)
+        {
+            try
+            {
+                var allLogs = _logStore.Load() ?? new List<ProgressLog>();
+                allLogs.Add(log);
+                _logStore.Save(allLogs);
+            }
+            catch (Exception ex)
+            {
+                throw new Exception("Kunde inte spara träningslogg.", ex);
+            }
+        }
+
+
+
         public void DeleteAllProgress()
         {
             // Använd _logStore istället för _progressStore
             _logStore.Save(new List<ProgressLog>());
         }
     }
+
+
 }
