@@ -159,5 +159,19 @@
     "Weight": 75,
     "Notes": ".",
     "ClientId": 3
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T20:20:58.2496398+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 1 (M\u00E5ndag) (Vecka 45)",
+    "ClientId": 4
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T20:21:32.1598319+01:00",
+    "Weight": 80,
+    "Notes": "Viktuppdatering",
+    "ClientId": 4
   }
 ]

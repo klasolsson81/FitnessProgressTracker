@@ -476,5 +476,257 @@
         ]
       }
     ]
+  },
+  {
+    "Id": 7,
+    "ClientId": 4,
+    "Name": "Muskelbyggnad 4-dagars",
+    "Week": 45,
+    "DailyWorkouts": [
+      {
+        "Day": "Dag 1 (M\u00E5ndag)",
+        "FocusArea": "Br\u00F6st \u0026 Triceps",
+        "IsCompleted": true,
+        "Exercises": [
+          {
+            "Name": "B\u00E4nkpress",
+            "SetsAndReps": "3 set x 8 reps"
+          },
+          {
+            "Name": "Hantelflyes",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Tricepspress",
+            "SetsAndReps": "3 set x 10 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 2 (Tisdag)",
+        "FocusArea": "Rygg \u0026 Biceps",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "Marklyft",
+            "SetsAndReps": "3 set x 8 reps"
+          },
+          {
+            "Name": "Latsdrag",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Bicepscurl",
+            "SetsAndReps": "3 set x 10 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 3 (Torsdag)",
+        "FocusArea": "Ben \u0026 Mage",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "Kn\u00E4b\u00F6j",
+            "SetsAndReps": "3 set x 8 reps"
+          },
+          {
+            "Name": "Benpress",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Plankan",
+            "SetsAndReps": "3 set x 30 sek"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 4 (Fredag)",
+        "FocusArea": "Axlar \u0026 Mage",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "Axelpress",
+            "SetsAndReps": "3 set x 8 reps"
+          },
+          {
+            "Name": "Hantellyft",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Russian twist",
+            "SetsAndReps": "3 set x 15 reps"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 8,
+    "ClientId": 4,
+    "Name": "Vikt\u00F6kning 5-dagars",
+    "Week": 46,
+    "DailyWorkouts": [
+      {
+        "Day": "Dag 1 (M\u00E5ndag)",
+        "FocusArea": "Br\u00F6st \u0026 Triceps",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "B\u00E4nkpress",
+            "SetsAndReps": "4 set x 8 reps"
+          },
+          {
+            "Name": "Hantelflyes",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Tricepspress",
+            "SetsAndReps": "3 set x 10 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 2 (Tisdag)",
+        "FocusArea": "Rygg \u0026 Biceps",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "Marklyft",
+            "SetsAndReps": "4 set x 6 reps"
+          },
+          {
+            "Name": "Latsdrag",
+            "SetsAndReps": "3 set x 8 reps"
+          },
+          {
+            "Name": "Bicepscurl",
+            "SetsAndReps": "3 set x 10 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 3 (Onsdag)",
+        "FocusArea": "Ben",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "Kn\u00E4b\u00F6j",
+            "SetsAndReps": "4 set x 8 reps"
+          },
+          {
+            "Name": "Benspark",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Legcurl",
+            "SetsAndReps": "3 set x 10 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 4 (Torsdag)",
+        "FocusArea": "Axlar \u0026 Mage",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "Axelpress",
+            "SetsAndReps": "4 set x 8 reps"
+          },
+          {
+            "Name": "Hantellyft",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Situps",
+            "SetsAndReps": "3 set x 15 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 5 (Fredag)",
+        "FocusArea": "Hela kroppen",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "Sammankombo",
+            "SetsAndReps": "4 set x 8 reps"
+          },
+          {
+            "Name": "Burpees",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Planka",
+            "SetsAndReps": "3 set x 30 sek"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 9,
+    "ClientId": 4,
+    "Name": "Viktnedg\u00E5ng 3-dagars",
+    "Week": 47,
+    "DailyWorkouts": [
+      {
+        "Day": "Dag 1 (M\u00E5ndag)",
+        "FocusArea": "Kondition \u0026 Ben",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "L\u00F6pning",
+            "SetsAndReps": "30 min"
+          },
+          {
+            "Name": "Benpress",
+            "SetsAndReps": "3 set x 12 reps"
+          },
+          {
+            "Name": "Kn\u00E4b\u00F6j",
+            "SetsAndReps": "3 set x 10 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 2 (Onsdag)",
+        "FocusArea": "\u00D6verkropp",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "B\u00E4nkpress",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Rodd",
+            "SetsAndReps": "3 set x 12 reps"
+          },
+          {
+            "Name": "Axelpress",
+            "SetsAndReps": "3 set x 10 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 3 (Fredag)",
+        "FocusArea": "Kondition \u0026 Core",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "Cykling",
+            "SetsAndReps": "30 min"
+          },
+          {
+            "Name": "Planka",
+            "SetsAndReps": "3 set x 30 sek"
+          },
+          {
+            "Name": "Sit-ups",
+            "SetsAndReps": "3 set x 15 reps"
+          }
+        ]
+      }
+    ]
   }
 ]

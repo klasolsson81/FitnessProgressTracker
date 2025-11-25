@@ -50,5 +50,31 @@
     "FirstName": "Yonis",
     "LastName": "B",
     "Role": "Client"
+  },
+  {
+    "CurrentWorkoutPlan": null,
+    "CurrentDietPlan": null,
+    "AssignedPtId": 1,
+    "WorkoutPlanIds": [
+      7,
+      8,
+      9
+    ],
+    "DietPlanIds": [
+      7,
+      8,
+      9
+    ],
+    "ProgressLogIds": [],
+    "GoalDescription": "jag vill g\u00E5 ner i vikt",
+    "TargetWeight": 90,
+    "WorkoutsPerWeek": 3,
+    "TargetCalories": 2000,
+    "Id": 4,
+    "Username": "Sajad",
+    "PasswordHash": "Gothia2025",
+    "FirstName": "Sajad",
+    "LastName": "Azizi",
+    "Role": "Client"
   }
 ]
