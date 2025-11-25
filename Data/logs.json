@@ -1,16 +1,72 @@
 [
   {
-    "Id": 1,
-    "Date": "2025-11-23T16:18:09.7119216+01:00",
-    "Weight": 80,
-    "Notes": "g\u00E5tt bra idag ",
-    "ClientId": 5
+    "Id": 0,
+    "Date": "2025-11-25T14:30:21.4181019+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 1 (M\u00E5ndag) (Vecka 45)",
+    "ClientId": 2
   },
   {
-    "Id": 2,
-    "Date": "2025-11-23T20:21:15.4102417+01:00",
-    "Weight": 78,
-    "Notes": "g\u00E5t ner n\u00E5gra kg",
-    "ClientId": 5
+    "Id": 0,
+    "Date": "2025-11-25T14:30:27.9279858+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 2 (Onsdag) (Vecka 45)",
+    "ClientId": 2
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T14:30:34.1652671+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 3 (Torsdag) (Vecka 45)",
+    "ClientId": 2
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T14:30:46.5807982+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 2 (Tisdag) (Vecka 46)",
+    "ClientId": 2
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T14:31:00.9604763+01:00",
+    "Weight": 130,
+    "Notes": "Nu k\u00F6r vi",
+    "ClientId": 2
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T14:31:21.1614587+01:00",
+    "Weight": 125,
+    "Notes": "5 kg borta !!!",
+    "ClientId": 2
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T14:31:57.8373537+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 4 (L\u00F6rdag) (Vecka 45)",
+    "ClientId": 2
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T14:32:10.4524142+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 1 (M\u00E5ndag) (Vecka 46)",
+    "ClientId": 2
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T14:32:27.3386178+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 3 (Torsdag) (Vecka 46)",
+    "ClientId": 2
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-25T14:32:57.2448787+01:00",
+    "Weight": 120,
+    "Notes": "FRAMSTEG!!!",
+    "ClientId": 2
   }
 ]
