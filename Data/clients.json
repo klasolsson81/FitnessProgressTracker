@@ -76,5 +76,31 @@
     "FirstName": "Sajad",
     "LastName": "Azizi",
     "Role": "Client"
+  },
+  {
+    "CurrentWorkoutPlan": null,
+    "CurrentDietPlan": null,
+    "AssignedPtId": 1,
+    "WorkoutPlanIds": [
+      10,
+      11,
+      12
+    ],
+    "DietPlanIds": [
+      10,
+      11,
+      12
+    ],
+    "ProgressLogIds": [],
+    "GoalDescription": "Bodybuilder",
+    "TargetWeight": 90,
+    "WorkoutsPerWeek": 5,
+    "TargetCalories": 2000,
+    "Id": 5,
+    "Username": "Mohammed",
+    "PasswordHash": "Mohammed123",
+    "FirstName": "Mohammed",
+    "LastName": "Yusur",
+    "Role": "Client"
   }
 ]
