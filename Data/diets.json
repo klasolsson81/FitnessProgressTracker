@@ -574,5 +574,197 @@
         "TotalCalories": 1992
       }
     ]
+  },
+  {
+    "Id": 10,
+    "ClientId": 5,
+    "Name": "Bodybuilder 1500 kcal",
+    "Week": 45,
+    "DailyMeals": [
+      {
+        "Day": "M\u00E5ndag",
+        "Breakfast": "Scrambled eggs med spenat och tomat",
+        "Lunch": "Grillad kyckling med quinoa och gr\u00F6nsaker",
+        "Dinner": "Lax med broccoli och s\u00F6tpotatis",
+        "Snacks": "Grekisk yoghurt med honung och n\u00E5gra b\u00E4r",
+        "TotalCalories": 1500
+      },
+      {
+        "Day": "Tisdag",
+        "Breakfast": "Havregrynsgr\u00F6t med banan och mandlar",
+        "Lunch": "Tonfisksallad med avokado och kik\u00E4rtor",
+        "Dinner": "Biff med gr\u00F6nsaker och basmatiris",
+        "Snacks": "Proteinshake och ett \u00E4pple",
+        "TotalCalories": 1500
+      },
+      {
+        "Day": "Onsdag",
+        "Breakfast": "Smoothie med spenat, proteinpulver och b\u00E4r",
+        "Lunch": "Kalkonwrap med gr\u00F6nsaker och hummus",
+        "Dinner": "Ugnsbakad torsk med gr\u00F6nsaksnudlar",
+        "Snacks": "En n\u00E4ve n\u00F6tter och en frukt",
+        "TotalCalories": 1500
+      },
+      {
+        "Day": "Torsdag",
+        "Breakfast": "Chiafr\u00F6-pudding med kokosmj\u00F6lk och frukt",
+        "Lunch": "Grillad lax med sallad och avokadodressing",
+        "Dinner": "Kycklingben med rostad blomk\u00E5l",
+        "Snacks": "Keso med b\u00E4r och lite honung",
+        "TotalCalories": 1500
+      },
+      {
+        "Day": "Fredag",
+        "Breakfast": "Omelett med svamp och fetaost",
+        "Lunch": "Quinoasallad med svarta b\u00F6nor och gr\u00F6nsaker",
+        "Dinner": "Grillad flankstek med sparris och s\u00F6tpotatis",
+        "Snacks": "En proteinbar och en apelsin",
+        "TotalCalories": 1500
+      },
+      {
+        "Day": "L\u00F6rdag",
+        "Breakfast": "Yoghurt med granola och b\u00E4r",
+        "Lunch": "Kalkonsm\u00F6rg\u00E5s med fullkornsbr\u00F6d och sallad",
+        "Dinner": "R\u00F6dtorsk med gr\u00F6nsaker och bulgur",
+        "Snacks": "Gr\u00F6nsaksstavar med hummus",
+        "TotalCalories": 1500
+      },
+      {
+        "Day": "S\u00F6ndag",
+        "Breakfast": "Pannkakor gjorda p\u00E5 havremj\u00F6l och banan",
+        "Lunch": "Kyckling Caesar-sallad",
+        "Dinner": "Grillad lax med quinoa och broccoli",
+        "Snacks": "Ett kokt \u00E4gg och en frukt",
+        "TotalCalories": 1500
+      }
+    ]
+  },
+  {
+    "Id": 11,
+    "ClientId": 5,
+    "Name": "Bodybuilder 1500 kcal",
+    "Week": 46,
+    "DailyMeals": [
+      {
+        "Day": "M\u00E5ndag",
+        "Breakfast": "\u00C4ggr\u00F6ra med spenat och tomat",
+        "Lunch": "Grillad kyckling med quinoa och gr\u00F6nsaker",
+        "Dinner": "Fisk tacos med avokado och k\u00E5l",
+        "Snacks": "Proteinshake och en banan",
+        "TotalCalories": 1505
+      },
+      {
+        "Day": "Tisdag",
+        "Breakfast": "Havregryn med proteinpulver och b\u00E4r",
+        "Lunch": "Biff med s\u00F6tpotatis och broccoli",
+        "Dinner": "Kyckling curry med blomk\u00E5lsris",
+        "Snacks": "Tv\u00E5 riskakor med mandelsm\u00F6r",
+        "TotalCalories": 1490
+      },
+      {
+        "Day": "Onsdag",
+        "Breakfast": "Smoothie med spenat, banan och proteinpulver",
+        "Lunch": "Tonfisksallad med kik\u00E4rtor och gr\u00F6nsaker",
+        "Dinner": "Grillad lax med sparris",
+        "Snacks": "Grekisk yoghurt med n\u00F6tter",
+        "TotalCalories": 1520
+      },
+      {
+        "Day": "Torsdag",
+        "Breakfast": "Chiapudding med mandelmj\u00F6lk och b\u00E4r",
+        "Lunch": "Kalkonwraps med sallad och avokado",
+        "Dinner": "Biff med grillade gr\u00F6nsaker",
+        "Snacks": "Mor\u00F6tter och hummus",
+        "TotalCalories": 1480
+      },
+      {
+        "Day": "Fredag",
+        "Breakfast": "Omelett med ost och skinka",
+        "Lunch": "Quinoa sallad med fetaost och oliver",
+        "Dinner": "Ugnsbakad lax med broccoli",
+        "Snacks": "En proteinbar",
+        "TotalCalories": 1510
+      },
+      {
+        "Day": "L\u00F6rdag",
+        "Breakfast": "Pannkakor med havremj\u00F6l och b\u00E4r",
+        "Lunch": "Grillad kyckling med gr\u00F6nsakswraps",
+        "Dinner": "Kalkonbiffar med gr\u00F6nsaker",
+        "Snacks": "\u00C4pple med jordn\u00F6tssm\u00F6r",
+        "TotalCalories": 1500
+      },
+      {
+        "Day": "S\u00F6ndag",
+        "Breakfast": "Yoghurt med granola och frukt",
+        "Lunch": "Fisk med ris och gr\u00F6nsaker",
+        "Dinner": "Kycklingwok med gr\u00F6nsaker",
+        "Snacks": "Ett h\u00E5rdkokt \u00E4gg",
+        "TotalCalories": 1495
+      }
+    ]
+  },
+  {
+    "Id": 12,
+    "ClientId": 5,
+    "Name": "Bodybuilder 2000 kcal",
+    "Week": 47,
+    "DailyMeals": [
+      {
+        "Day": "M\u00E5ndag",
+        "Breakfast": "Havregrynsgr\u00F6t med mandelmj\u00F6lk och banan",
+        "Lunch": "Kycklingfil\u00E9 med quinoa och gr\u00F6nsaker",
+        "Dinner": "Grillad lax med s\u00F6tpotatis och broccoli",
+        "Snacks": "Greek yogurt med honung och n\u00F6tter",
+        "TotalCalories": 2005
+      },
+      {
+        "Day": "Tisdag",
+        "Breakfast": "Scrambled eggs med spenat och tomat",
+        "Lunch": "N\u00F6tk\u00F6tt fajitas med avokado och salsa",
+        "Dinner": "Ugnsbakad torsk med ris och gr\u00F6nsaker",
+        "Snacks": "Proteinshake och en frukt",
+        "TotalCalories": 1990
+      },
+      {
+        "Day": "Onsdag",
+        "Breakfast": "Smoothie med b\u00E4r, banan och proteinpulver",
+        "Lunch": "Kycklingsallad med avokado och fetaost",
+        "Dinner": "Pasta med k\u00F6ttf\u00E4rss\u00E5s och gr\u00F6nsaker",
+        "Snacks": "Hummus med morotsstavar",
+        "TotalCalories": 2015
+      },
+      {
+        "Day": "Torsdag",
+        "Breakfast": "Toast med avokado och pocherat \u00E4gg",
+        "Lunch": "R\u00E4ksallad med quinoa och gr\u00F6nk\u00E5l",
+        "Dinner": "Grillad flankstek med b\u00F6nor och ris",
+        "Snacks": "Kesomousse med b\u00E4r",
+        "TotalCalories": 2003
+      },
+      {
+        "Day": "Fredag",
+        "Breakfast": "Chiapudding med kokos och mango",
+        "Lunch": "Kalkonsandwich med fullkornsbr\u00F6d och sallad",
+        "Dinner": "Ugnsstekt kyckling med potatis och rotfrukter",
+        "Snacks": "\u00C4pple med mandelsm\u00F6r",
+        "TotalCalories": 1985
+      },
+      {
+        "Day": "L\u00F6rdag",
+        "Breakfast": "Omelett med svamp och paprika",
+        "Lunch": "Fiskstekt med bulgur och gr\u00F6nsaker",
+        "Dinner": "Lammkotletter med couscous och gr\u00F6nsaker",
+        "Snacks": "Energibar och n\u00F6tter",
+        "TotalCalories": 2012
+      },
+      {
+        "Day": "S\u00F6ndag",
+        "Breakfast": "Yoghurt med granola och b\u00E4r",
+        "Lunch": "Kycklingwrap med gr\u00F6nsaker",
+        "Dinner": "Pizzastyle zucchinib\u00E5tar med f\u00E4rskost och skinka",
+        "Snacks": "Proteinbars",
+        "TotalCalories": 2001
+      }
+    ]
   }
 ]
