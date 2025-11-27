@@ -102,5 +102,28 @@
     "FirstName": "Mohammed",
     "LastName": "Yusur",
     "Role": "Client"
+  },
+  {
+    "CurrentWorkoutPlan": null,
+    "CurrentDietPlan": null,
+    "AssignedPtId": 1,
+    "WorkoutPlanIds": [
+      13,
+      14
+    ],
+    "DietPlanIds": [
+      13
+    ],
+    "ProgressLogIds": [],
+    "GoalDescription": "bygga musklar",
+    "TargetWeight": 74,
+    "WorkoutsPerWeek": 3,
+    "TargetCalories": 1200,
+    "Id": 6,
+    "Username": "Zidan",
+    "PasswordHash": "Sacad123",
+    "FirstName": "Sacad",
+    "LastName": "Elmi",
+    "Role": "Client"
   }
 ]

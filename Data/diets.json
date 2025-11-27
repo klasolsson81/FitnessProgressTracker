@@ -766,5 +766,69 @@
         "TotalCalories": 2001
       }
     ]
+  },
+  {
+    "Id": 13,
+    "ClientId": 6,
+    "Name": "Bygga Muskler 1200 kcal",
+    "Week": 50,
+    "DailyMeals": [
+      {
+        "Day": "M\u00E5ndag",
+        "Breakfast": "Omelett med spenat och tomat",
+        "Lunch": "Kycklingfil\u00E9 med quinoa och gr\u00F6nsaker",
+        "Dinner": "Grillad lax med broccoli",
+        "Snacks": "Grekisk yoghurt med honung",
+        "TotalCalories": 1200
+      },
+      {
+        "Day": "Tisdag",
+        "Breakfast": "Havregryn med proteinpulver och b\u00E4r",
+        "Lunch": "Tonfisksallad med avokado",
+        "Dinner": "Kalkonf\u00E4rs med s\u00F6tpotatis",
+        "Snacks": "En banan och en n\u00E4ve mandlar",
+        "TotalCalories": 1200
+      },
+      {
+        "Day": "Onsdag",
+        "Breakfast": "Smoothie med spenat, banan och proteinpulver",
+        "Lunch": "Grillad kyckling med bruna ris och gr\u00F6nsaker",
+        "Dinner": "Biff med sparris",
+        "Snacks": "Morotsstavar med hummus",
+        "TotalCalories": 1200
+      },
+      {
+        "Day": "Torsdag",
+        "Breakfast": "\u00C4ggr\u00F6ra med fullkornsbr\u00F6d",
+        "Lunch": "Quinoasallad med r\u00E4kor",
+        "Dinner": "Grillad tonfisk med gr\u00F6nsakswok",
+        "Snacks": "\u00C4pple och jordn\u00F6tssm\u00F6r",
+        "TotalCalories": 1200
+      },
+      {
+        "Day": "Fredag",
+        "Breakfast": "Chiapudding med mandelmj\u00F6lk",
+        "Lunch": "Kalkonwrap med sallad och guacamole",
+        "Dinner": "Ugnsbakad lax med quinoa",
+        "Snacks": "En proteinbar",
+        "TotalCalories": 1200
+      },
+      {
+        "Day": "L\u00F6rdag",
+        "Breakfast": "Proteinpannkakor med b\u00E4r",
+        "Lunch": "B\u00F6nsalsan med kyckling",
+        "Dinner": "K\u00F6ttf\u00E4rss\u00E5s med zucchini-pasta",
+        "Snacks": "En n\u00E4ve valn\u00F6tter",
+        "TotalCalories": 1200
+      },
+      {
+        "Day": "S\u00F6ndag",
+        "Breakfast": "Smoothie bowl med n\u00F6tter och fr\u00F6n",
+        "Lunch": "Fetaostsallad med grillad kyckling",
+        "Dinner": "Linsgryta med spenat",
+        "Snacks": "Grekisk yoghurt och b\u00E4r",
+        "TotalCalories": 1200
+      }
+    ]
   }
 ]
