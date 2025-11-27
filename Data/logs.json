@@ -271,5 +271,33 @@
     "Weight": 85,
     "Notes": "Viktuppdatering",
     "ClientId": 5
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-27T18:46:42.6599281+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 1 (M\u00E5ndag) (Vecka 50)",
+    "ClientId": 6
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-27T18:46:56.2880912+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 2 (Onsdag) (Vecka 50)",
+    "ClientId": 6
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-27T18:47:09.319433+01:00",
+    "Weight": 0,
+    "Notes": "Genomf\u00F6rde pass: Dag 3 (Fredag) (Vecka 50)",
+    "ClientId": 6
+  },
+  {
+    "Id": 0,
+    "Date": "2025-11-27T18:47:45.140039+01:00",
+    "Weight": 70,
+    "Notes": "g\u00E5tt ner n\u00E5gra kilo tack b\u00E4sta Pt du f\u00E5r mer pengar .",
+    "ClientId": 6
   }
 ]

@@ -1097,5 +1097,135 @@
         ]
       }
     ]
+  },
+  {
+    "Id": 13,
+    "ClientId": 6,
+    "Name": "Muskelbygge 3-dagars",
+    "Week": 50,
+    "DailyWorkouts": [
+      {
+        "Day": "Dag 1 (M\u00E5ndag)",
+        "FocusArea": "Br\u00F6st \u0026 Triceps",
+        "IsCompleted": true,
+        "Exercises": [
+          {
+            "Name": "B\u00E4nkpress",
+            "SetsAndReps": "3 set x 8 reps"
+          },
+          {
+            "Name": "Hantelpress",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Tricepspress",
+            "SetsAndReps": "3 set x 12 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 2 (Onsdag)",
+        "FocusArea": "Rygg \u0026 Biceps",
+        "IsCompleted": true,
+        "Exercises": [
+          {
+            "Name": "Marklyft",
+            "SetsAndReps": "3 set x 8 reps"
+          },
+          {
+            "Name": "Pull-ups",
+            "SetsAndReps": "3 set x 6 reps"
+          },
+          {
+            "Name": "Bicepscurl",
+            "SetsAndReps": "3 set x 10 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 3 (Fredag)",
+        "FocusArea": "Ben \u0026 Axlar",
+        "IsCompleted": true,
+        "Exercises": [
+          {
+            "Name": "Knespress",
+            "SetsAndReps": "3 set x 8 reps"
+          },
+          {
+            "Name": "Benspark",
+            "SetsAndReps": "3 set x 12 reps"
+          },
+          {
+            "Name": "Axelpress",
+            "SetsAndReps": "3 set x 10 reps"
+          }
+        ]
+      }
+    ]
+  },
+  {
+    "Id": 14,
+    "ClientId": 6,
+    "Name": "Bygga Muskler 3-dagars",
+    "Week": 46,
+    "DailyWorkouts": [
+      {
+        "Day": "Dag 1 (M\u00E5ndag)",
+        "FocusArea": "Br\u00F6st \u0026 Triceps",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "B\u00E4nkpress",
+            "SetsAndReps": "3 set x 8 reps"
+          },
+          {
+            "Name": "Hantelpress",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Dips",
+            "SetsAndReps": "3 set x 8 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 2 (Onsdag)",
+        "FocusArea": "Rygg \u0026 Biceps",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "Marklyft",
+            "SetsAndReps": "3 set x 6 reps"
+          },
+          {
+            "Name": "Pull-ups",
+            "SetsAndReps": "3 set x 5 reps"
+          },
+          {
+            "Name": "Bicepscurl",
+            "SetsAndReps": "3 set x 10 reps"
+          }
+        ]
+      },
+      {
+        "Day": "Dag 3 (Fredag)",
+        "FocusArea": "Ben \u0026 Axlar",
+        "IsCompleted": false,
+        "Exercises": [
+          {
+            "Name": "Kn\u00E4b\u00F6j",
+            "SetsAndReps": "3 set x 8 reps"
+          },
+          {
+            "Name": "Benpress",
+            "SetsAndReps": "3 set x 10 reps"
+          },
+          {
+            "Name": "Axellyft",
+            "SetsAndReps": "3 set x 12 reps"
+          }
+        ]
+      }
+    ]
   }
 ]
